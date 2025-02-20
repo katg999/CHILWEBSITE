@@ -1,0 +1,14 @@
+.bg-section {
+  width: 100%; /* Full width */
+  height: 400px; /* Adjust height as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Adjust text color */
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
