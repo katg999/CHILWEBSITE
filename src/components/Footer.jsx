@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Typography, Link, Stack } from "@mui/material";
 
 // Import images
-import ketiaiLogo from "../assets/images/KETIAI.jpeg";
+
+import ketiaiLogo from "../assets/images/emojiwhite.png";
 import appStore from "../assets/images/AppStore.webp";
 import playStore from "../assets/images/PlayStore.webp";
 

@@ -6,6 +6,7 @@ import KetiStats from "./components/KetiStats"; // Importing the KetiStats compo
 import RecentAwards from "./components/RecentAwards";
 import FindUs from "./components/FindUs";
 import Footer from "./components/Footer";
+import ketiaiBackground from "./assets/images/KETIAIBACKGROUND.jpg"; // Import the background image
 
 const App = () => {
   return (
@@ -14,7 +15,7 @@ const App = () => {
       <div
         className="bg-section relative"
         style={{
-          backgroundImage: `url(/src/assets/images/KETIAIBACKGROUND.PNG)`,
+          backgroundImage: `url(${ketiaiBackground})`, // Updated path
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
