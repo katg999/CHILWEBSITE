@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ketiaiLogo from "../assets/images/KETIAI.jpeg"; // Adjust the path based on your folder structure
+import ketiaiLogo from "../assets/images/emojiwhite.png"; // Adjust the path based on your folder structure
 import { Button, Menu, MenuItem, Typography } from "@mui/material";
 
 const Navbar = () => {
