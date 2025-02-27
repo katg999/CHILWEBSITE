@@ -1,7 +1,7 @@
 import React from "react";
-import KETIIMAGE1 from "../assets/images/KETIIMAGE1.jpg";
-import KETIIMAGE2 from "../assets/images/KETIMAGE2.jpg";
-import KETIIMAGE3 from "../assets/images/KETIMAGE3.jpg";
+import KETIIMAGE1 from "../assets/images/KETIIMAGE1-min.jpg";
+import KETIIMAGE2 from "../assets/images/KETIMAGE2-min.jpg";
+import KETIIMAGE3 from "../assets/images/KETIMAGE3-min.jpg";
 
 const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
   return (
@@ -120,9 +120,10 @@ const Information = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%", // Ensure full width
-        padding: "20px 0", // Add vertical padding
+        padding: "40px 0", // Add vertical padding
         backgroundColor: "#f0f0f0", // Match the background color of the parent
         flexWrap: "wrap", // Allow wrapping for smaller screens
+        gap: "20px", // Add gap between cards
       }}
     >
       {sections.map((section, index) => (
