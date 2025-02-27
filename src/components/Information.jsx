@@ -18,7 +18,7 @@ const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
         width: "300px",
         height: "350px", // Increased height for better coverage
         position: "relative",
-        color: "white", // Make text readable
+        color: "white", // Set text color to white
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -32,6 +32,7 @@ const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
           fontSize: "18px",
           fontWeight: "bold",
           textShadow: "2px 2px 4px rgba(0,0,0,0.5)", // Better visibility
+          color: "white", // Ensure title is white
         }}
       >
         {title}
@@ -43,6 +44,7 @@ const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
           fontSize: "14px",
           fontWeight: "500",
           textShadow: "2px 2px 4px rgba(0,0,0,0.5)", // Improves readability
+          color: "white", // Ensure paragraph is white
         }}
       >
         {paragraph}
@@ -58,11 +60,12 @@ const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
           alignItems: "center",
           gap: "8px",
           textDecoration: "none",
-          color: "#fff",
+          color: "white", // Set button text color to white
           fontWeight: "bold",
-          background: "rgba(0, 0, 0, 0.6)", // Semi-transparent button
+          background: "purple", // Set button background to purple
           padding: "8px 12px",
           borderRadius: "5px",
+          border: "2px solid purple", // Add a purple border
         }}
       >
         <svg
@@ -71,7 +74,7 @@ const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          style={{ width: "24px", height: "24px" }}
+          style={{ width: "24px", height: "24px", color: "white" }} // Set icon color to white
         >
           <path
             strokeLinecap="round"
@@ -85,7 +88,7 @@ const ImageWithButton = ({ title, paragraph, buttonText, imageUrl, link }) => {
   );
 };
 
-const App = () => {
+const Information = () => {
   const sections = [
     {
       title: "INDIVIDUALS",
@@ -116,9 +119,10 @@ const App = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f0f0f0",
-        flexWrap: "wrap",
+        width: "100%", // Ensure full width
+        padding: "20px 0", // Add vertical padding
+        backgroundColor: "#f0f0f0", // Match the background color of the parent
+        flexWrap: "wrap", // Allow wrapping for smaller screens
       }}
     >
       {sections.map((section, index) => (
@@ -135,4 +139,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Information;
