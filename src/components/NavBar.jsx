@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ketiaiLogo from "../assets/images/emojiwhite.png"; // Adjust the path based on your folder structure
 import { Button, Menu, MenuItem } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null); // State for dropdown anchor
@@ -85,7 +86,7 @@ const Navbar = () => {
           </Menu>
         </li>
         <li>
-          <Button href="/organisations" style={buttonStyle}>
+          <Button component={Link} to="/organisations" style={buttonStyle}>
             Organisations
           </Button>
         </li>
@@ -93,14 +94,17 @@ const Navbar = () => {
 
       {/* Center: Logo */}
       <div className="logo-container">
-        <img
-          src={ketiaiLogo}
-          alt="Ketiai Logo"
-          className="logo"
-          style={{ height: "50px" }}
-        />
+        <Link to="/">
+          {" "}
+          {/* Wrap the logo with Link */}
+          <img
+            src={ketiaiLogo}
+            alt="Ketiai Logo"
+            className="logo"
+            style={{ height: "50px", cursor: "pointer" }} // Add cursor pointer for better UX
+          />
+        </Link>
       </div>
-
       {/* Right: Navigation Links */}
       <ul
         className="nav-links right-nav"
@@ -114,12 +118,16 @@ const Navbar = () => {
         }}
       >
         <li>
-          <Button href="/asset-finance-loans" style={assetFinanceButtonStyle}>
+          <Button
+            component={Link}
+            to="/asset-finance-loans"
+            style={assetFinanceButtonStyle}
+          >
             AssetFinance Loans
           </Button>
         </li>
         <li>
-          <Button href="/contact-us" style={buttonStyle}>
+          <Button component={Link} to="/contact-us" style={buttonStyle}>
             Contact Us
           </Button>
         </li>
