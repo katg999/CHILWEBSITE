@@ -1,83 +1,93 @@
 import React, { useState } from "react";
 import ketiaiLogo from "../assets/images/emojiwhite.png"; // Adjust the path based on your folder structure
-import { Button, Menu, MenuItem, Typography } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 const Navbar = () => {
-  const [registerAnchorEl, setRegisterAnchorEl] = useState(null);
-  const [servicesAnchorEl, setServicesAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null); // State for dropdown anchor
 
-  const handleRegisterClick = (event) => {
-    setRegisterAnchorEl(event.currentTarget);
+  // Handle dropdown open
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleServicesClick = (event) => {
-    setServicesAnchorEl(event.currentTarget);
-  };
-
+  // Handle dropdown close
   const handleClose = () => {
-    setRegisterAnchorEl(null);
-    setServicesAnchorEl(null);
+    setAnchorEl(null);
+  };
+
+  // Common style for all buttons
+  const buttonStyle = {
+    color: "white",
+    textTransform: "none",
+    width: "120px",
+    height: "40px",
+  };
+
+  // Special style for the longer AssetFinance Loans button
+  const assetFinanceButtonStyle = {
+    ...buttonStyle,
+    width: "200px", // Wider to accommodate the longer text
+    whiteSpace: "nowrap", // Prevents text wrapping
+    overflow: "visible", // Allows text to extend beyond the button if needed
   };
 
   return (
     <nav
       className="navbar"
-      style={{ backgroundColor: "purple", padding: "10px 20px" }}
+      style={{
+        backgroundColor: "purple",
+        padding: "10px 20px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
     >
       {/* Left: Navigation Links */}
       <ul
         className="nav-links left-nav"
-        style={{ listStyle: "none", display: "flex", gap: "20px" }}
+        style={{
+          listStyle: "none",
+          display: "flex",
+          gap: "20px",
+          margin: 0,
+          padding: 0,
+        }}
       >
         <li>
-          <a href="/" style={{ color: "white", textDecoration: "none" }}>
-            Home
-          </a>
-        </li>
-        <li>
           <Button
-            aria-controls="services-menu"
+            aria-controls="individuals-menu"
             aria-haspopup="true"
-            onClick={handleServicesClick}
-            style={{ color: "white", textTransform: "none" }}
+            onClick={handleClick}
+            style={buttonStyle}
           >
-            Services
+            Individuals
           </Button>
+          {/* Vertical Dropdown Menu */}
           <Menu
-            id="services-menu"
-            anchorEl={servicesAnchorEl}
+            id="individuals-menu"
+            anchorEl={anchorEl}
             keepMounted
-            open={Boolean(servicesAnchorEl)}
+            open={Boolean(anchorEl)}
             onClose={handleClose}
+            PaperProps={{
+              style: {
+                backgroundColor: "purple", // Match navbar background
+                boxShadow: "none", // Remove default shadow
+              },
+            }}
           >
-            <MenuItem onClick={handleClose}>Maternal Child Health</MenuItem>
-            <MenuItem onClick={handleClose}>Disaster Medicine</MenuItem>
-            <MenuItem onClick={handleClose}>Other Services</MenuItem>
-          </Menu>
-        </li>
-        <li>
-          <Button
-            aria-controls="register-menu"
-            aria-haspopup="true"
-            onClick={handleRegisterClick}
-            style={{ color: "white", textTransform: "none" }}
-          >
-            Register
-          </Button>
-          <Menu
-            id="register-menu"
-            anchorEl={registerAnchorEl}
-            keepMounted
-            open={Boolean(registerAnchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>Register as a Doctor</MenuItem>
-            <MenuItem onClick={handleClose}>
-              Register as a Health Facility
+            <MenuItem onClick={handleClose} style={{ color: "white" }}>
+              Register as a Doctor
             </MenuItem>
-            <MenuItem onClick={handleClose}>Register as a Pharmacy</MenuItem>
-            <MenuItem onClick={handleClose}>Register as a Laboratory</MenuItem>
+            <MenuItem onClick={handleClose} style={{ color: "white" }}>
+              Register as a Patient
+            </MenuItem>
           </Menu>
+        </li>
+        <li>
+          <Button href="/organisations" style={buttonStyle}>
+            Organisations
+          </Button>
         </li>
       </ul>
 
@@ -94,17 +104,24 @@ const Navbar = () => {
       {/* Right: Navigation Links */}
       <ul
         className="nav-links right-nav"
-        style={{ listStyle: "none", display: "flex", gap: "20px" }}
+        style={{
+          listStyle: "none",
+          display: "flex",
+          gap: "20px",
+          margin: 0,
+          padding: 0,
+          alignItems: "center", // Align items vertically in the center
+        }}
       >
         <li>
-          <a href="/about" style={{ color: "white", textDecoration: "none" }}>
+          <Button href="/asset-finance-loans" style={assetFinanceButtonStyle}>
             AssetFinance Loans
-          </a>
+          </Button>
         </li>
         <li>
-          <a href="/about" style={{ color: "white", textDecoration: "none" }}>
+          <Button href="/contact-us" style={buttonStyle}>
             Contact Us
-          </a>
+          </Button>
         </li>
       </ul>
     </nav>

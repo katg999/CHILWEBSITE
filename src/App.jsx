@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/NavBar"; // Ensure the path is correct
 import { Button, Typography } from "@mui/material"; // Import MUI components
 import Information from "./components/Information"; // Import the Information component
 import KetiStats from "./components/KetiStats"; // Importing the KetiStats component
@@ -11,6 +11,9 @@ import ketiaiBackground from "./assets/images/KETIAIBACKGROUND.jpg"; // Import t
 const App = () => {
   return (
     <div className="min-h-screen">
+      {/* Navbar */}
+      <Navbar />
+
       {/* Hero Section */}
       <div
         className="bg-section relative"
@@ -58,9 +61,6 @@ const App = () => {
           </Button>
         </div>
       </div>
-
-      {/* Navbar */}
-      <Navbar />
 
       {/* Information Section */}
       <div style={{ width: "100%", padding: 0 }}>
