@@ -2,7 +2,8 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/NavBar";
-import Display from "./components/Display"; // Import the Display component
+import Display from "./components/Display";
+import ImageDisplay from "./components/ImageDisplay"; // Import the new component
 
 const App = () => {
   return (
@@ -13,6 +14,9 @@ const App = () => {
 
         {/* Display Component */}
         <Display />
+
+        {/* Image Display Component */}
+        <ImageDisplay />
       </div>
     </Router>
   );
