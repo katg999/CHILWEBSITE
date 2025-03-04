@@ -5,6 +5,7 @@ import Navbar from "./components/NavBar";
 import Display from "./components/Display";
 import ImageDisplay from "./components/ImageDisplay";
 import BenefitsSection from "./components/BenefitsSection";
+import KetiStats from "./components/KetiStats";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         {/* Image Display Component */}
         <ImageDisplay />
         <BenefitsSection />
+        <KetiStats />
       </div>
     </Router>
   );
