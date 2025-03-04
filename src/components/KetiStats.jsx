@@ -1,42 +1,38 @@
 import React from "react";
 import { Box, Typography, Paper } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/People";
-import GroupIcon from "@mui/icons-material/Group";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+
+// Import the PNG images
+import SHAM1 from "../assets/images/SHAM1.png";
+import SHAM2 from "../assets/images/SHAM2.png";
+import SHAM3 from "../assets/images/SHAM3.png";
+import SHAM4 from "../assets/images/SHAM4.png";
 
 const KetiStats = () => {
-  // Array of stats data to dynamically render each statistic
+  // Updated stats content with imported PNG images
   const stats = [
     {
-      title: "50 Million Visits",
-      description: "Achieved with KETI AI-powered services.",
-      icon: <PeopleIcon sx={{ fontSize: "2.5rem", color: "white" }} />, // White icon
-    },
-    {
-      title: "1.2 Million Users",
+      title: "24/7 Access to Care",
       description:
-        "Registered users benefiting from personalized AI healthcare.",
-      icon: <GroupIcon sx={{ fontSize: "2.5rem", color: "white" }} />, // White icon
+        "Get instant access to e-consultations, e-pharmacy, e-laboratory, and e-referrals; empowering you to deliver top-tier healthcare without extra overhead.",
+      image: SHAM1,
     },
     {
-      title: "95% Satisfaction",
-      description: "Customer satisfaction rate based on surveys.",
-      icon: <ArrowUpwardIcon sx={{ fontSize: "2.5rem", color: "white" }} />, // White icon
+      title: "AI-powered Assistant",
+      description:
+        "Discover seamless guidance with Keti, our AI assistant, for registering, scheduling, and answering your questions.",
+      image: SHAM2,
     },
     {
-      title: "1.5 Billion Data Points",
-      description: "Analyzed and processed by our AI to improve accuracy.",
-      icon: <ArrowUpwardIcon sx={{ fontSize: "2.5rem", color: "white" }} />, // White icon
+      title: "Network of Specialists",
+      description:
+        "Get specialized care for your patients with licensed telemedicine specialists serving healthcare facilities worldwide.",
+      image: SHAM3,
     },
     {
-      title: "99% Uptime",
-      description: "KETI AI is always available and reliable.",
-      icon: <ArrowUpwardIcon sx={{ fontSize: "2.5rem", color: "white" }} />, // White icon
-    },
-    {
-      title: "500+ Healthcare Partners",
-      description: "Collaborations with top healthcare organizations.",
-      icon: <GroupIcon sx={{ fontSize: "2.5rem", color: "white" }} />, // White icon
+      title: "Patient Follow-up",
+      description:
+        "Secure unmatched 24/7 patient follow-up with our unique AI-human telemedicine blend, exclusive to Africa and the Middle East.",
+      image: SHAM4,
     },
   ];
 
@@ -48,15 +44,20 @@ const KetiStats = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor: "#F7F9FD",
+        py: 6,
       }}
     >
-      {/* Title with Purple Color */}
-
+      {/* Stats Container */}
       <Box
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr", // Single column on extra-small screens
+            sm: "1fr 1fr", // Two columns on small screens
+            md: "1fr 1fr 1fr", // Three columns on medium screens
+            lg: "1fr 1fr 1fr 1fr", // Four columns on large screens
+          },
           gap: 4,
           maxWidth: "1200px",
           width: "100%",
@@ -65,31 +66,53 @@ const KetiStats = () => {
         {stats.map((stat, index) => (
           <Paper
             key={index}
-            elevation={3}
+            elevation={2}
             sx={{
-              p: 3,
+              p: 2,
               textAlign: "center",
               borderRadius: 2,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              flex: "1 1 calc(33.333% - 32px)", // Adjust the width based on the gap
-              minWidth: "250px",
-              maxWidth: "300px",
-              backgroundColor: "purple", // Purple background for the card
-              color: "white", // White text for the card
+              backgroundColor: "white",
+              color: "#000000",
             }}
           >
-            <Box sx={{ mb: 1.5 }}>{stat.icon}</Box>
-            {/* Stat Title with White Color */}
+            {/* Image at the top - Adjusted for better responsiveness */}
+            <Box
+              component="img"
+              src={stat.image}
+              alt={stat.title}
+              sx={{
+                width: "100%",
+                height: "160px",
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+            />
+
+            {/* Stat Title */}
             <Typography
               variant="h6"
-              sx={{ fontWeight: "bold", mb: 1, color: "white" }} // White text
+              sx={{
+                fontWeight: "bold",
+                mt: 2,
+                fontFamily: "Bricolage Grotesque",
+                color: "#000000",
+              }}
             >
               {stat.title}
             </Typography>
-            <Typography variant="body2" sx={{ color: "white" }}>
-              {" "}
+
+            {/* Stat Description */}
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "Geist",
+                color: "#333",
+                mt: 1,
+              }}
+            >
               {stat.description}
             </Typography>
           </Paper>
