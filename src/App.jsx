@@ -3,7 +3,8 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Display from "./components/Display";
-import ImageDisplay from "./components/ImageDisplay"; // Import the new component
+import ImageDisplay from "./components/ImageDisplay";
+import BenefitsSection from "./components/BenefitsSection";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
 
         {/* Image Display Component */}
         <ImageDisplay />
+        <BenefitsSection />
       </div>
     </Router>
   );
