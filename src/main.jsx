@@ -2,6 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./assets/css/navbar.css";
+import "./index.css"; // Import Tailwind CSS
+import "../dist/app.css";
 
 import App from "./App.jsx";
 
