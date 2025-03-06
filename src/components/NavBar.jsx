@@ -242,21 +242,20 @@ const Navbar = () => {
             width: "250px",
             backgroundColor: "white",
             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            flexDirection: "column", // Ensure items are stacked vertically
+            padding: "20px",
           },
         }}
       >
-        <List>
+        <List sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <ListItem>
             <span
               onClick={handleClick}
-              style={{
-                ...navLinkStyle,
-                cursor: "pointer",
-              }}
+              style={{ ...navLinkStyle, cursor: "pointer" }}
             >
               Individuals
             </span>
-            {/* Vertical Dropdown Menu */}
             <Menu
               id="individuals-menu"
               anchorEl={anchorEl}
@@ -281,10 +280,7 @@ const Navbar = () => {
           <ListItem>
             <Link
               to="/organisations"
-              style={{
-                ...navLinkStyle,
-                textDecoration: "none",
-              }}
+              style={{ ...navLinkStyle, textDecoration: "none" }}
             >
               Organisations
             </Link>
@@ -292,10 +288,7 @@ const Navbar = () => {
           <ListItem>
             <Link
               to="/asset-finance-loans"
-              style={{
-                ...navLinkStyle,
-                textDecoration: "none",
-              }}
+              style={{ ...navLinkStyle, textDecoration: "none" }}
             >
               Finance Loans
             </Link>
@@ -303,10 +296,7 @@ const Navbar = () => {
           <ListItem>
             <Link
               to="/contact-us"
-              style={{
-                ...navLinkStyle,
-                textDecoration: "none",
-              }}
+              style={{ ...navLinkStyle, textDecoration: "none" }}
             >
               Contact Us
             </Link>
