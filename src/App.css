@@ -1,15 +1,10 @@
-/* src/App.css */
-@import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0; /* Remove padding to ensure Navbar sticks to the top */
   text-align: center;
 }
+
 /* General Styles */
 .min-h-screen {
   min-height: 100vh;
@@ -19,7 +14,7 @@
 .background-image {
   background-size: cover;
   background-position: center;
-  height: calc(100vh - 60px); /* Adjust height based on Navbar height */
+  height: 100vh; /* Full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
