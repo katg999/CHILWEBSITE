@@ -7,15 +7,18 @@ const Statistics = () => {
         width: "100%", // Span the entire screen width
         backgroundColor: "white", // Background color for the statistics section
         padding: "40px 20px", // Add padding for spacing
+        boxSizing: "border-box", // Ensure padding is included in the width
       }}
     >
       <div
         style={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on small screens, horizontally on larger screens
           justifyContent: "space-around", // Distribute items evenly
           alignItems: "center",
           maxWidth: "1200px", // Optional: Limit the max width for better readability
           margin: "0 auto", // Center the container horizontally
+          gap: { xs: "40px", sm: "20px" }, // Add gap between items
         }}
       >
         {/* Laboratories */}
@@ -24,7 +27,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: "16px",
+              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -36,7 +39,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: "54px",
+              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -53,7 +56,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: "16px",
+              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -65,7 +68,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: "54px",
+              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -82,7 +85,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: "16px",
+              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -94,7 +97,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: "54px",
+              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -111,7 +114,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: "16px",
+              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -123,7 +126,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: "54px",
+              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -140,7 +143,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: "16px",
+              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -152,7 +155,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: "54px",
+              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
