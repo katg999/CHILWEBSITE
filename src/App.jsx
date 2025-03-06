@@ -23,7 +23,7 @@ const App = () => {
         <Display />
 
         {/* Image Display Component */}
-        <ImageDisplay />
+
         <BenefitsSection />
         <KetiStats />
         <KetiServices />
