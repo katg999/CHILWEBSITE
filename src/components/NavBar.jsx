@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import ketiaiLogo from "../assets/images/emojiwhite.png"; // Adjust the path based on your folder structure
-import { Menu, MenuItem } from "@mui/material";
+import ketiaiLogo from "../assets/images/emoji-logo-black.svg"; // Adjust the path based on your folder structure
+import {
+  Menu,
+  MenuItem,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger menu icon
 
 // WhatsApp Icon Component
 const WhatsappIcon = (props) => (
@@ -28,6 +36,7 @@ const WhatsappIcon = (props) => (
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null); // State for dropdown anchor
+  const [drawerOpen, setDrawerOpen] = useState(false); // State for mobile drawer
 
   // Handle dropdown open
   const handleClick = (event) => {
@@ -39,15 +48,27 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  // Handle mobile drawer open
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  // Handle mobile drawer close
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
   // Common style for nav links
   const navLinkStyle = {
     color: "black",
     textDecoration: "none",
+    fontFamily: "Geist, sans-serif",
+    fontWeight: 400,
     fontSize: "16px",
-    fontWeight: "500",
+    lineHeight: "24px",
+    letterSpacing: "0%",
     padding: "10px 15px",
     cursor: "pointer",
-    position: "relative",
     "&:hover": {
       color: "#666",
     },
@@ -63,9 +84,13 @@ const Navbar = () => {
         justifyContent: "space-between",
         alignItems: "center",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+        position: "sticky", // Make the navbar sticky
+        top: 0, // Stick to the top of the viewport
+        zIndex: 1000, // Ensure it stays above other content
+        position: "relative",
       }}
     >
-      {/* Left: Logo and Adjacent Text */}
+      {/* Left: Logo */}
       <div
         className="logo-container"
         style={{ display: "flex", alignItems: "center", gap: "5px" }}
@@ -84,21 +109,17 @@ const Navbar = () => {
             className="logo"
             style={{ height: "50px", cursor: "pointer" }}
           />
-          <span
-            style={{
-              fontSize: "20px",
-              fontWeight: "bold",
-              color: "black",
-              marginLeft: "5px",
-            }}
-          >
-            Keti.AI
-          </span>
         </Link>
       </div>
 
-      {/* Center: Navigation Links with more centering */}
-      <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+      {/* Center: Navigation Links (Hidden on Mobile) */}
+      <div
+        style={{
+          flex: 1,
+          display: { xs: "none", md: "flex" },
+          justifyContent: "center",
+        }}
+      >
         <ul
           className="nav-links center-nav"
           style={{
@@ -160,7 +181,7 @@ const Navbar = () => {
                 textDecoration: "none",
               }}
             >
-              AssetFinance Loans
+              Finance Loans
             </Link>
           </li>
           <li>
@@ -199,6 +220,75 @@ const Navbar = () => {
         <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat With
         Keti
       </Link>
+
+      {/* Mobile Hamburger Menu (Visible on Small Screens) */}
+      <IconButton
+        onClick={handleDrawerOpen}
+        sx={{ display: { xs: "block", md: "none" }, color: "black" }}
+      >
+        <MenuIcon />
+      </IconButton>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: "250px",
+            backgroundColor: "white",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+          },
+        }}
+      >
+        <List>
+          <ListItem>
+            <span
+              onClick={handleClick}
+              style={{
+                ...navLinkStyle,
+                cursor: "pointer",
+              }}
+            >
+              Individuals
+            </span>
+          </ListItem>
+          <ListItem>
+            <Link
+              to="/organisations"
+              style={{
+                ...navLinkStyle,
+                textDecoration: "none",
+              }}
+            >
+              Organisations
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link
+              to="/asset-finance-loans"
+              style={{
+                ...navLinkStyle,
+                textDecoration: "none",
+              }}
+            >
+              Finance Loans
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link
+              to="/contact-us"
+              style={{
+                ...navLinkStyle,
+                textDecoration: "none",
+              }}
+            >
+              Contact Us
+            </Link>
+          </ListItem>
+        </List>
+      </Drawer>
     </nav>
   );
 };

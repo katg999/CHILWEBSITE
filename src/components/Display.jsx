@@ -1,5 +1,6 @@
 import React from "react";
-import KetiImage from "../assets/images/ImageKTI.png"; // Import the image
+import KetiImage from "../assets/images/ImageKTI.png";
+// Import the image
 
 const Display = () => {
   return (
@@ -9,7 +10,7 @@ const Display = () => {
         backgroundImage: `url(${KetiImage})`, // Use the imported image
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "calc(100vh - 60px)", // Adjust height based on Navbar height
+        height: "100vh", // Adjust height based on Navbar height
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -73,9 +74,15 @@ const Display = () => {
         </h1>
 
         {/* Sub Heading */}
-        <p>
-          Join a network that brings expert doctors, labs and pharmacies to your
-          facility-affordably and instantly.
+        <p
+          style={{
+            textAlign: "center",
+            maxWidth: "600px",
+            margin: "10px auto",
+          }}
+        >
+          Join a network that brings expert doctors, labs, and pharmacies to
+          your facility—affordably and instantly.
         </p>
 
         {/* Access Expert Care Button */}
