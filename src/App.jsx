@@ -10,6 +10,7 @@ import KetiServices from "./components/KetiServices";
 import Testimonials from "./components/Testimonials";
 import News from "./components/News";
 import ActNow from "./components/ActNow";
+
 import Footer from "./components/Footer";
 
 const App = () => {
