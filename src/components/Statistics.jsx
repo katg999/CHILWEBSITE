@@ -27,10 +27,15 @@ const Statistics = () => {
           maxWidth: "1200px",
           margin: "0 auto",
           gap: "20px",
+          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on small screens
+          textAlign: "center",
         }}
       >
         {statisticsData.map((stat, index) => (
-          <Box key={index} sx={{ textAlign: "center", minWidth: "120px" }}>
+          <Box
+            key={index}
+            sx={{ minWidth: "120px", width: { xs: "100%", sm: "auto" } }}
+          >
             <Typography
               sx={{
                 fontFamily: "Geist",
