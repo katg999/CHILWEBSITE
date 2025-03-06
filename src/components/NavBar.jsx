@@ -7,6 +7,8 @@ import {
   Drawer,
   List,
   ListItem,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger menu icon
@@ -37,6 +39,8 @@ const WhatsappIcon = (props) => (
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null); // State for dropdown anchor
   const [drawerOpen, setDrawerOpen] = useState(false); // State for mobile drawer
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // Check if the screen is mobile size
 
   // Handle dropdown open
   const handleClick = (event) => {
@@ -78,16 +82,12 @@ const Navbar = () => {
     <nav
       className="navbar"
       style={{
-        backgroundColor: "white",
-        padding: "10px 20px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        padding: "10px 20px",
+        backgroundColor: "white",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-        position: "sticky", // Make the navbar sticky
-        top: 0, // Stick to the top of the viewport
-        zIndex: 1000, // Ensure it stays above other content
-        position: "relative",
       }}
     >
       {/* Left: Logo */}
@@ -113,90 +113,92 @@ const Navbar = () => {
       </div>
 
       {/* Center: Navigation Links (Hidden on Mobile) */}
-      <div
-        style={{
-          flex: 1,
-          display: { xs: "none", md: "flex" },
-          justifyContent: "center",
-        }}
-      >
-        <ul
-          className="nav-links center-nav"
+      {!isMobile && (
+        <div
           style={{
-            listStyle: "none",
+            flex: 1,
             display: "flex",
-            gap: "30px",
-            margin: 0,
-            padding: 0,
+            justifyContent: "center",
           }}
         >
-          <li>
-            <span
-              onClick={handleClick}
-              style={{
-                ...navLinkStyle,
-                cursor: "pointer",
-              }}
-            >
-              Individuals
-            </span>
-            {/* Vertical Dropdown Menu */}
-            <Menu
-              id="individuals-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              PaperProps={{
-                style: {
-                  backgroundColor: "white",
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-                },
-              }}
-            >
-              <MenuItem onClick={handleClose} style={{ color: "black" }}>
-                Register as a Doctor
-              </MenuItem>
-              <MenuItem onClick={handleClose} style={{ color: "black" }}>
-                Register as a Patient
-              </MenuItem>
-            </Menu>
-          </li>
-          <li>
-            <Link
-              to="/organisations"
-              style={{
-                ...navLinkStyle,
-                textDecoration: "none",
-              }}
-            >
-              Organisations
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/asset-finance-loans"
-              style={{
-                ...navLinkStyle,
-                textDecoration: "none",
-              }}
-            >
-              Finance Loans
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact-us"
-              style={{
-                ...navLinkStyle,
-                textDecoration: "none",
-              }}
-            >
-              Contact Us
-            </Link>
-          </li>
-        </ul>
-      </div>
+          <ul
+            className="nav-links center-nav"
+            style={{
+              listStyle: "none",
+              display: "flex",
+              gap: "30px",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <li>
+              <span
+                onClick={handleClick}
+                style={{
+                  ...navLinkStyle,
+                  cursor: "pointer",
+                }}
+              >
+                Individuals
+              </span>
+              {/* Vertical Dropdown Menu */}
+              <Menu
+                id="individuals-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                PaperProps={{
+                  style: {
+                    backgroundColor: "white",
+                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                  },
+                }}
+              >
+                <MenuItem onClick={handleClose} style={{ color: "black" }}>
+                  Register as a Doctor
+                </MenuItem>
+                <MenuItem onClick={handleClose} style={{ color: "black" }}>
+                  Register as a Patient
+                </MenuItem>
+              </Menu>
+            </li>
+            <li>
+              <Link
+                to="/organisations"
+                style={{
+                  ...navLinkStyle,
+                  textDecoration: "none",
+                }}
+              >
+                Organisations
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/asset-finance-loans"
+                style={{
+                  ...navLinkStyle,
+                  textDecoration: "none",
+                }}
+              >
+                Finance Loans
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact-us"
+                style={{
+                  ...navLinkStyle,
+                  textDecoration: "none",
+                }}
+              >
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
 
       {/* Right: Chat With Keti Button */}
       <Link
@@ -222,12 +224,11 @@ const Navbar = () => {
       </Link>
 
       {/* Mobile Hamburger Menu (Visible on Small Screens) */}
-      <IconButton
-        onClick={handleDrawerOpen}
-        sx={{ display: { xs: "block", md: "none" }, color: "black" }}
-      >
-        <MenuIcon />
-      </IconButton>
+      {isMobile && (
+        <IconButton onClick={handleDrawerOpen} sx={{ color: "black" }}>
+          <MenuIcon />
+        </IconButton>
+      )}
 
       {/* Mobile Drawer */}
       <Drawer

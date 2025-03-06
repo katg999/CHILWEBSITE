@@ -13,11 +13,15 @@ const Display = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "100vh",
+          // Full viewport height
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
           color: "white",
+          marginTop: 0, // Ensure no margin at the top
+          paddingTop: 0, // Ensure no padding at the top
+          position: "relative", // Ensure the image starts from the top
         }}
       >
         <div className="content">
