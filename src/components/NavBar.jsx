@@ -40,7 +40,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null); // State for dropdown anchor
   const [drawerOpen, setDrawerOpen] = useState(false); // State for mobile drawer
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // Check if the screen is mobile size
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the screen is mobile size (small devices)
 
   // Handle dropdown open
   const handleClick = (event) => {
@@ -112,7 +112,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Center: Navigation Links (Hidden on Mobile) */}
+      {/* Center: Navigation Links (Hidden on Small Mobile Devices) */}
       {!isMobile && (
         <div
           style={{
@@ -200,30 +200,32 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Right: Chat With Keti Button */}
-      <Link
-        to="/chat-with-keti"
-        style={{
-          backgroundColor: "purple",
-          color: "white",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          borderRadius: "25px",
-          padding: "10px 20px",
-          whiteSpace: "nowrap",
-          width: "auto",
-          textDecoration: "none",
-          fontWeight: "500",
-          fontSize: "16px",
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat With
-        Keti
-      </Link>
+      {/* Right: Chat With Keti Button (Hidden on Small Mobile Devices) */}
+      {!isMobile && (
+        <Link
+          to="/chat-with-keti"
+          style={{
+            backgroundColor: "purple",
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            borderRadius: "25px",
+            padding: "10px 20px",
+            whiteSpace: "nowrap",
+            width: "auto",
+            textDecoration: "none",
+            fontWeight: "500",
+            fontSize: "16px",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat With
+          Keti
+        </Link>
+      )}
 
-      {/* Mobile Hamburger Menu (Visible on Small Screens) */}
+      {/* Mobile Hamburger Menu (Visible on Small Mobile Devices) */}
       {isMobile && (
         <IconButton onClick={handleDrawerOpen} sx={{ color: "black" }}>
           <MenuIcon />
@@ -254,6 +256,27 @@ const Navbar = () => {
             >
               Individuals
             </span>
+            {/* Vertical Dropdown Menu */}
+            <Menu
+              id="individuals-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  backgroundColor: "white",
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                },
+              }}
+            >
+              <MenuItem onClick={handleClose} style={{ color: "black" }}>
+                Register as a Doctor
+              </MenuItem>
+              <MenuItem onClick={handleClose} style={{ color: "black" }}>
+                Register as a Patient
+              </MenuItem>
+            </Menu>
           </ListItem>
           <ListItem>
             <Link

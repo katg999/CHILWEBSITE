@@ -7,27 +7,28 @@ const Statistics = () => {
         width: "100%", // Span the entire screen width
         backgroundColor: "white", // Background color for the statistics section
         padding: "40px 20px", // Add padding for spacing
-        boxSizing: "border-box", // Ensure padding is included in the width
       }}
     >
       <div
         style={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on small screens, horizontally on larger screens
           justifyContent: "space-around", // Distribute items evenly
           alignItems: "center",
           maxWidth: "1200px", // Optional: Limit the max width for better readability
           margin: "0 auto", // Center the container horizontally
-          gap: { xs: "40px", sm: "20px" }, // Add gap between items
+          flexDirection: "row", // Default direction is row
+          "@media (max-width: 768px)": {
+            flexDirection: "column", // Stack items vertically on smaller screens
+          },
         }}
       >
         {/* Laboratories */}
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <div
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              fontSize: "16px",
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -39,7 +40,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
+              fontSize: "54px",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -51,12 +52,12 @@ const Statistics = () => {
         </div>
 
         {/* Pharmacies */}
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <div
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              fontSize: "16px",
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -68,7 +69,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
+              fontSize: "54px",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -80,12 +81,12 @@ const Statistics = () => {
         </div>
 
         {/* Consultations */}
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <div
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              fontSize: "16px",
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -97,7 +98,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
+              fontSize: "54px",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -109,12 +110,12 @@ const Statistics = () => {
         </div>
 
         {/* Facilities */}
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <div
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              fontSize: "16px",
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -126,7 +127,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
+              fontSize: "54px",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
@@ -138,12 +139,12 @@ const Statistics = () => {
         </div>
 
         {/* Doctors */}
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <div
             style={{
               fontFamily: "Geist",
               fontWeight: 500,
-              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              fontSize: "16px",
               lineHeight: "24px",
               letterSpacing: "0%",
               color: "rgba(0, 0, 0, 0.54)", // Text color with 54% opacity
@@ -155,7 +156,7 @@ const Statistics = () => {
             style={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 800,
-              fontSize: { xs: "36px", sm: "54px" }, // Responsive font size
+              fontSize: "54px",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "black", // Number color
