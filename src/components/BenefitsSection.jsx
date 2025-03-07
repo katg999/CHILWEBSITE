@@ -13,12 +13,32 @@ const BenefitsSection = () => {
       px={2}
     >
       {/* Icon and Benefits Text */}
-      <Box display="flex" alignItems="center" gap={1}>
+      <Box
+        display="flex"
+        alignItems="center"
+        gap={1}
+        position="relative" // Needed for the absolute positioning of the line
+      >
+        {/* Purple Line */}
+        <Box
+          sx={{
+            position: "absolute",
+            left: { xs: "-12px", md: "-16px" }, // Adjust position based on screen size
+            height: "100%", // Full height of the container
+            width: "4px", // Thickness of the line
+            backgroundColor: "#91368A", // Purple color
+            borderRadius: "2px", // Rounded edges
+          }}
+        />
+
+        {/* Benefits Icon */}
         <img
           src={benefitsIcon}
           alt="Benefits Icon"
           style={{ width: 24, height: 24 }}
         />
+
+        {/* Benefits Text */}
         <Typography
           variant="h6"
           sx={{
