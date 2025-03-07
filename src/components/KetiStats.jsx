@@ -1,13 +1,20 @@
 import React from "react";
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, useTheme, useMediaQuery } from "@mui/material";
 
 // Import the PNG images
-import SHAM1 from "../assets/images/SHAM1.png";
-import SHAM2 from "../assets/images/SHAM2.png";
-import SHAM3 from "../assets/images/SHAM3.png";
-import SHAM4 from "../assets/images/SHAM4.png";
+import SHAM1 from "../assets/images/AccessCare.svg";
+import SHAM2 from "../assets/images/AIPoweredAssistant.svg";
+import SHAM3 from "../assets/images/HealthCare Facility.svg";
+import SHAM4 from "../assets/images/PatientFollowUp.svg";
+import SHAM5 from "../assets/images/SeamLessHealthCareExprience.svg";
+import SHAM6 from "../assets/images/Privacy.svg";
 
 const KetiStats = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+
   // Updated stats content with imported PNG images
   const stats = [
     {
@@ -34,13 +41,25 @@ const KetiStats = () => {
         "Secure unmatched 24/7 patient follow-up with our unique AI-human telemedicine blend, exclusive to Africa and the Middle East.",
       image: SHAM4,
     },
+    {
+      title: "Seamless Healthcare Experience",
+      description:
+        "Tap into nearby labs and services instantly with our platform—no stress over missing tests, just chat and get it done.",
+      image: SHAM5,
+    },
+    {
+      title: "Privacy & Security",
+      description:
+        "Get ultimate patient record confidentiality, ensuring secure access to medical records with advanced AI technology.",
+      image: SHAM6,
+    },
   ];
 
   return (
     <Box
       sx={{
         mt: 8,
-        px: 4,
+        px: { xs: 2, sm: 4 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -68,49 +87,59 @@ const KetiStats = () => {
             key={index}
             elevation={2}
             sx={{
-              p: 2,
-              textAlign: "center",
-              borderRadius: 2,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               backgroundColor: "white",
               color: "#000000",
+              borderRadius: 2,
+              overflow: "hidden", // Ensures image does not overflow
             }}
           >
-            {/* Image at the top - Adjusted for better responsiveness */}
+            {/* Image Container - Adjusted for full coverage */}
             <Box
               component="img"
               src={stat.image}
               alt={stat.title}
               sx={{
                 width: "100%",
-                height: "160px",
-                objectFit: "cover",
-                borderRadius: "8px",
+                height: { xs: "150px", sm: "200px", md: "250px" }, // Adjust as needed
+                objectFit: "cover", // Makes sure the image fills the space properly
               }}
             />
 
-            {/* Stat Title */}
+            {/* Stat Title - Updated Typography */}
             <Typography
               variant="h6"
               sx={{
-                fontWeight: "bold",
-                mt: 2,
                 fontFamily: "Bricolage Grotesque",
+                fontWeight: 600,
+                fontSize: { xs: "16px", sm: "18px" },
+                lineHeight: { xs: "20px", sm: "24px" },
+                letterSpacing: "0%",
+                mt: 2,
                 color: "#000000",
+                textAlign: "center",
+                px: 2,
               }}
             >
               {stat.title}
             </Typography>
 
-            {/* Stat Description */}
+            {/* Stat Description - Updated Typography */}
             <Typography
               variant="body2"
               sx={{
                 fontFamily: "Geist",
+                fontWeight: 400,
+                fontSize: { xs: "12px", sm: "14px" },
+                lineHeight: { xs: "16px", sm: "20px" },
+                letterSpacing: "0%",
                 color: "#333",
                 mt: 1,
+                textAlign: "center",
+                px: 2, // Adds some padding for better readability
+                pb: 2,
               }}
             >
               {stat.description}
