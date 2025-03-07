@@ -10,6 +10,7 @@ import KetiServices from "./components/KetiServices";
 import Testimonials from "./components/Testimonials";
 import News from "./components/News";
 import ActNow from "./components/ActNow";
+import OurWorksSection from "./components/OurWorksSection";
 
 import Footer from "./components/Footer";
 
@@ -27,6 +28,7 @@ const App = () => {
 
         <BenefitsSection />
         <KetiStats />
+        <OurWorksSection />
         <KetiServices />
         <Testimonials />
         <News />
