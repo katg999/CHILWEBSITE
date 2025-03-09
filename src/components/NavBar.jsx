@@ -10,7 +10,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger menu icon
 
 // WhatsApp Icon Component (unchanged)
@@ -253,26 +253,28 @@ const Navbar = () => {
 
             {/* Other Links */}
             <li>
-              <Link
+              <NavLink
                 to="/asset-finance-loans"
-                style={{
+                style={({ isActive }) => ({
                   ...navLinkStyle,
                   textDecoration: "none",
-                }}
+                  color: isActive ? "purple" : "black",
+                })}
               >
                 Finance Loans
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/contact-us"
-                style={{
+                style={({ isActive }) => ({
                   ...navLinkStyle,
                   textDecoration: "none",
-                }}
+                  color: isActive ? "purple" : "black",
+                })}
               >
                 Contact Us
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -418,20 +420,28 @@ const Navbar = () => {
 
           {/* Other Links in Drawer */}
           <ListItem>
-            <Link
+            <NavLink
               to="/asset-finance-loans"
-              style={{ ...navLinkStyle, textDecoration: "none" }}
+              style={({ isActive }) => ({
+                ...navLinkStyle,
+                textDecoration: "none",
+                color: isActive ? "purple" : "black",
+              })}
             >
               Finance Loans
-            </Link>
+            </NavLink>
           </ListItem>
           <ListItem>
-            <Link
+            <NavLink
               to="/contact-us"
-              style={{ ...navLinkStyle, textDecoration: "none" }}
+              style={({ isActive }) => ({
+                ...navLinkStyle,
+                textDecoration: "none",
+                color: isActive ? "purple" : "black", // Apply purple color when active
+              })}
             >
               Contact Us
-            </Link>
+            </NavLink>
           </ListItem>
         </List>
       </Drawer>
