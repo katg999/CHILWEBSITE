@@ -1,11 +1,9 @@
 import "./App.css";
-
 import "./assets/css/styles.css";
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Display from "./components/Display";
-import ImageDisplay from "./components/ImageDisplay";
 import BenefitsSection from "./components/BenefitsSection";
 import KetiStats from "./components/KetiStats";
 import KetiServices from "./components/KetiServices";
@@ -13,8 +11,9 @@ import Testimonials from "./components/Testimonials";
 import News from "./components/News";
 import ActNow from "./components/ActNow";
 import OurWorksSection from "./components/OurWorksSection";
-
 import Footer from "./components/Footer";
+import ContactUs from "./components/ContactUs"; // Import the ContactUs component
+import FinanceLoans from "./components/FinanceLoans";
 
 const App = () => {
   return (
@@ -23,18 +22,31 @@ const App = () => {
         {/* Navbar */}
         <Navbar />
 
-        {/* Display Component */}
-        <Display />
+        {/* Routes */}
+        <Routes>
+          {/* Home Route */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Display />
+                <BenefitsSection />
+                <KetiStats />
+                <OurWorksSection />
+                <KetiServices />
+                <Testimonials />
+                <News />
+                <ActNow />
+              </>
+            }
+          />
 
-        {/* Image Display Component */}
+          {/* Contact Us Route */}
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/asset-finance-loans" element={<FinanceLoans />} />
+        </Routes>
 
-        <BenefitsSection />
-        <KetiStats />
-        <OurWorksSection />
-        <KetiServices />
-        <Testimonials />
-        <News />
-        <ActNow />
+        {/* Footer */}
         <Footer />
       </div>
     </Router>
