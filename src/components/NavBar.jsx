@@ -13,15 +13,15 @@ import {
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger menu icon
 
-// WhatsApp Icon Component
+// WhatsApp Icon Component (unchanged)
 const WhatsappIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     width={24}
     height={24}
-    fill="purple" // Fill color set to purple
-    stroke="white" // Stroke color set to white
+    fill="purple"
+    stroke="white"
     strokeWidth="1.5"
     {...props}
   >
@@ -37,19 +37,26 @@ const WhatsappIcon = (props) => (
 );
 
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = useState(null); // State for dropdown anchor
+  const [individualsAnchorEl, setIndividualsAnchorEl] = useState(null); // State for Individuals dropdown
+  const [organisationsAnchorEl, setOrganisationsAnchorEl] = useState(null); // State for Organisations dropdown
   const [drawerOpen, setDrawerOpen] = useState(false); // State for mobile drawer
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the screen is mobile size (small devices)
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the screen is mobile size
 
-  // Handle dropdown open
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  // Handle Individuals dropdown open
+  const handleIndividualsClick = (event) => {
+    setIndividualsAnchorEl(event.currentTarget);
+  };
+
+  // Handle Organisations dropdown open
+  const handleOrganisationsClick = (event) => {
+    setOrganisationsAnchorEl(event.currentTarget);
   };
 
   // Handle dropdown close
   const handleClose = () => {
-    setAnchorEl(null);
+    setIndividualsAnchorEl(null);
+    setOrganisationsAnchorEl(null);
   };
 
   // Handle mobile drawer open
@@ -76,6 +83,24 @@ const Navbar = () => {
     "&:hover": {
       color: "#666",
     },
+  };
+
+  // Custom menu styles to force vertical layout
+  const menuStyles = {
+    paper: {
+      backgroundColor: "white",
+      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+      display: "flex",
+      flexDirection: "column",
+    },
+  };
+
+  // Custom menu item styles
+  const menuItemStyles = {
+    display: "block",
+    width: "100%",
+    color: "black",
+    padding: "10px 15px",
   };
 
   return (
@@ -131,9 +156,10 @@ const Navbar = () => {
               padding: 0,
             }}
           >
+            {/* Individuals Dropdown */}
             <li>
               <span
-                onClick={handleClick}
+                onClick={handleIndividualsClick}
                 style={{
                   ...navLinkStyle,
                   cursor: "pointer",
@@ -141,39 +167,91 @@ const Navbar = () => {
               >
                 Individuals
               </span>
-              {/* Vertical Dropdown Menu */}
               <Menu
                 id="individuals-menu"
-                anchorEl={anchorEl}
+                anchorEl={individualsAnchorEl}
                 keepMounted
-                open={Boolean(anchorEl)}
+                open={Boolean(individualsAnchorEl)}
                 onClose={handleClose}
-                PaperProps={{
-                  style: {
-                    backgroundColor: "white",
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                sx={{
+                  "& .MuiPaper-root": menuStyles.paper,
+                  "& .MuiList-root": {
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: 0,
                   },
                 }}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                MenuListProps={{
+                  style: { padding: 0 },
+                }}
               >
-                <MenuItem onClick={handleClose} style={{ color: "black" }}>
+                <MenuItem onClick={handleClose} sx={menuItemStyles}>
                   Register as a Doctor
                 </MenuItem>
-                <MenuItem onClick={handleClose} style={{ color: "black" }}>
+                <MenuItem onClick={handleClose} sx={menuItemStyles}>
                   Register as a Patient
                 </MenuItem>
               </Menu>
             </li>
+
+            {/* Organisations Dropdown */}
             <li>
-              <Link
-                to="/organisations"
+              <span
+                onClick={handleOrganisationsClick}
                 style={{
                   ...navLinkStyle,
-                  textDecoration: "none",
+                  cursor: "pointer",
                 }}
               >
                 Organisations
-              </Link>
+              </span>
+              <Menu
+                id="organisations-menu"
+                anchorEl={organisationsAnchorEl}
+                keepMounted
+                open={Boolean(organisationsAnchorEl)}
+                onClose={handleClose}
+                sx={{
+                  "& .MuiPaper-root": menuStyles.paper,
+                  "& .MuiList-root": {
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: 0,
+                  },
+                }}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                MenuListProps={{
+                  style: { padding: 0 },
+                }}
+              >
+                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                  Register as a School
+                </MenuItem>
+                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                  Register as a Pharmacy
+                </MenuItem>
+                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                  Register as a Laboratory
+                </MenuItem>
+              </Menu>
             </li>
+
+            {/* Other Links */}
             <li>
               <Link
                 to="/asset-finance-loans"
@@ -243,48 +321,102 @@ const Navbar = () => {
             backgroundColor: "white",
             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
             display: "flex",
-            flexDirection: "column", // Ensure items are stacked vertically
+            flexDirection: "column",
             padding: "20px",
           },
         }}
       >
         <List sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {/* Individuals Dropdown in Drawer */}
           <ListItem>
             <span
-              onClick={handleClick}
+              onClick={handleIndividualsClick}
               style={{ ...navLinkStyle, cursor: "pointer" }}
             >
               Individuals
             </span>
             <Menu
-              id="individuals-menu"
-              anchorEl={anchorEl}
+              id="mobile-individuals-menu"
+              anchorEl={individualsAnchorEl}
               keepMounted
-              open={Boolean(anchorEl)}
+              open={Boolean(individualsAnchorEl)}
               onClose={handleClose}
-              PaperProps={{
-                style: {
-                  backgroundColor: "white",
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+              sx={{
+                "& .MuiPaper-root": menuStyles.paper,
+                "& .MuiList-root": {
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: 0,
                 },
               }}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              MenuListProps={{
+                style: { padding: 0 },
+              }}
             >
-              <MenuItem onClick={handleClose} style={{ color: "black" }}>
+              <MenuItem onClick={handleClose} sx={menuItemStyles}>
                 Register as a Doctor
               </MenuItem>
-              <MenuItem onClick={handleClose} style={{ color: "black" }}>
+              <MenuItem onClick={handleClose} sx={menuItemStyles}>
                 Register as a Patient
               </MenuItem>
             </Menu>
           </ListItem>
+
+          {/* Organisations Dropdown in Drawer */}
           <ListItem>
-            <Link
-              to="/organisations"
-              style={{ ...navLinkStyle, textDecoration: "none" }}
+            <span
+              onClick={handleOrganisationsClick}
+              style={{ ...navLinkStyle, cursor: "pointer" }}
             >
               Organisations
-            </Link>
+            </span>
+            <Menu
+              id="mobile-organisations-menu"
+              anchorEl={organisationsAnchorEl}
+              keepMounted
+              open={Boolean(organisationsAnchorEl)}
+              onClose={handleClose}
+              sx={{
+                "& .MuiPaper-root": menuStyles.paper,
+                "& .MuiList-root": {
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: 0,
+                },
+              }}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              MenuListProps={{
+                style: { padding: 0 },
+              }}
+            >
+              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                Register as a School
+              </MenuItem>
+              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                Register as a Pharmacy
+              </MenuItem>
+              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                Register as a Laboratory
+              </MenuItem>
+            </Menu>
           </ListItem>
+
+          {/* Other Links in Drawer */}
           <ListItem>
             <Link
               to="/asset-finance-loans"
