@@ -82,7 +82,8 @@ const Footer = () => {
           </Typography>
           <Stack spacing={0.5}>
             <Link
-              href="/what-we-treat"
+              component={RouterLink}
+              to="/what-we-treat"
               sx={{
                 fontFamily: "Geist",
                 fontWeight: 400,
@@ -94,7 +95,7 @@ const Footer = () => {
                 textDecoration: "none",
               }}
             >
-              What we treat
+              What we Treat
             </Link>
             <Link
               href="#"
@@ -277,7 +278,8 @@ const Footer = () => {
           </Typography>
           <Stack spacing={0.5}>
             <Link
-              href="/PrivacyPolicy"
+              component={RouterLink}
+              to="/privacypolicy"
               sx={{
                 fontFamily: "Geist",
                 fontWeight: 400,
