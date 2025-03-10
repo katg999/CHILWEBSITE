@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Link, Stack, Button, TextField } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 // Import images
 import ketiaiLogo from "../assets/images/emoji-logo-black.svg";
@@ -208,7 +209,8 @@ const Footer = () => {
               Order for drugs
             </Link>
             <Link
-              href="/Disaster"
+              component={RouterLink}
+              to="/disaster"
               sx={{
                 fontFamily: "Geist",
                 fontWeight: 400,
