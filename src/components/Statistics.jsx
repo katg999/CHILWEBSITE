@@ -27,48 +27,83 @@ const Statistics = () => {
           maxWidth: "1200px",
           margin: "0 auto",
           gap: "20px",
-          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on small screens
           textAlign: "center",
         }}
       >
-        {statisticsData.map((stat, index) => (
-          <Box
-            key={index}
-            sx={{ minWidth: "120px", width: { xs: "100%", sm: "auto" } }}
-          >
-            <Typography
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 500,
-                fontSize: "16px",
-                lineHeight: "24px",
-                color: "rgba(0, 0, 0, 0.54)",
-              }}
-            >
-              {stat.label}
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "Bricolage Grotesque",
-                fontWeight: 800,
-                fontSize: "54px",
-                lineHeight: "100%",
-                color: "black",
-                marginTop: "8px",
-              }}
-            >
-              {stat.value.includes("+") ? (
-                <>
-                  {stat.value.replace("+", "")}
-                  <span style={{ color: "#7D0C75" }}>+</span>
-                </>
-              ) : (
-                stat.value
-              )}
-            </Typography>
-          </Box>
-        ))}
+        {/* First Row - First Three Items */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            width: "100%",
+            flexWrap: "wrap",
+            "@media (max-width: 600px)": {
+              flexDirection: "row",
+            },
+          }}
+        >
+          {statisticsData.slice(0, 3).map((stat, index) => (
+            <StatBox key={index} stat={stat} />
+          ))}
+        </Box>
+
+        {/* Second Row - Last Two Items */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "20px",
+            width: "100%",
+            flexWrap: "wrap",
+            "@media (max-width: 600px)": {
+              flexDirection: "row",
+            },
+          }}
+        >
+          {statisticsData.slice(3).map((stat, index) => (
+            <StatBox key={index + 3} stat={stat} />
+          ))}
+        </Box>
       </Box>
+    </Box>
+  );
+};
+
+// Extracted reusable StatBox component
+const StatBox = ({ stat }) => {
+  return (
+    <Box sx={{ minWidth: "120px", width: { xs: "100%", sm: "auto" } }}>
+      <Typography
+        sx={{
+          fontFamily: "Geist",
+          fontWeight: 500,
+          fontSize: "16px",
+          lineHeight: "24px",
+          color: "rgba(0, 0, 0, 0.54)",
+        }}
+      >
+        {stat.label}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: "Bricolage Grotesque",
+          fontWeight: 800,
+          fontSize: "54px",
+          lineHeight: "100%",
+          color: "black",
+          marginTop: "8px",
+        }}
+      >
+        {stat.value.includes("+") ? (
+          <>
+            {stat.value.replace("+", "")}
+            <span style={{ color: "#7D0C75" }}>+</span>
+          </>
+        ) : (
+          stat.value
+        )}
+      </Typography>
     </Box>
   );
 };
