@@ -408,7 +408,17 @@ const PrivacyPolicy = () => {
       >
         If you have any questions or concerns about this Policy or our data
         practices, please contact us at{" "}
-        <a href="mailto:info@ketiai.com">info@ketiai.com</a>.
+        <a
+          href="mailto:info@chilhygienecenter.org"
+          style={{
+            color: "#890085", // Using your brand color
+            textDecoration: "underline",
+            fontWeight: 500,
+            display: "inline-block", // Ensures the link is visible as a block element
+          }}
+        >
+          info@chilhygienecenter.org
+        </a>
       </Typography>
     </Box>
   );
