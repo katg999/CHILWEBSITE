@@ -81,7 +81,7 @@ const Footer = () => {
           </Typography>
           <Stack spacing={0.5}>
             <Link
-              href="#"
+              href="/what-we-treat"
               sx={{
                 fontFamily: "Geist",
                 fontWeight: 400,
@@ -208,6 +208,21 @@ const Footer = () => {
               Order for drugs
             </Link>
             <Link
+              href="/Disaster"
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 400,
+                fontSize: { xs: "12px", md: "14px" },
+                lineHeight: "18px",
+                letterSpacing: "-2%",
+                textAlign: { xs: "left", md: "center" },
+                color: "#333",
+                textDecoration: "none",
+              }}
+            >
+              Disaster Medicine
+            </Link>
+            <Link
               href="#"
               sx={{
                 fontFamily: "Geist",
@@ -260,7 +275,7 @@ const Footer = () => {
           </Typography>
           <Stack spacing={0.5}>
             <Link
-              href="#"
+              href="/PrivacyPolicy"
               sx={{
                 fontFamily: "Geist",
                 fontWeight: 400,

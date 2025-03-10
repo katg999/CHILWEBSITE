@@ -40,17 +40,24 @@ const Navbar = () => {
   const [individualsAnchorEl, setIndividualsAnchorEl] = useState(null); // State for Individuals dropdown
   const [organisationsAnchorEl, setOrganisationsAnchorEl] = useState(null); // State for Organisations dropdown
   const [drawerOpen, setDrawerOpen] = useState(false); // State for mobile drawer
+
+  // Add state for active dropdown menus
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the screen is mobile size
 
   // Handle Individuals dropdown open
   const handleIndividualsClick = (event) => {
     setIndividualsAnchorEl(event.currentTarget);
+    setActiveMenu("individuals");
   };
 
   // Handle Organisations dropdown open
   const handleOrganisationsClick = (event) => {
     setOrganisationsAnchorEl(event.currentTarget);
+    setActiveMenu("organisations");
   };
 
   // Handle dropdown close
@@ -67,6 +74,68 @@ const Navbar = () => {
   // Handle mobile drawer close
   const handleDrawerClose = () => {
     setDrawerOpen(false);
+  };
+
+  // Function to open the Dialogflow chat bot using direct DOM manipulation
+  const openChatBot = (userType) => {
+    // Close the dropdown menu
+    handleClose();
+
+    // Set active submenu when clicked
+    setActiveSubMenu(userType);
+
+    if (drawerOpen) {
+      handleDrawerClose();
+    }
+
+    try {
+      // Find the chat icon button in the shadow DOM
+      const dfMessenger = document.querySelector("df-messenger");
+      if (!dfMessenger) return;
+
+      // Try multiple approaches to open the chat
+
+      // Approach 1: Try clicking the chat button directly
+      const chatButton = dfMessenger.shadowRoot
+        ?.querySelector("df-messenger-chat-bubble")
+        ?.shadowRoot?.querySelector("button");
+      if (chatButton) {
+        chatButton.click();
+        console.log("Clicked chat button using approach 1");
+      } else {
+        // Approach 2: Try using the component's API
+        if (typeof dfMessenger.setAttribute === "function") {
+          dfMessenger.setAttribute("expand", "true");
+          console.log("Expanded chat using approach 2");
+        }
+
+        // Approach 3: Set a property directly if previous approaches failed
+        if (typeof dfMessenger.expand === "boolean") {
+          dfMessenger.expand = true;
+          console.log("Expanded chat using approach 3");
+        }
+
+        // Approach 4: Use the showChat property if it exists
+        if (dfMessenger.showChat !== undefined) {
+          dfMessenger.showChat = true;
+          console.log("Opened chat using approach 4");
+        }
+      }
+
+      // Set a data attribute to pass context
+      dfMessenger.setAttribute("data-user-type", userType);
+
+      // Optional: Store user type in localStorage for persistence
+      localStorage.setItem("ketiUserType", userType);
+
+      // Create and dispatch a custom event to potentially trigger custom handlers
+      const event = new CustomEvent("ketiChatOpened", {
+        detail: { userType },
+      });
+      document.dispatchEvent(event);
+    } catch (error) {
+      console.error("Error opening chat:", error);
+    }
   };
 
   // Common style for nav links
@@ -102,6 +171,12 @@ const Navbar = () => {
     color: "black",
     padding: "10px 15px",
   };
+
+  // Function to determine if a dropdown menu is active
+  const isMenuActive = (menuName) => activeMenu === menuName;
+
+  // Function to determine if a submenu item is active
+  const isSubMenuActive = (submenuName) => activeSubMenu === submenuName;
 
   return (
     <nav
@@ -163,6 +238,7 @@ const Navbar = () => {
                 style={{
                   ...navLinkStyle,
                   cursor: "pointer",
+                  color: isMenuActive("individuals") ? "purple" : "black",
                 }}
               >
                 Individuals
@@ -193,10 +269,22 @@ const Navbar = () => {
                   style: { padding: 0 },
                 }}
               >
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => openChatBot("doctor")}
+                  sx={{
+                    ...menuItemStyles,
+                    color: isSubMenuActive("doctor") ? "purple" : "black",
+                  }}
+                >
                   Register as a Doctor
                 </MenuItem>
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => openChatBot("patient")}
+                  sx={{
+                    ...menuItemStyles,
+                    color: isSubMenuActive("patient") ? "purple" : "black",
+                  }}
+                >
                   Register as a Patient
                 </MenuItem>
               </Menu>
@@ -209,6 +297,7 @@ const Navbar = () => {
                 style={{
                   ...navLinkStyle,
                   cursor: "pointer",
+                  color: isMenuActive("organisations") ? "purple" : "black",
                 }}
               >
                 Organisations
@@ -239,13 +328,31 @@ const Navbar = () => {
                   style: { padding: 0 },
                 }}
               >
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => openChatBot("school")}
+                  sx={{
+                    ...menuItemStyles,
+                    color: isSubMenuActive("school") ? "purple" : "black",
+                  }}
+                >
                   Register as a School
                 </MenuItem>
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => openChatBot("pharmacy")}
+                  sx={{
+                    ...menuItemStyles,
+                    color: isSubMenuActive("pharmacy") ? "purple" : "black",
+                  }}
+                >
                   Register as a Pharmacy
                 </MenuItem>
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => openChatBot("laboratory")}
+                  sx={{
+                    ...menuItemStyles,
+                    color: isSubMenuActive("laboratory") ? "purple" : "black",
+                  }}
+                >
                   Register as a Laboratory
                 </MenuItem>
               </Menu>
@@ -282,8 +389,8 @@ const Navbar = () => {
 
       {/* Right: Chat With Keti Button (Hidden on Small Mobile Devices) */}
       {!isMobile && (
-        <Link
-          to="/chat-with-keti"
+        <div
+          onClick={() => openChatBot("general")}
           style={{
             backgroundColor: "purple",
             color: "white",
@@ -298,11 +405,12 @@ const Navbar = () => {
             fontWeight: "500",
             fontSize: "16px",
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            cursor: "pointer",
           }}
         >
           <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat With
           Keti
-        </Link>
+        </div>
       )}
 
       {/* Mobile Hamburger Menu (Visible on Small Mobile Devices) */}
@@ -333,7 +441,11 @@ const Navbar = () => {
           <ListItem>
             <span
               onClick={handleIndividualsClick}
-              style={{ ...navLinkStyle, cursor: "pointer" }}
+              style={{
+                ...navLinkStyle,
+                cursor: "pointer",
+                color: isMenuActive("individuals") ? "purple" : "black",
+              }}
             >
               Individuals
             </span>
@@ -363,10 +475,22 @@ const Navbar = () => {
                 style: { padding: 0 },
               }}
             >
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => openChatBot("doctor")}
+                sx={{
+                  ...menuItemStyles,
+                  color: isSubMenuActive("doctor") ? "purple" : "black",
+                }}
+              >
                 Register as a Doctor
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => openChatBot("patient")}
+                sx={{
+                  ...menuItemStyles,
+                  color: isSubMenuActive("patient") ? "purple" : "black",
+                }}
+              >
                 Register as a Patient
               </MenuItem>
             </Menu>
@@ -376,7 +500,11 @@ const Navbar = () => {
           <ListItem>
             <span
               onClick={handleOrganisationsClick}
-              style={{ ...navLinkStyle, cursor: "pointer" }}
+              style={{
+                ...navLinkStyle,
+                cursor: "pointer",
+                color: isMenuActive("organisations") ? "purple" : "black",
+              }}
             >
               Organisations
             </span>
@@ -406,13 +534,31 @@ const Navbar = () => {
                 style: { padding: 0 },
               }}
             >
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => openChatBot("school")}
+                sx={{
+                  ...menuItemStyles,
+                  color: isSubMenuActive("school") ? "purple" : "black",
+                }}
+              >
                 Register as a School
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => openChatBot("pharmacy")}
+                sx={{
+                  ...menuItemStyles,
+                  color: isSubMenuActive("pharmacy") ? "purple" : "black",
+                }}
+              >
                 Register as a Pharmacy
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => openChatBot("laboratory")}
+                sx={{
+                  ...menuItemStyles,
+                  color: isSubMenuActive("laboratory") ? "purple" : "black",
+                }}
+              >
                 Register as a Laboratory
               </MenuItem>
             </Menu>
@@ -437,11 +583,34 @@ const Navbar = () => {
               style={({ isActive }) => ({
                 ...navLinkStyle,
                 textDecoration: "none",
-                color: isActive ? "purple" : "black", // Apply purple color when active
+                color: isActive ? "purple" : "black",
               })}
             >
               Contact Us
             </NavLink>
+          </ListItem>
+
+          {/* Mobile Chat Button */}
+          <ListItem sx={{ justifyContent: "center", marginTop: "20px" }}>
+            <div
+              onClick={() => openChatBot("general")}
+              style={{
+                backgroundColor: "purple",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                borderRadius: "25px",
+                padding: "10px 20px",
+                textDecoration: "none",
+                fontWeight: "500",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+            >
+              <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat
+              With Keti
+            </div>
           </ListItem>
         </List>
       </Drawer>

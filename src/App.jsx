@@ -14,6 +14,9 @@ import OurWorksSection from "./components/OurWorksSection";
 import Footer from "./components/Footer";
 import ContactUs from "./components/ContactUs"; // Import the ContactUs component
 import FinanceLoans from "./components/FinanceLoans";
+import WhatWeTreat from "./components/WhatWeTreat";
+import Disaster from "./components/Disaster";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const App = () => {
   return (
@@ -44,6 +47,9 @@ const App = () => {
           {/* Contact Us Route */}
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/asset-finance-loans" element={<FinanceLoans />} />
+          <Route path="/what-we-treat" element={<WhatWeTreat />} />
+          <Route path="/Disaster" element={<Disaster />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
         </Routes>
 
         {/* Footer */}
