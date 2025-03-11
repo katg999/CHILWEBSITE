@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 
 // Import images and icons
-import NewsIcon from "../assets/images/NEWS.svg";
+import NewsIcon from "../assets/images/News (2).svg"; // Updated icon
 import LeftIcon from "../assets/images/left1.svg";
 import RightIcon from "../assets/images/right.svg";
 import LogonvImage from "../assets/images/SHAM1.png";
@@ -77,13 +77,37 @@ const News = () => {
         </Box>
       </Box>
 
-      {/* News Icon */}
+      {/* News Icon with Purple Line and Text */}
       <Box
-        component="img"
-        src={NewsIcon}
-        alt="News Icon"
-        sx={{ width: "120px", height: "120px", mb: 2 }} // Larger icon
-      />
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          width: "180px", // Adjusted width to fit text
+          height: "32px",
+          borderLeft: "1px solid #91368A", // Purple left border
+          padding: "4px 16px", // Padding as specified
+          mb: 4,
+        }}
+      >
+        <Box
+          component="img"
+          src={NewsIcon}
+          alt="News Icon"
+          sx={{ width: "24px", height: "24px" }} // Adjusted size
+        />
+        <Typography
+          variant="h6"
+          sx={{
+            fontFamily: "Bricolage Grotesque",
+            color: "#91368A",
+            fontWeight: 600,
+            fontSize: "1rem",
+          }}
+        >
+          In the News
+        </Typography>
+      </Box>
 
       {/* Heading */}
       <Typography

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 
 // Import images and icons
-import TestimonialIcon from "../assets/images/Testimonial.svg";
+import TestimonailIcon from "../assets/images/Testimonail.svg"; // Updated icon
 import TestImage from "../assets/images/TEST.png";
 import QuoteIcon from "../assets/images/QUOTE.svg";
 import LeftIcon from "../assets/images/left1.svg";
@@ -21,13 +21,37 @@ const Testimonials = () => {
         position: "relative", // For positioning buttons
       }}
     >
-      {/* Testimonial Icon */}
+      {/* Testimonial Icon with Purple Line and Text */}
       <Box
-        component="img"
-        src={TestimonialIcon}
-        alt="Testimonial Icon"
-        sx={{ width: "70px", height: "70px", mb: 2 }} // Increased size
-      />
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          width: "180px", // Adjusted width to fit text
+          height: "32px",
+          borderLeft: "1px solid #91368A", // Purple left border
+          padding: "4px 16px", // Padding as specified
+          mb: 4,
+        }}
+      >
+        <Box
+          component="img"
+          src={TestimonailIcon}
+          alt="Testimonial Icon"
+          sx={{ width: "24px", height: "24px" }} // Adjusted size
+        />
+        <Typography
+          variant="h6"
+          sx={{
+            fontFamily: "Bricolage Grotesque",
+            color: "#91368A",
+            fontWeight: 600,
+            fontSize: "1rem",
+          }}
+        >
+          Testimonials
+        </Typography>
+      </Box>
 
       {/* Heading */}
       <Typography
