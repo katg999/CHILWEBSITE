@@ -8,8 +8,8 @@ import PharmIcon from "../assets/images/Pharm.svg";
 import DocIcon from "../assets/images/Doc.svg";
 import HealthIcon from "../assets/images/Health.svg";
 import ArrowIcon from "../assets/images/arrow-right-02-sharp.svg";
-import FrameIcon from "../assets/images/Frame1.svg";
-import AwardsIcon from "../assets/images/Awards (2).svg";
+import ForYouIcon from "../assets/images/ForYou.svg"; // New ForYou icon
+import AwardsIcon from "../assets/images/Awards (3).svg"; // New Awards icon
 
 // Import award images
 import FemtechWorld from "../assets/images/Femtech Worls.webp";
@@ -91,37 +91,32 @@ const KetiServices = () => {
       {/* Icon and Heading Section */}
       <Box
         sx={{
-          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          width: "132px",
+          height: "32px",
+          borderLeft: "1px solid #91368A", // Purple left border
+          padding: "4px 16px", // Padding as specified
           mb: 4,
         }}
       >
         <Box
           component="img"
-          src={FrameIcon}
-          alt="Frame Icon"
-          sx={{ width: "70px", height: "70px", mb: 2 }}
+          src={ForYouIcon}
+          alt="For You Icon"
+          sx={{ width: "24px", height: "24px" }}
         />
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
             fontFamily: "Bricolage Grotesque",
-            fontWeight: "bold",
-            color: "#000000",
+            color: "#91368A",
+            fontWeight: 600,
+            fontSize: "1rem",
           }}
         >
-          Your Role, Your Power
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            fontFamily: "Geist",
-            color: "#333",
-            maxWidth: "600px",
-            mx: "auto",
-          }}
-        >
-          Whether you're a lab, pharmacy, doctor, or health facility, Keti
-          boosts your impact.
+          For You
         </Typography>
       </Box>
 
@@ -239,13 +234,36 @@ const KetiServices = () => {
           gap: 2,
         }}
       >
-        {/* Awards Icon */}
+        {/* Awards Icon with Purple Line and Text */}
         <Box
-          component="img"
-          src={AwardsIcon}
-          alt="Awards Icon"
-          sx={{ width: "70px", height: "70px" }}
-        />
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            width: "132px",
+            height: "32px",
+            borderLeft: "1px solid #91368A", // Purple left border
+            padding: "4px 16px", // Padding as specified
+          }}
+        >
+          <Box
+            component="img"
+            src={AwardsIcon}
+            alt="Awards Icon"
+            sx={{ width: "24px", height: "24px" }}
+          />
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: "Bricolage Grotesque",
+              color: "#91368A",
+              fontWeight: 600,
+              fontSize: "1rem",
+            }}
+          >
+            Awards
+          </Typography>
+        </Box>
 
         {/* Recognised. Tested. Trusted Text */}
         <Typography

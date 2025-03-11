@@ -33,35 +33,46 @@ const Footer = () => {
         }}
       >
         {/* Column 1: Logo and About Us */}
-        <Box sx={{ flex: 1, minWidth: { xs: "100%", md: "160px" } }}>
-          <img
-            src={ketiaiLogo}
-            alt="KETIAI Logo"
-            style={{ width: "120px", marginBottom: "12px" }}
-          />
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#890085",
-              color: "white",
-              borderRadius: "32px",
-              padding: { xs: "6px 16px", md: "6px 20px" },
-              fontSize: { xs: "12px", md: "14px" },
-              fontWeight: 500,
-              textTransform: "none",
-              mb: 1.5,
-              "&:hover": {
-                backgroundColor: "#b37600",
-              },
-            }}
-          >
-            Get Started
-          </Button>
-          <Typography variant="body2" color="#333" sx={{ fontSize: "12px" }}>
-            © 2025 Keti AI. All rights reserved.
-          </Typography>
+        <Box
+          sx={{
+            flex: 1,
+            minWidth: { xs: "100%", md: "160px" },
+            ml: 20, // Add left margin to push the entire box to the right
+          }}
+        >
+          <Stack direction="column" spacing={1} alignItems="flex-start">
+            <img
+              src={ketiaiLogo}
+              alt="KETIAI Logo"
+              style={{ width: "120px", marginBottom: "12px" }}
+            />
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#890085",
+                color: "white",
+                borderRadius: "32px",
+                padding: { xs: "6px 16px", md: "6px 20px" },
+                fontSize: { xs: "12px", md: "14px" },
+                fontWeight: 500,
+                textTransform: "none",
+                "&:hover": { backgroundColor: "#b37600" },
+              }}
+            >
+              Get Started
+            </Button>
+            <Typography
+              variant="body2"
+              color="#333"
+              sx={{
+                fontSize: "12px",
+                mt: 1, // Small margin top to create some space after the button
+              }}
+            >
+              © 2025 Keti AI. All rights reserved.
+            </Typography>
+          </Stack>
         </Box>
-
         {/* Column 2: Quick Links */}
         <Box sx={{ flex: 1, minWidth: { xs: "100%", md: "130px" } }}>
           <Typography
