@@ -207,7 +207,7 @@ const Navbar = () => {
             src={ketiaiLogo}
             alt="Ketiai Logo"
             className="logo"
-            style={{ height: "30px", cursor: "pointer" }}
+            style={{ height: "50px", cursor: "pointer" }}
           />
         </Link>
       </div>
