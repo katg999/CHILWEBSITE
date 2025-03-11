@@ -21,7 +21,7 @@ const Statistics = () => {
       <Box
         sx={{
           display: "flex",
-          flexWrap: "wrap",
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "center",
           alignItems: "center",
           maxWidth: "1200px",
@@ -30,41 +30,9 @@ const Statistics = () => {
           textAlign: "center",
         }}
       >
-        {/* First Row - First Three Items */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "20px",
-            width: "100%",
-            flexWrap: "wrap",
-            "@media (max-width: 600px)": {
-              flexDirection: "row",
-            },
-          }}
-        >
-          {statisticsData.slice(0, 3).map((stat, index) => (
-            <StatBox key={index} stat={stat} />
-          ))}
-        </Box>
-
-        {/* Second Row - Last Two Items */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "20px",
-            width: "100%",
-            flexWrap: "wrap",
-            "@media (max-width: 600px)": {
-              flexDirection: "row",
-            },
-          }}
-        >
-          {statisticsData.slice(3).map((stat, index) => (
-            <StatBox key={index + 3} stat={stat} />
-          ))}
-        </Box>
+        {statisticsData.map((stat, index) => (
+          <StatBox key={index} stat={stat} />
+        ))}
       </Box>
     </Box>
   );
