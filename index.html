@@ -4,10 +4,6 @@
     <link rel="stylesheet" href="/dist/app.css" />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/emoji-mark.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Geist:wght@400&display=swap"
-      rel="stylesheet"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Keti AI</title>
     <!-- Add Dialogflow Messenger Script -->
@@ -102,6 +98,46 @@
 
             // Start observing
             observer.observe(dfMessenger, { childList: true, subtree: true });
+
+            // Listen for chat events
+            dfMessenger.addEventListener(
+              "df-response-received",
+              function (event) {
+                console.log("df-response-received event fired!"); // Debugging
+                const userMessage = event.detail.response.queryResult.queryText;
+                const botResponse =
+                  event.detail.response.queryResult.fulfillmentText;
+
+                console.log("User Message:", userMessage); // Debugging
+                console.log("Bot Response:", botResponse); // Debugging
+
+                const payload = {
+                  message: userMessage,
+                  response: botResponse,
+                };
+
+                console.log("Request Payload:", payload); // Debugging
+
+                // Send chat data to Laravel backend
+                fetch("http://localhost:8000/api/save-chat", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(payload),
+                })
+                  .then((response) => {
+                    console.log("Response status:", response.status); // Debugging
+                    return response.json();
+                  })
+                  .then((data) => {
+                    console.log("Chat data sent to Laravel backend:", data); // Debugging
+                  })
+                  .catch((error) => {
+                    console.error("Error sending chat data:", error); // Debugging
+                  });
+              }
+            );
           }
         }, 1000);
       });
