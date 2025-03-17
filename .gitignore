@@ -8,8 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 
-.katendeketi-foym-7e233b833ec4.json
-katendeketi-foym-7e233b833ec4.json
 node_modules
 dist
 dist-ssr
@@ -24,4 +22,4 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw?katendeketi-foym-7e233b833ec4.json
