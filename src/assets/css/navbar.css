@@ -68,3 +68,65 @@ body {
   height: 100vh; /* Full height of the viewport */
   padding: 20px;
 }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.left-nav {
+  flex: 1; /* Pushes content to the left */
+}
+
+.right-nav {
+  flex: 1; /* Pushes content to the right */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+.logo-container {
+  flex: 0; /* Keeps the logo centered */
+}
+
+.logo {
+  height: 50px; /* Adjust as needed */
+}
+
+.register-btn {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.register-btn:hover {
+  background-color: #0056b3;
+}

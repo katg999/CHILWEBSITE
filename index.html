@@ -2,12 +2,72 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/Kite.svg" />
+    <link
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Keti AI</title>
+
+    <!-- Add Dialogflow Messenger Script -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+    <!-- Add Confetti Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   </head>
   <body>
+    <!-- Root div for React to render into -->
     <div id="root"></div>
+
+    <!-- Container that will hold captured data -->
+    <div id="voiceflow-captured-data-container"></div>
+
+    <!-- Script to load your React application -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Updated Voiceflow Integration Script -->
+    <script type="module">
+      import { FileUploadExtension } from "/extensions.js";
+
+      (function (d, t) {
+        var v = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        v.onload = function () {
+          // Load Voiceflow chat
+          window.voiceflow.chat.load({
+            verify: { projectID: "67d2dac11171f4701370999b" },
+            url: "https://general-runtime.voiceflow.com",
+            versionID: "production",
+            voice: { url: "https://runtime-api.voiceflow.com" },
+            assistant: {
+              extensions: [FileUploadExtension], // Include FileUploadExtension
+            },
+            launch: {
+              autoStart: true,
+              listening: true,
+            },
+          });
+
+          // Register the FileUpload extension
+          window.voiceflow.chat.register(FileUploadExtension);
+
+          // Set up the capture event listener once Voiceflow is loaded
+          if (window.setupVoiceflowCapture) {
+            window.setupVoiceflowCapture();
+            console.log("Voiceflow capture setup initialized");
+          } else {
+            console.error("setupVoiceflowCapture function not found");
+          }
+        };
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; // Updated Voiceflow widget URL
+        v.type = "text/javascript";
+        s.parentNode.insertBefore(v, s);
+      })(document, "script");
+    </script>
   </body>
 </html>
