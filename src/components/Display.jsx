@@ -13,20 +13,41 @@ const Display = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "100vh",
-          // Full viewport height
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
           color: "white",
-          marginTop: 0, // Ensure no margin at the top
-          paddingTop: 0, // Ensure no padding at the top
-          position: "relative", // Ensure the image starts from the top
+          marginTop: 0,
+          paddingTop: 0,
+          position: "relative",
         }}
       >
-        <div className="content">
-          {/* Button with Stethoscope Icon */}
-          <button className="icon-button">
+        <div
+          className="content"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "20px", // Adds space between elements
+          }}
+        >
+          {/* Button with Stethoscope Icon (Above the text) */}
+          <button
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "10px 20px",
+              borderRadius: "25px",
+              border: "2px solid #800080",
+              backgroundColor: "white",
+              color: "#800080",
+              fontSize: "16px",
+              cursor: "pointer",
+              fontFamily: "'Geist', sans-serif", // Apply Geist font
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -73,7 +94,14 @@ const Display = () => {
           </button>
 
           {/* Main Heading */}
-          <h1>
+          <h1
+            style={{
+              color: "white",
+              fontSize: "48px",
+              margin: "0",
+              fontFamily: "'Bricolage Grotesque', sans-serif", // Apply Bricolage Grotesque font
+            }}
+          >
             Patients Deserve
             <br />
             Better Care Now
@@ -85,21 +113,47 @@ const Display = () => {
               textAlign: "center",
               maxWidth: "600px",
               margin: "10px auto",
+              fontSize: "18px",
+              fontFamily: "'Geist', sans-serif", // Apply Geist font
             }}
           >
             Join a network that brings expert doctors, labs, and pharmacies to
             your facility—affordably and instantly.
           </p>
 
-          {/* Access Expert Care Button */}
-          <button className="access-button">
+          {/* Access Expert Care Button (Below the text) */}
+          <button
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "15px 30px",
+              borderRadius: "30px",
+              backgroundColor: "#800080",
+              color: "white",
+              fontSize: "18px",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "'Geist', sans-serif", // Apply Geist font
+            }}
+          >
             <span>Access Expert Care Now</span>
-            <div className="icon-circle">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "30px",
+                height: "30px",
+                borderRadius: "50%",
+                backgroundColor: "white",
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                width={24}
-                height={24}
+                width={16}
+                height={16}
                 color={"#800080"}
                 fill={"none"}
               >
@@ -126,7 +180,7 @@ const Display = () => {
       {/* Statistics Section */}
       <div
         style={{
-          backgroundColor: "white", // Add a background color for contrast
+          backgroundColor: "white",
           padding: "40px 20px",
           display: "flex",
           justifyContent: "center",

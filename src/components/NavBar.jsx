@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ketiaiLogo from "../assets/images/emoji-logo-black.svg"; // Adjust the path based on your folder structure
+import React, { useState, useEffect } from "react";
+import ketiaiLogo from "../assets/images/emoji-logo-black.svg";
 import {
   Menu,
   MenuItem,
@@ -11,7 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger menu icon
+import MenuIcon from "@mui/icons-material/Menu";
 
 // WhatsApp Icon Component (unchanged)
 const WhatsappIcon = (props) => (
@@ -37,41 +37,213 @@ const WhatsappIcon = (props) => (
 );
 
 const Navbar = () => {
-  const [individualsAnchorEl, setIndividualsAnchorEl] = useState(null); // State for Individuals dropdown
-  const [organisationsAnchorEl, setOrganisationsAnchorEl] = useState(null); // State for Organisations dropdown
-  const [drawerOpen, setDrawerOpen] = useState(false); // State for mobile drawer
+  const [individualsAnchorEl, setIndividualsAnchorEl] = useState(null);
+  const [organisationsAnchorEl, setOrganisationsAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(null);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if the screen is mobile size
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Handle Individuals dropdown open
+  const handleItemClick = (item) => {
+    setActiveItem(item);
+    handleClose();
+    setDrawerOpen(false);
+  };
+
+  // Function to open the chatbot
+  const openChatbot = () => {
+    const dfMessenger = document.querySelector("df-messenger");
+    if (dfMessenger) {
+      // Try to find the chat button in the shadow DOM
+      const chatButton = dfMessenger.shadowRoot.querySelector(
+        "df-messenger-button button.df-messenger-button"
+      );
+
+      if (chatButton) {
+        chatButton.click();
+        return true;
+      }
+    }
+    return false;
+  };
+
+  // Function to send a message to the chatbot
+  const sendMessageToChatbot = (message) => {
+    const dfMessenger = document.querySelector("df-messenger");
+    if (!dfMessenger) return false;
+
+    const chatElement =
+      dfMessenger.shadowRoot.querySelector("df-messenger-chat");
+    if (!chatElement) return false;
+
+    const inputElement = chatElement.shadowRoot.querySelector(
+      "input.df-messenger-input"
+    );
+
+    if (!inputElement) return false;
+
+    // Set input value and trigger input event
+    inputElement.value = message;
+    inputElement.dispatchEvent(new Event("input", { bubbles: true }));
+
+    // Find and click the send button
+    const sendButton = chatElement.shadowRoot.querySelector(
+      "button.df-messenger-send-icon"
+    );
+
+    if (sendButton) {
+      sendButton.click();
+      return true;
+    }
+
+    return false;
+  };
+
+  // Improved function to handle registration clicks
+  const handleRegistrationClick = (type) => {
+    // Close any open menus
+    handleClose();
+    setDrawerOpen(false);
+
+    // Store the registration type in localStorage (more persistent than sessionStorage)
+    localStorage.setItem("registrationType", type);
+
+    // Try to open the chatbot
+    const isOpened = openChatbot();
+
+    if (isOpened) {
+      // If chatbot opened successfully, give it time to initialize
+      setTimeout(() => {
+        const message = `I want to register as a ${type}`;
+        const messageSent = sendMessageToChatbot(message);
+
+        // If sending fails, retry after a longer delay
+        if (!messageSent) {
+          setTimeout(() => {
+            sendMessageToChatbot(message);
+          }, 2000);
+        }
+      }, 1000);
+    } else {
+      // If chatbot didn't open, try again after a delay
+      setTimeout(() => {
+        openChatbot();
+
+        // Try to send the message after another delay
+        setTimeout(() => {
+          sendMessageToChatbot(`I want to register as a ${type}`);
+        }, 1000);
+      }, 1000);
+    }
+  };
+
+  // Listen for Dialogflow Messenger loading
+  useEffect(() => {
+    const handleMessengerLoaded = () => {
+      const registrationType = localStorage.getItem("registrationType");
+      if (registrationType) {
+        // Don't clear the type immediately to allow for retries
+
+        // First, try to open the chatbot
+        const isOpened = openChatbot();
+
+        if (isOpened) {
+          // Wait for the chatbot to fully open
+          setTimeout(() => {
+            const messageSent = sendMessageToChatbot(
+              `I want to register as a ${registrationType}`
+            );
+
+            // Only clear the registration type if we successfully sent the message
+            if (messageSent) {
+              localStorage.removeItem("registrationType");
+            } else {
+              // Try again one more time
+              setTimeout(() => {
+                if (
+                  sendMessageToChatbot(
+                    `I want to register as a ${registrationType}`
+                  )
+                ) {
+                  localStorage.removeItem("registrationType");
+                }
+              }, 2000);
+            }
+          }, 1500);
+        } else {
+          // If opening failed, try again after a longer delay
+          setTimeout(() => {
+            openChatbot();
+
+            setTimeout(() => {
+              if (
+                sendMessageToChatbot(
+                  `I want to register as a ${registrationType}`
+                )
+              ) {
+                localStorage.removeItem("registrationType");
+              }
+            }, 1500);
+          }, 2000);
+        }
+      }
+    };
+
+    // Setup event listeners for when Dialogflow is ready
+    document.addEventListener("df-messenger-loaded", handleMessengerLoaded);
+
+    // Also listen for when the chat becomes visible
+    document.addEventListener("df-messenger-chat-open", () => {
+      const registrationType = localStorage.getItem("registrationType");
+      if (registrationType) {
+        setTimeout(() => {
+          if (
+            sendMessageToChatbot(`I want to register as a ${registrationType}`)
+          ) {
+            localStorage.removeItem("registrationType");
+          }
+        }, 1000);
+      }
+    });
+
+    return () => {
+      document.removeEventListener(
+        "df-messenger-loaded",
+        handleMessengerLoaded
+      );
+      document.removeEventListener(
+        "df-messenger-chat-open",
+        handleMessengerLoaded
+      );
+    };
+  }, []);
+
   const handleIndividualsClick = (event) => {
     setIndividualsAnchorEl(event.currentTarget);
+    setActiveItem("Individuals"); // Set activeItem to "Individuals"
   };
 
-  // Handle Organisations dropdown open
   const handleOrganisationsClick = (event) => {
     setOrganisationsAnchorEl(event.currentTarget);
+    setActiveItem("Organisations"); // Set activeItem to "Organisations"
   };
 
-  // Handle dropdown close
   const handleClose = () => {
     setIndividualsAnchorEl(null);
     setOrganisationsAnchorEl(null);
   };
 
-  // Handle mobile drawer open
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
   };
 
-  // Handle mobile drawer close
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
 
   // Common style for nav links
-  const navLinkStyle = {
-    color: "black",
+  const navLinkStyle = (item) => ({
+    color: activeItem === item ? "purple" : "black",
     textDecoration: "none",
     fontFamily: "Geist, sans-serif",
     fontWeight: 400,
@@ -83,9 +255,9 @@ const Navbar = () => {
     "&:hover": {
       color: "#666",
     },
-  };
+  });
 
-  // Custom menu styles to force vertical layout
+  // Custom menu styles
   const menuStyles = {
     paper: {
       backgroundColor: "white",
@@ -96,12 +268,16 @@ const Navbar = () => {
   };
 
   // Custom menu item styles
-  const menuItemStyles = {
+  const menuItemStyles = (item) => ({
     display: "block",
     width: "100%",
-    color: "black",
+    color: activeItem === item ? "purple" : "black",
     padding: "10px 15px",
-  };
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#f5f5f5",
+    },
+  });
 
   return (
     <nav
@@ -161,7 +337,7 @@ const Navbar = () => {
               <span
                 onClick={handleIndividualsClick}
                 style={{
-                  ...navLinkStyle,
+                  ...navLinkStyle("Individuals"),
                   cursor: "pointer",
                 }}
               >
@@ -193,10 +369,22 @@ const Navbar = () => {
                   style: { padding: 0 },
                 }}
               >
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => {
+                    handleRegistrationClick("Doctor");
+                    handleItemClick("Doctor");
+                  }}
+                  sx={menuItemStyles("Doctor")}
+                >
                   Register as a Doctor
                 </MenuItem>
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => {
+                    handleRegistrationClick("Patient");
+                    handleItemClick("Patient");
+                  }}
+                  sx={menuItemStyles("Patient")}
+                >
                   Register as a Patient
                 </MenuItem>
               </Menu>
@@ -207,7 +395,7 @@ const Navbar = () => {
               <span
                 onClick={handleOrganisationsClick}
                 style={{
-                  ...navLinkStyle,
+                  ...navLinkStyle("Organisations"),
                   cursor: "pointer",
                 }}
               >
@@ -239,13 +427,31 @@ const Navbar = () => {
                   style: { padding: 0 },
                 }}
               >
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => {
+                    handleRegistrationClick("School");
+                    handleItemClick("School");
+                  }}
+                  sx={menuItemStyles("School")}
+                >
                   Register as a School
                 </MenuItem>
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => {
+                    handleRegistrationClick("Pharmacy");
+                    handleItemClick("Pharmacy");
+                  }}
+                  sx={menuItemStyles("Pharmacy")}
+                >
                   Register as a Pharmacy
                 </MenuItem>
-                <MenuItem onClick={handleClose} sx={menuItemStyles}>
+                <MenuItem
+                  onClick={() => {
+                    handleRegistrationClick("Laboratory");
+                    handleItemClick("Laboratory");
+                  }}
+                  sx={menuItemStyles("Laboratory")}
+                >
                   Register as a Laboratory
                 </MenuItem>
               </Menu>
@@ -256,9 +462,10 @@ const Navbar = () => {
               <Link
                 to="/asset-finance-loans"
                 style={{
-                  ...navLinkStyle,
+                  ...navLinkStyle("Finance Loans"),
                   textDecoration: "none",
                 }}
+                onClick={() => handleItemClick("Finance Loans")}
               >
                 Finance Loans
               </Link>
@@ -267,9 +474,10 @@ const Navbar = () => {
               <Link
                 to="/contact-us"
                 style={{
-                  ...navLinkStyle,
+                  ...navLinkStyle("Contact Us"),
                   textDecoration: "none",
                 }}
+                onClick={() => handleItemClick("Contact Us")}
               >
                 Contact Us
               </Link>
@@ -280,8 +488,8 @@ const Navbar = () => {
 
       {/* Right: Chat With Keti Button (Hidden on Small Mobile Devices) */}
       {!isMobile && (
-        <Link
-          to="/chat-with-keti"
+        <div
+          onClick={openChatbot}
           style={{
             backgroundColor: "purple",
             color: "white",
@@ -296,11 +504,12 @@ const Navbar = () => {
             fontWeight: "500",
             fontSize: "16px",
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            cursor: "pointer",
           }}
         >
           <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat With
           Keti
-        </Link>
+        </div>
       )}
 
       {/* Mobile Hamburger Menu (Visible on Small Mobile Devices) */}
@@ -331,7 +540,7 @@ const Navbar = () => {
           <ListItem>
             <span
               onClick={handleIndividualsClick}
-              style={{ ...navLinkStyle, cursor: "pointer" }}
+              style={{ ...navLinkStyle("Individuals"), cursor: "pointer" }}
             >
               Individuals
             </span>
@@ -361,10 +570,22 @@ const Navbar = () => {
                 style: { padding: 0 },
               }}
             >
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => {
+                  handleRegistrationClick("Doctor");
+                  handleItemClick("Doctor");
+                }}
+                sx={menuItemStyles("Doctor")}
+              >
                 Register as a Doctor
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => {
+                  handleRegistrationClick("Patient");
+                  handleItemClick("Patient");
+                }}
+                sx={menuItemStyles("Patient")}
+              >
                 Register as a Patient
               </MenuItem>
             </Menu>
@@ -374,7 +595,7 @@ const Navbar = () => {
           <ListItem>
             <span
               onClick={handleOrganisationsClick}
-              style={{ ...navLinkStyle, cursor: "pointer" }}
+              style={{ ...navLinkStyle("Organisations"), cursor: "pointer" }}
             >
               Organisations
             </span>
@@ -404,13 +625,31 @@ const Navbar = () => {
                 style: { padding: 0 },
               }}
             >
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => {
+                  handleRegistrationClick("School");
+                  handleItemClick("School");
+                }}
+                sx={menuItemStyles("School")}
+              >
                 Register as a School
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => {
+                  handleRegistrationClick("Pharmacy");
+                  handleItemClick("Pharmacy");
+                }}
+                sx={menuItemStyles("Pharmacy")}
+              >
                 Register as a Pharmacy
               </MenuItem>
-              <MenuItem onClick={handleClose} sx={menuItemStyles}>
+              <MenuItem
+                onClick={() => {
+                  handleRegistrationClick("Laboratory");
+                  handleItemClick("Laboratory");
+                }}
+                sx={menuItemStyles("Laboratory")}
+              >
                 Register as a Laboratory
               </MenuItem>
             </Menu>
@@ -420,7 +659,11 @@ const Navbar = () => {
           <ListItem>
             <Link
               to="/asset-finance-loans"
-              style={{ ...navLinkStyle, textDecoration: "none" }}
+              style={{
+                ...navLinkStyle("Finance Loans"),
+                textDecoration: "none",
+              }}
+              onClick={() => handleItemClick("Finance Loans")}
             >
               Finance Loans
             </Link>
@@ -428,10 +671,40 @@ const Navbar = () => {
           <ListItem>
             <Link
               to="/contact-us"
-              style={{ ...navLinkStyle, textDecoration: "none" }}
+              style={{ ...navLinkStyle("Contact Us"), textDecoration: "none" }}
+              onClick={() => handleItemClick("Contact Us")}
             >
               Contact Us
             </Link>
+          </ListItem>
+
+          {/* Chat With Keti in mobile menu */}
+          <ListItem sx={{ marginTop: "20px" }}>
+            <div
+              onClick={() => {
+                handleDrawerClose();
+                openChatbot();
+              }}
+              style={{
+                backgroundColor: "purple",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                borderRadius: "25px",
+                padding: "10px 20px",
+                whiteSpace: "nowrap",
+                width: "auto",
+                textDecoration: "none",
+                fontWeight: "500",
+                fontSize: "16px",
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                cursor: "pointer",
+              }}
+            >
+              <WhatsappIcon style={{ color: "white", fill: "purple" }} /> Chat
+              With Keti
+            </div>
           </ListItem>
         </List>
       </Drawer>

@@ -3,121 +3,72 @@
   <head>
     <link rel="stylesheet" href="/dist/app.css" />
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/emoji-mark.png" />
+    <link rel="icon" type="image/svg+xml" href="/Kite.svg" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Geist:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Keti AI</title>
+
     <!-- Add Dialogflow Messenger Script -->
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <style>
-      df-messenger {
-        --df-messenger-button-titlebar-color: #800080; /* Purple color for button and titlebar */
-        --df-messenger-bot-message: #ffffff; /* Bot message background */
-        --df-messenger-user-message: #e6d5f7; /* User message background */
-        --df-messenger-font-color: #000000; /* Text color */
-        --df-messenger-chat-background-color: #f9f9f9; /* Chat background */
-        --df-messenger-send-icon: #800080; /* Send button color */
-        --df-messenger-input-font-color: #000000; /* Input text color */
 
-        /* Position and sizing */
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
-        z-index: 1000;
-      }
-
-      /* Control the size of the chat window */
-      df-messenger-chat {
-        width: 280px !important;
-        height: 350px !important;
-      }
-    </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Wait for components to load
-        setTimeout(function () {
-          // Find Dialogflow component
-          const dfMessenger = document.querySelector("df-messenger");
-
-          if (dfMessenger) {
-            // Set up an observer to detect when the chat opens
-            const observer = new MutationObserver(function (mutations) {
-              setTimeout(function () {
-                // Find the message container when it becomes available
-                const messageContainer = document
-                  .querySelector("df-messenger")
-                  .shadowRoot?.querySelector("df-messenger-chat")
-                  ?.shadowRoot?.querySelector(".message-list-wrapper");
-
-                if (
-                  messageContainer &&
-                  !document.querySelector(".welcome-message-added")
-                ) {
-                  // Add a custom class to the body to prevent adding multiple welcome messages
-                  document.body.classList.add("welcome-message-added");
-
-                  // Create a welcome message container
-                  const welcomeDiv = document.createElement("div");
-                  welcomeDiv.style.display = "flex";
-                  welcomeDiv.style.alignItems = "center";
-                  welcomeDiv.style.padding = "12px";
-                  welcomeDiv.style.margin = "8px 0";
-                  welcomeDiv.style.backgroundColor = "#f0e6f5";
-                  welcomeDiv.style.borderRadius = "8px";
-
-                  // Create and style the icon
-                  const icon = document.createElement("img");
-                  icon.src = "/emoji-mark.png";
-                  icon.alt = "Keti AI";
-                  icon.style.width = "32px";
-                  icon.style.height = "32px";
-                  icon.style.marginRight = "10px";
-
-                  // Create and style the text
-                  const text = document.createElement("div");
-                  text.textContent =
-                    "Keti AI - Our virtual assistant is here to help you.";
-                  text.style.fontSize = "14px";
-                  text.style.color = "#333";
-
-                  // Assemble the welcome message
-                  welcomeDiv.appendChild(icon);
-                  welcomeDiv.appendChild(text);
-
-                  // Insert at the beginning of the message container
-                  if (messageContainer.firstChild) {
-                    messageContainer.insertBefore(
-                      welcomeDiv,
-                      messageContainer.firstChild
-                    );
-                  } else {
-                    messageContainer.appendChild(welcomeDiv);
-                  }
-                }
-              }, 500);
-            });
-
-            // Start observing
-            observer.observe(dfMessenger, { childList: true, subtree: true });
-          }
-        }, 1000);
-      });
-    </script>
+    <!-- Add Confetti Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   </head>
   <body>
+    <!-- Root div for React to render into -->
     <div id="root"></div>
+
+    <!-- Container that will hold captured data -->
+    <div id="voiceflow-captured-data-container"></div>
+
+    <!-- Script to load your React application -->
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Dialogflow Messenger Widget -->
-    <df-messenger
-      intent="WELCOME"
-      chat-title="KETIAI"
-      agent-id="c93c6df5-1e95-4321-a9ae-8cbd7090ba42"
-      language-code="en"
-      chat-icon="/Keti.svg"
-    ></df-messenger>
+    <!-- Updated Voiceflow Integration Script -->
+    <script type="module">
+      import { FileUploadExtension } from "/extensions.js";
+
+      (function (d, t) {
+        var v = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        v.onload = function () {
+          // Load Voiceflow chat
+          window.voiceflow.chat.load({
+            verify: { projectID: "67d2dac11171f4701370999b" },
+            url: "https://general-runtime.voiceflow.com",
+            versionID: "production",
+            voice: { url: "https://runtime-api.voiceflow.com" },
+            assistant: {
+              extensions: [FileUploadExtension], // Include FileUploadExtension
+            },
+            launch: {
+              autoStart: true,
+              listening: true,
+            },
+          });
+
+          // Register the FileUpload extension
+          window.voiceflow.chat.register(FileUploadExtension);
+
+          // Set up the capture event listener once Voiceflow is loaded
+          if (window.setupVoiceflowCapture) {
+            window.setupVoiceflowCapture();
+            console.log("Voiceflow capture setup initialized");
+          } else {
+            console.error("setupVoiceflowCapture function not found");
+          }
+        };
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; // Updated Voiceflow widget URL
+        v.type = "text/javascript";
+        s.parentNode.insertBefore(v, s);
+      })(document, "script");
+    </script>
   </body>
 </html>
