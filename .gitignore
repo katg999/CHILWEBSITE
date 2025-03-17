@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+
 .katendeketi-foym-7e233b833ec4.json
 katendeketi-foym-7e233b833ec4.json
 node_modules
