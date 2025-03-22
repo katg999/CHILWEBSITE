@@ -1,8 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, TextField, Button, Box } from "@mui/material";
 import Image31 from "../assets/images/image 31.svg"; // Correctly import the image
 
 const FinanceLoans = () => {
+  // State to store uploaded files
+  const [facilityReportFile, setFacilityReportFile] = useState(null);
+  const [licenseFile, setLicenseFile] = useState(null);
+
+  // Handle file upload for Facility Report
+  const handleFacilityReportUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFacilityReportFile(file);
+    }
+  };
+
+  // Handle file upload for License
+  const handleLicenseUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setLicenseFile(file);
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Create a FormData object to send files and form data
+    const formData = new FormData();
+
+    // Append form fields to FormData
+    formData.append("first_name", event.target.firstName.value);
+    formData.append("last_name", event.target.lastName.value);
+    formData.append("phone", event.target.phone.value);
+    formData.append("email", event.target.email.value);
+    formData.append("facility_name", event.target.facilityName.value);
+
+    // Append files to FormData
+    if (facilityReportFile) {
+      formData.append("facility_report", facilityReportFile);
+    }
+    if (licenseFile) {
+      formData.append("license", licenseFile);
+    }
+
+    try {
+      // Send POST request to your Laravel backend
+      const response = await fetch(
+        "https://laravelbackendchil.onrender.com/api/finance-loan-data",
+        {
+          method: "POST",
+          body: formData, // Send FormData directly
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Success:", data);
+        alert("Form submitted successfully!");
+      } else {
+        console.error("Error:", response.statusText);
+        alert("Failed to submit form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -139,6 +205,7 @@ const FinanceLoans = () => {
       {/* Form */}
       <Box
         component="form"
+        onSubmit={handleSubmit}
         sx={{
           maxWidth: "800px",
           margin: "0 auto",
@@ -160,12 +227,14 @@ const FinanceLoans = () => {
             label="First Name (*)"
             variant="outlined"
             placeholder="Enter your first name"
+            required
           />
           <TextField
             fullWidth
             label="Last Name (*)"
             variant="outlined"
             placeholder="Enter your last name"
+            required
           />
         </Box>
 
@@ -182,12 +251,14 @@ const FinanceLoans = () => {
             label="Phone (*)"
             variant="outlined"
             placeholder="Enter your phone number"
+            required
           />
           <TextField
             fullWidth
             label="Email (*)"
             variant="outlined"
             placeholder="Enter your email"
+            required
           />
         </Box>
 
@@ -197,40 +268,72 @@ const FinanceLoans = () => {
           label="Facility Name (*)"
           variant="outlined"
           placeholder="Enter your facility name"
+          required
         />
 
         {/* Facility Report */}
-        <TextField
-          fullWidth
-          label="Facility Report (*)"
-          variant="outlined"
-          placeholder="Upload file (.pdf, .doc, .jpg, .png)"
-          InputProps={{
-            sx: {
-              "& input::placeholder": {
-                color: "#890085", // Placeholder color
-              },
-            },
-          }}
-        />
+        <Box>
+          <input
+            type="file"
+            id="facility-report"
+            accept=".pdf,.doc,.docx,.jpg,.png"
+            onChange={handleFacilityReportUpload}
+            style={{ display: "none" }} // Hide the default file input
+          />
+          <label htmlFor="facility-report">
+            <Button
+              variant="outlined"
+              component="span"
+              sx={{
+                width: "100%",
+                padding: "10px",
+                borderColor: "#890085",
+                color: "#890085",
+                "&:hover": {
+                  borderColor: "#6a0067",
+                  color: "#6a0067",
+                },
+              }}
+            >
+              {facilityReportFile
+                ? facilityReportFile.name
+                : "Upload Facility Report (*)"}
+            </Button>
+          </label>
+        </Box>
 
         {/* License */}
-        <TextField
-          fullWidth
-          label="License (*)"
-          variant="outlined"
-          placeholder="Upload file (.pdf, .doc, .jpg, .png)"
-          InputProps={{
-            sx: {
-              "& input::placeholder": {
-                color: "#890085", // Placeholder color
-              },
-            },
-          }}
-        />
+        <Box>
+          <input
+            type="file"
+            id="license"
+            accept=".pdf,.doc,.docx,.jpg,.png"
+            onChange={handleLicenseUpload}
+            style={{ display: "none" }} // Hide the default file input
+          />
+          <label htmlFor="license">
+            <Button
+              variant="outlined"
+              component="span"
+              sx={{
+                width: "100%",
+                padding: "10px",
+                borderColor: "#890085",
+                color: "#890085",
+                "&:hover": {
+                  borderColor: "#6a0067",
+                  color: "#6a0067",
+                },
+              }}
+            >
+              {licenseFile ? licenseFile.name : "Upload License (*)"}
+            </Button>
+          </label>
+        </Box>
 
         {/* Request Loan Button */}
         <Button
+          type="submit"
           variant="contained"
           sx={{
             backgroundColor: "#890085",
