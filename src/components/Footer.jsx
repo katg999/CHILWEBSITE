@@ -1,5 +1,16 @@
 import React from "react";
-import { Box, Typography, Link, Stack, Button, TextField } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Link,
+  Stack,
+  Button,
+  TextField,
+  Container,
+  Grid,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 // Import images
@@ -11,564 +22,510 @@ import PlayStoreIcon from "../assets/images/Component 1.svg";
 import AppStoreIcon from "../assets/images/Component 2.png";
 
 const Footer = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+
   return (
-    <Box
-      sx={{
-        backgroundColor: "white",
-        padding: { xs: 2, md: 2.5 },
-        borderTop: "1px solid #ddd",
-        width: "100%",
-        color: "#333",
-        marginBottom: 0, // Ensure no margin at the bottom
-        paddingBottom: 0, // Ensure no padding at the bottom
-      }}
-    >
-      {/* Main Content */}
+    <Container maxWidth="xl" disableGutters>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          gap: { xs: 2, md: 1 },
-          padding: { xs: "0 8px", md: "0" },
+          backgroundColor: "white",
+          padding: { xs: 2, sm: 3, md: 4 },
+          borderTop: "1px solid #ddd",
+          width: "100%",
+          color: "#333",
+          marginBottom: 0,
+          paddingBottom: { xs: 3, md: 4 },
         }}
       >
-        {/* Column 1: Logo and About Us */}
+        {/* Main Content */}
+        <Grid container spacing={{ xs: 3, md: 2 }}>
+          {/* Column 1: Logo and About Us */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Stack
+              direction="column"
+              spacing={1.5}
+              alignItems={{ xs: "center", sm: "flex-start" }}
+            >
+              <img
+                src={ketiaiLogo}
+                alt="KETIAI Logo"
+                style={{ width: "120px", marginBottom: "12px" }}
+              />
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#890085",
+                  color: "white",
+                  borderRadius: "32px",
+                  padding: { xs: "6px 16px", md: "8px 24px" },
+                  fontSize: { xs: "12px", md: "14px" },
+                  fontWeight: 500,
+                  textTransform: "none",
+                  "&:hover": { backgroundColor: "#b37600" },
+                }}
+              >
+                Get Started
+              </Button>
+              <Typography
+                variant="body2"
+                color="#333"
+                sx={{
+                  fontSize: "12px",
+                  mt: 1,
+                  textAlign: { xs: "center", sm: "left" },
+                }}
+              >
+                © 2025 Keti AI. All rights reserved.
+              </Typography>
+            </Stack>
+          </Grid>
+
+          {/* Column 2: Quick Links */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: "20px",
+                letterSpacing: "-2%",
+                textAlign: { xs: "center", sm: "left" },
+                color: "#000000",
+                mb: 1.5,
+              }}
+            >
+              Company
+            </Typography>
+            <Stack spacing={1}>
+              {[
+                "What we Treat",
+                "Services",
+                "Careers",
+                "E-Hygiene shop",
+                "AI medical interpreter",
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  component={index === 0 ? RouterLink : "a"}
+                  to={index === 0 ? "/what-we-treat" : "#"}
+                  href={index !== 0 ? "#" : undefined}
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                    letterSpacing: "-2%",
+                    textAlign: { xs: "center", sm: "left" },
+                    color: "#333",
+                    textDecoration: "none",
+                    display: "block",
+                    "&:hover": {
+                      color: "#890085",
+                    },
+                  }}
+                >
+                  {item}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
+
+          {/* Column 3: Helpful Links */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: "20px",
+                letterSpacing: "-2%",
+                textAlign: { xs: "center", sm: "left" },
+                color: "#000000",
+                mb: 1.5,
+              }}
+            >
+              Helpful Links
+            </Typography>
+            <Stack spacing={1}>
+              {[
+                { name: "Book consultation", to: "#" },
+                { name: "Order for drugs", to: "#" },
+                { name: "Disaster Medicine", to: "/disaster", isRoute: true },
+                { name: "Register a facility", to: "#" },
+                {
+                  name: "Chat with Keti",
+                  to: "#",
+                  onClick: () => {
+                    // Open Voiceflow chatbot
+                    try {
+                      if (
+                        window.voiceflow &&
+                        window.voiceflow.chat &&
+                        window.voiceflow.chat.open
+                      ) {
+                        window.voiceflow.chat.open();
+                      } else if (
+                        window.voiceflow &&
+                        window.voiceflow.chat &&
+                        window.voiceflow.chat.show
+                      ) {
+                        window.voiceflow.chat.show();
+                      } else {
+                        const chatButton = document.querySelector(
+                          ".vfrc-launcher-button"
+                        );
+                        if (chatButton) {
+                          chatButton.click();
+                        }
+                      }
+                    } catch (err) {
+                      console.error("Error opening Voiceflow chat:", err);
+                    }
+                  },
+                },
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  component={item.isRoute ? RouterLink : "a"}
+                  to={item.isRoute ? item.to : undefined}
+                  href={!item.isRoute ? item.to : undefined}
+                  onClick={item.onClick}
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                    letterSpacing: "-2%",
+                    textAlign: { xs: "center", sm: "left" },
+                    color: "#333",
+                    textDecoration: "none",
+                    display: "block",
+                    "&:hover": {
+                      color: "#890085",
+                    },
+                  }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
+
+          {/* Column 4: Legal */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: "20px",
+                letterSpacing: "-2%",
+                textAlign: { xs: "center", sm: "left" },
+                color: "#000000",
+                mb: 1.5,
+              }}
+            >
+              Legal
+            </Typography>
+            <Stack spacing={1}>
+              <Link
+                component={RouterLink}
+                to="/privacypolicy"
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: { xs: "12px", md: "14px" },
+                  lineHeight: "18px",
+                  letterSpacing: "-2%",
+                  textAlign: { xs: "center", sm: "left" },
+                  color: "#333",
+                  textDecoration: "none",
+                  display: "block",
+                  "&:hover": {
+                    color: "#890085",
+                  },
+                }}
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="#"
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: { xs: "12px", md: "14px" },
+                  lineHeight: "18px",
+                  letterSpacing: "-2%",
+                  textAlign: { xs: "center", sm: "left" },
+                  color: "#333",
+                  textDecoration: "none",
+                  display: "block",
+                  "&:hover": {
+                    color: "#890085",
+                  },
+                }}
+              >
+                Terms and Conditions
+              </Link>
+            </Stack>
+          </Grid>
+
+          {/* Column 5: Socials */}
+          <Grid item xs={6} sm={3} md={3}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: "20px",
+                letterSpacing: "-2%",
+                textAlign: { xs: "center", sm: "left" },
+                color: "#000000",
+                mb: 1.5,
+              }}
+            >
+              Socials
+            </Typography>
+            <Stack
+              spacing={1}
+              direction="column"
+              alignItems={{ xs: "center", sm: "flex-start" }}
+            >
+              <Link
+                href="#"
+                sx={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { opacity: 0.8 },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={linkedinIcon}
+                  alt="LinkedIn Icon"
+                  sx={{ width: "20px", height: "20px", mr: 1 }}
+                />
+                <Typography
+                  sx={{
+                    color: "#333",
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                  }}
+                >
+                  LinkedIn
+                </Typography>
+              </Link>
+              <Link
+                href="#"
+                sx={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { opacity: 0.8 },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={twitterIcon}
+                  alt="Twitter Icon"
+                  sx={{ width: "20px", height: "20px", mr: 1 }}
+                />
+                <Typography
+                  sx={{
+                    color: "#333",
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                  }}
+                >
+                  (Formerly Twitter)
+                </Typography>
+              </Link>
+            </Stack>
+          </Grid>
+        </Grid>
+
+        {/* Newsletter Section */}
         <Box
           sx={{
-            flex: 1,
-            minWidth: { xs: "100%", md: "160px" },
-            ml: 20, // Add left margin to push the entire box to the right
+            marginTop: { xs: 4, md: 5 },
+            paddingTop: { xs: 3, md: 3 },
+            borderTop: "1px solid #ddd",
+            textAlign: "center",
           }}
         >
-          <Stack direction="column" spacing={1} alignItems="flex-start">
-            <img
-              src={ketiaiLogo}
-              alt="KETIAI Logo"
-              style={{ width: "120px", marginBottom: "12px" }}
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{
+              fontFamily: "Geist",
+              fontWeight: 500,
+              fontSize: { xs: "14px", md: "16px" },
+              lineHeight: "20px",
+              letterSpacing: "-2%",
+              textAlign: "center",
+              color: "#000000",
+              mb: 2,
+            }}
+          >
+            Subscribe to Our Newsletter
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 1,
+              backgroundColor: "white",
+              borderRadius: "32px",
+              border: "1px solid #ddd",
+              padding: "5px 14px",
+              width: { xs: "100%", sm: "80%", md: "400px" },
+              height: "40px",
+              margin: "0 auto",
+              maxWidth: "600px",
+            }}
+          >
+            <TextField
+              placeholder="Enter your email to subscribe to our newsletter!"
+              variant="standard"
+              fullWidth
+              InputProps={{
+                disableUnderline: true,
+                style: { textDecoration: "none" },
+              }}
+              sx={{
+                flex: 1,
+                "& .MuiInputBase-input": {
+                  fontSize: { xs: "12px", md: "13px" },
+                  color: "#333",
+                  textDecoration: "none",
+                },
+              }}
             />
             <Button
-              variant="contained"
               sx={{
                 backgroundColor: "#890085",
                 color: "white",
                 borderRadius: "32px",
-                padding: { xs: "6px 16px", md: "6px 20px" },
-                fontSize: { xs: "12px", md: "14px" },
-                fontWeight: 500,
+                padding: { xs: "3px 8px", md: "3px 10px" },
+                gap: "6px",
                 textTransform: "none",
-                "&:hover": { backgroundColor: "#b37600" },
+                fontSize: { xs: "12px", md: "13px" },
+                fontWeight: 500,
+                display: "flex",
+                alignItems: "center",
+                whiteSpace: "nowrap",
+                "&:hover": {
+                  backgroundColor: "#b37600",
+                },
               }}
             >
-              Get Started
+              Subscribe
+              <Box
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: "50%",
+                  width: "16px",
+                  height: "16px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={arrowIcon}
+                  alt="Arrow Icon"
+                  sx={{ width: "14px", height: "14px" }}
+                />
+              </Box>
             </Button>
-            <Typography
-              variant="body2"
-              color="#333"
-              sx={{
-                fontSize: "12px",
-                mt: 1, // Small margin top to create some space after the button
-              }}
-            >
-              © 2025 Keti AI. All rights reserved.
-            </Typography>
-          </Stack>
-        </Box>
-        {/* Column 2: Quick Links */}
-        <Box sx={{ flex: 1, minWidth: { xs: "100%", md: "130px" } }}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              fontFamily: "Geist",
-              fontWeight: 500,
-              fontSize: { xs: "14px", md: "16px" },
-              lineHeight: "20px",
-              letterSpacing: "-2%",
-              textAlign: { xs: "left", md: "center" },
-              color: "#000000",
-              mb: 1,
-            }}
-          >
-            Company
-          </Typography>
-          <Stack spacing={0.5}>
-            <Link
-              component={RouterLink}
-              to="/what-we-treat"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              What we Treat
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Services
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Careers
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              E-Hygiene shop
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              AI medical interpreter
-            </Link>
-          </Stack>
+          </Box>
         </Box>
 
-        {/* Column 3: Helpful Links */}
-        <Box sx={{ flex: 1, minWidth: { xs: "100%", md: "130px" } }}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              fontFamily: "Geist",
-              fontWeight: 500,
-              fontSize: { xs: "14px", md: "16px" },
-              lineHeight: "20px",
-              letterSpacing: "-2%",
-              textAlign: { xs: "left", md: "center" },
-              color: "#000000",
-              mb: 1,
-            }}
-          >
-            Helpful Links
-          </Typography>
-          <Stack spacing={0.5}>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Book consultation
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Order for drugs
-            </Link>
-            <Link
-              component={RouterLink}
-              to="/disaster"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Disaster Medicine
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Register a facility
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Chat with Keti
-            </Link>
-          </Stack>
-        </Box>
-
-        {/* Column 4: Legal */}
-        <Box sx={{ flex: 1, minWidth: { xs: "100%", md: "130px" } }}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              fontFamily: "Geist",
-              fontWeight: 500,
-              fontSize: { xs: "14px", md: "16px" },
-              lineHeight: "20px",
-              letterSpacing: "-2%",
-              textAlign: { xs: "left", md: "center" },
-              color: "#000000",
-              mb: 1,
-            }}
-          >
-            Legal
-          </Typography>
-          <Stack spacing={0.5}>
-            <Link
-              component={RouterLink}
-              to="/privacypolicy"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: { xs: "12px", md: "14px" },
-                lineHeight: "18px",
-                letterSpacing: "-2%",
-                textAlign: { xs: "left", md: "center" },
-                color: "#333",
-                textDecoration: "none",
-              }}
-            >
-              Terms and Conditions
-            </Link>
-          </Stack>
-        </Box>
-
-        {/* Column 5: Socials */}
-        <Box sx={{ flex: 1, minWidth: { xs: "100%", md: "130px" } }}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{
-              fontFamily: "Geist",
-              fontWeight: 500,
-              fontSize: { xs: "14px", md: "16px" },
-              lineHeight: "20px",
-              letterSpacing: "-2%",
-              textAlign: { xs: "left", md: "center" },
-              color: "#000000",
-              mb: 1,
-            }}
-          >
-            Socials
-          </Typography>
-          <Stack
-            spacing={1}
-            direction="column"
-            alignItems={{ xs: "flex-start", md: "center" }}
-          >
-            <Link
-              href="#"
-              sx={{
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Box
-                component="img"
-                src={linkedinIcon}
-                alt="LinkedIn Icon"
-                sx={{ width: "20px", height: "20px", mr: 1 }}
-              />
-              <Typography
-                sx={{
-                  color: "#333",
-                  fontSize: { xs: "12px", md: "14px" },
-                  lineHeight: "18px",
-                }}
-              >
-                LinkedIn
-              </Typography>
-            </Link>
-            <Link
-              href="#"
-              sx={{
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Box
-                component="img"
-                src={twitterIcon}
-                alt="Twitter Icon"
-                sx={{ width: "20px", height: "20px", mr: 1 }}
-              />
-              <Typography
-                sx={{
-                  color: "#333",
-                  fontSize: { xs: "12px", md: "14px" },
-                  lineHeight: "18px",
-                }}
-              >
-                (Formerly Twitter)
-              </Typography>
-            </Link>
-          </Stack>
-        </Box>
-      </Box>
-
-      {/* Newsletter Section */}
-      <Box
-        sx={{
-          marginTop: 2.5,
-          paddingTop: 2,
-          borderTop: "1px solid #ddd",
-          textAlign: "center",
-          paddingBottom: 0, // Ensure no padding at the bottom
-        }}
-      >
-        <Typography
-          variant="h6"
-          gutterBottom
-          sx={{
-            fontFamily: "Geist",
-            fontWeight: 500,
-            fontSize: { xs: "14px", md: "15px" },
-            lineHeight: "20px",
-            letterSpacing: "-2%",
-            textAlign: "center",
-            color: "#000000",
-            mb: 1,
-          }}
-        >
-          Subscribe to Our Newsletter
-        </Typography>
+        {/* Download App Buttons */}
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 1,
-            backgroundColor: "white",
-            borderRadius: "32px",
-            border: "1px solid #ddd",
-            padding: "5px 14px",
-            width: { xs: "90%", sm: "400px" },
-            height: "40px",
-            margin: "0 auto",
+            marginTop: { xs: 3, md: 4 },
+            textAlign: "center",
           }}
         >
-          <TextField
-            placeholder="Enter your email to subscribe to our newsletter!"
-            variant="standard"
-            fullWidth
-            InputProps={{
-              disableUnderline: true,
-              style: { textDecoration: "none" },
-            }}
-            sx={{
-              flex: 1,
-              "& .MuiInputBase-input": {
-                fontSize: { xs: "12px", md: "13px" },
-                color: "#333",
-                textDecoration: "none",
-              },
-            }}
-          />
-          <Button
-            sx={{
-              backgroundColor: "#890085",
-              color: "white",
-              borderRadius: "32px",
-              padding: { xs: "3px 8px", md: "3px 10px" },
-              gap: "6px",
-              textTransform: "none",
-              fontSize: { xs: "12px", md: "13px" },
-              fontWeight: 500,
-              display: "flex",
-              alignItems: "center",
-              "&:hover": {
-                backgroundColor: "#b37600",
-              },
-            }}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            justifyContent="center"
+            alignItems="center"
           >
-            Subscribe
-            <Box
+            {/* Button 2: Download Play Store */}
+            <Button
               sx={{
-                backgroundColor: "white",
-                borderRadius: "50%",
-                width: "16px",
-                height: "16px",
+                backgroundColor: "#000000",
+                color: "white",
+                borderRadius: "40px",
+                padding: { xs: "8px 16px", md: "8px 20px" },
+                gap: "6px",
+                textTransform: "none",
+                fontSize: { xs: "12px", md: "13px" },
+                fontWeight: 500,
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                whiteSpace: "nowrap",
+                "&:hover": {
+                  backgroundColor: "#333333",
+                },
               }}
             >
               <Box
                 component="img"
-                src={arrowIcon}
-                alt="Arrow Icon"
-                sx={{ width: "14px", height: "14px" }}
+                src={PlayStoreIcon}
+                alt="Play Store Icon"
+                sx={{ width: "18px", height: "18px", mr: 0.5 }}
               />
-            </Box>
-          </Button>
+              Play Store
+            </Button>
+
+            {/* Button 3: Download On AppStore */}
+            <Button
+              sx={{
+                backgroundColor: "#000000",
+                color: "white",
+                borderRadius: "40px",
+                padding: { xs: "8px 16px", md: "8px 20px" },
+                gap: "6px",
+                textTransform: "none",
+                fontSize: { xs: "12px", md: "13px" },
+                fontWeight: 500,
+                display: "flex",
+                alignItems: "center",
+                whiteSpace: "nowrap",
+                "&:hover": {
+                  backgroundColor: "#333333",
+                },
+              }}
+            >
+              <Box
+                component="img"
+                src={AppStoreIcon}
+                alt="App Store Icon"
+                sx={{ width: "18px", height: "18px", mr: 0.5 }}
+              />
+              AppStore
+            </Button>
+          </Stack>
         </Box>
       </Box>
-
-      {/* Download App Buttons */}
-      <Box
-        sx={{
-          marginTop: 2,
-          textAlign: "center",
-          paddingBottom: 0, // Ensure no padding at the bottom
-        }}
-      >
-        <Stack
-          direction="row"
-          spacing={1.5}
-          justifyContent="center"
-          alignItems="center"
-        >
-          {/* Button 2: Download Play Store */}
-          <Button
-            sx={{
-              backgroundColor: "#000000",
-              color: "white",
-              borderRadius: "40px",
-              padding: { xs: "6px 12px", md: "6px 14px" },
-              gap: "6px",
-              textTransform: "none",
-              fontSize: { xs: "12px", md: "13px" },
-              fontWeight: 500,
-              display: "flex",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-              "&:hover": {
-                backgroundColor: "#333333",
-              },
-            }}
-          >
-            <Box
-              component="img"
-              src={PlayStoreIcon}
-              alt="Play Store Icon"
-              sx={{ width: "18px", height: "18px" }}
-            />
-            Play Store
-          </Button>
-
-          {/* Button 3: Download On AppStore */}
-          <Button
-            sx={{
-              backgroundColor: "#000000",
-              color: "white",
-              borderRadius: "40px",
-              padding: { xs: "6px 12px", md: "6px 14px" },
-              gap: "6px",
-              textTransform: "none",
-              fontSize: { xs: "12px", md: "13px" },
-              fontWeight: 500,
-              display: "flex",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-              "&:hover": {
-                backgroundColor: "#333333",
-              },
-            }}
-          >
-            <Box
-              component="img"
-              src={AppStoreIcon}
-              alt="App Store Icon"
-              sx={{ width: "18px", height: "18px" }}
-            />
-            AppStore
-          </Button>
-        </Stack>
-      </Box>
-    </Box>
+    </Container>
   );
 };
 

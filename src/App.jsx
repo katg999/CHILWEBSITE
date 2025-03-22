@@ -1,6 +1,6 @@
 import "./App.css";
 import "./assets/css/styles.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Display from "./components/Display";
@@ -22,6 +22,40 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import { Container, Box } from "@mui/material";
 
 const App = () => {
+  useEffect(() => {
+    async function fixHorizontalOverflow() {
+      const body = document.body;
+      const individualsMenu = document.getElementById("individuals-menu");
+      const organisationsMenu = document.getElementById("organisations-menu");
+      const textarea = document.querySelector("textarea");
+
+      // Check if elements exist before modifying them
+      if (body) {
+        body.style.width = "100vw";
+        body.style.boxSizing = "border-box";
+      }
+
+      if (individualsMenu) {
+        individualsMenu.style.maxWidth = "100%";
+        individualsMenu.style.position = "absolute";
+      }
+
+      if (organisationsMenu) {
+        organisationsMenu.style.maxWidth = "100%";
+        organisationsMenu.style.position = "absolute";
+      }
+
+      if (textarea) {
+        textarea.style.right = "0";
+        textarea.style.width = "auto";
+        textarea.style.maxWidth = "100%";
+        textarea.style.left = "auto";
+      }
+    }
+
+    fixHorizontalOverflow();
+  }, []); // Runs once after the initial render
+
   return (
     <Router>
       <Box

@@ -26,6 +26,8 @@ body {
   padding-top: 0px;
   overflow-x: hidden;
   font-family: "Inter", "Bricolage Grotesque", "Geist", sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%; /* Ensure the body takes the full viewport width */
 }
 
 h1 {
