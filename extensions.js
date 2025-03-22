@@ -50,19 +50,22 @@ export const FileUploadExtension = {
             '<img src="https://s3.amazonaws.com/com.voiceflow.studio/share/check/check.gif" alt="Done" width="50" height="50">';
           console.log("File uploaded:", result.data.url);
 
+          // Get the file URL
+          const fileUrl = result.data.url.replace(
+            "https://tmpfiles.org/",
+            "https://tmpfiles.org/dl/"
+          );
+
           // Send the file URL to Voiceflow
           window.voiceflow.chat.interact({
             type: "complete",
             payload: {
-              file: result.data.url.replace(
-                "https://tmpfiles.org/",
-                "https://tmpfiles.org/dl/"
-              ),
+              file: fileUrl,
             },
           });
 
-          // Capture user input (name, email, contact) and send to backend
-          captureUserInput(result.data.url);
+          // Send ONLY the file URL to your Laravel backend
+          sendFileUrlToBackend(fileUrl);
         })
         .catch((error) => {
           console.error(error);
@@ -74,62 +77,28 @@ export const FileUploadExtension = {
   },
 };
 
-// Function to capture user input (name, email, contact) and send to backend
-function captureUserInput(fileUrl) {
-  // Listen for user input from Voiceflow
-  window.voiceflow.chat.on("capture", (data) => {
-    const {
-      SchoolName,
-      SchoolOfficialEmail,
-      SchoolAdminContact,
-      HealthFacilityName,
-      HealthFacilityOfficialEmail,
-      HealthFacilityAdminContact,
-      PharmacyName,
-      PharmacyEmail,
-      PharmacyContact,
-      LaboratoryName,
-      LaboratoryEmail,
-      LaboratoryContact,
-      DoctorName,
-      DoctorOfficialEmail,
-      DoctorContact,
-    } = data;
-
-    // Prepare the payload to send to the backend
-    const payload = {
-      SchoolName,
-      SchoolOfficialEmail,
-      SchoolAdminContact,
-      HealthFacilityName,
-      HealthFacilityOfficialEmail,
-      HealthFacilityAdminContact,
-      PharmacyName,
-      PharmacyEmail,
-      PharmacyContact,
-      LaboratoryName,
-      LaboratoryEmail,
-      LaboratoryContact,
-      DoctorName,
-      DoctorOfficialEmail,
-      DoctorContact,
-      fileUrl, // URL of the uploaded file
-    };
-
-    // Send the data to your Laravel backend
-    fetch("/api/save-chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
+function sendFileUrlToBackend(fileUrl) {
+  // Send ONLY the file URL to your Laravel backend
+  fetch("https://laravelbackendchil.onrender.com/api/register-school", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      file_url: fileUrl, // Send ONLY the file URL
+    }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to send file URL: " + response.statusText);
+      }
     })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Data saved successfully:", result);
-      })
-      .catch((error) => {
-        console.error("Error saving data:", error);
-      });
-  });
+    .then((result) => {
+      console.log("File URL sent successfully:", result);
+    })
+    .catch((error) => {
+      console.error("Error sending file URL:", error);
+    });
 }

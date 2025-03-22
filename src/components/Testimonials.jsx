@@ -149,7 +149,7 @@ const Testimonials = () => {
         }}
       >
         {/* Left Scroll Button */}
-        <Button
+        {/* <Button
           sx={{
             minWidth: "40px",
             height: "40px",
@@ -167,10 +167,10 @@ const Testimonials = () => {
             alt="Left Scroll"
             sx={{ width: "20px", height: "20px" }}
           />
-        </Button>
+        </Button> */}
 
         {/* Right Scroll Button */}
-        <Button
+        {/* <Button
           sx={{
             minWidth: "40px",
             height: "40px",
@@ -188,7 +188,7 @@ const Testimonials = () => {
             alt="Right Scroll"
             sx={{ width: "20px", height: "20px" }}
           />
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );

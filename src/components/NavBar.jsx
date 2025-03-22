@@ -373,6 +373,25 @@ const Navbar = () => {
                   onClick={() => {
                     handleRegistrationClick("Doctor");
                     handleItemClick("Doctor");
+
+                    // Open Voiceflow bot
+                    if (window.voiceflow && window.voiceflow.chat) {
+                      window.voiceflow.chat.open();
+                      console.log("Voiceflow chat opened");
+                    } else {
+                      console.error("Voiceflow chat not available");
+                      // Fallback - if the chat isn't loaded yet, try again in a moment
+                      setTimeout(() => {
+                        if (window.voiceflow && window.voiceflow.chat) {
+                          window.voiceflow.chat.open();
+                          console.log("Voiceflow chat opened on retry");
+                        } else {
+                          console.error(
+                            "Voiceflow chat still not available after retry"
+                          );
+                        }
+                      }, 1000);
+                    }
                   }}
                   sx={menuItemStyles("Doctor")}
                 >
@@ -382,6 +401,25 @@ const Navbar = () => {
                   onClick={() => {
                     handleRegistrationClick("Patient");
                     handleItemClick("Patient");
+
+                    // Open Voiceflow bot
+                    if (window.voiceflow && window.voiceflow.chat) {
+                      window.voiceflow.chat.open();
+                      console.log("Voiceflow chat opened");
+                    } else {
+                      console.error("Voiceflow chat not available");
+                      // Fallback - if the chat isn't loaded yet, try again in a moment
+                      setTimeout(() => {
+                        if (window.voiceflow && window.voiceflow.chat) {
+                          window.voiceflow.chat.open();
+                          console.log("Voiceflow chat opened on retry");
+                        } else {
+                          console.error(
+                            "Voiceflow chat still not available after retry"
+                          );
+                        }
+                      }, 1000);
+                    }
                   }}
                   sx={menuItemStyles("Patient")}
                 >
@@ -431,6 +469,25 @@ const Navbar = () => {
                   onClick={() => {
                     handleRegistrationClick("School");
                     handleItemClick("School");
+
+                    // Open Voiceflow bot
+                    if (window.voiceflow && window.voiceflow.chat) {
+                      window.voiceflow.chat.open();
+                      console.log("Voiceflow chat opened");
+                    } else {
+                      console.error("Voiceflow chat not available");
+                      // Fallback - if the chat isn't loaded yet, try again in a moment
+                      setTimeout(() => {
+                        if (window.voiceflow && window.voiceflow.chat) {
+                          window.voiceflow.chat.open();
+                          console.log("Voiceflow chat opened on retry");
+                        } else {
+                          console.error(
+                            "Voiceflow chat still not available after retry"
+                          );
+                        }
+                      }, 1000);
+                    }
                   }}
                   sx={menuItemStyles("School")}
                 >
@@ -440,6 +497,25 @@ const Navbar = () => {
                   onClick={() => {
                     handleRegistrationClick("Pharmacy");
                     handleItemClick("Pharmacy");
+
+                    // Open Voiceflow bot
+                    if (window.voiceflow && window.voiceflow.chat) {
+                      window.voiceflow.chat.open();
+                      console.log("Voiceflow chat opened");
+                    } else {
+                      console.error("Voiceflow chat not available");
+                      // Fallback - if the chat isn't loaded yet, try again in a moment
+                      setTimeout(() => {
+                        if (window.voiceflow && window.voiceflow.chat) {
+                          window.voiceflow.chat.open();
+                          console.log("Voiceflow chat opened on retry");
+                        } else {
+                          console.error(
+                            "Voiceflow chat still not available after retry"
+                          );
+                        }
+                      }, 1000);
+                    }
                   }}
                   sx={menuItemStyles("Pharmacy")}
                 >
@@ -449,6 +525,25 @@ const Navbar = () => {
                   onClick={() => {
                     handleRegistrationClick("Laboratory");
                     handleItemClick("Laboratory");
+
+                    // Open Voiceflow bot
+                    if (window.voiceflow && window.voiceflow.chat) {
+                      window.voiceflow.chat.open();
+                      console.log("Voiceflow chat opened");
+                    } else {
+                      console.error("Voiceflow chat not available");
+                      // Fallback - if the chat isn't loaded yet, try again in a moment
+                      setTimeout(() => {
+                        if (window.voiceflow && window.voiceflow.chat) {
+                          window.voiceflow.chat.open();
+                          console.log("Voiceflow chat opened on retry");
+                        } else {
+                          console.error(
+                            "Voiceflow chat still not available after retry"
+                          );
+                        }
+                      }, 1000);
+                    }
                   }}
                   sx={menuItemStyles("Laboratory")}
                 >
@@ -489,7 +584,54 @@ const Navbar = () => {
       {/* Right: Chat With Keti Button (Hidden on Small Mobile Devices) */}
       {!isMobile && (
         <div
-          onClick={openChatbot}
+          onClick={() => {
+            // Function to open Voiceflow chat
+            const openVoiceflowChat = () => {
+              try {
+                // Check if Voiceflow is loaded
+                if (window.voiceflow) {
+                  // Try to open the chat widget using available methods
+                  if (window.voiceflow.chat && window.voiceflow.chat.open) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened via open()");
+                  } else if (
+                    window.voiceflow.chat &&
+                    window.voiceflow.chat.show
+                  ) {
+                    window.voiceflow.chat.show();
+                    console.log("Voiceflow chat opened via show()");
+                  } else if (window.voiceflow.show) {
+                    window.voiceflow.show();
+                    console.log("Voiceflow opened via show()");
+                  } else {
+                    // Fallback: Try to find and click the chat widget button
+                    const chatButton = document.querySelector(
+                      ".vfrc-launcher-button"
+                    );
+                    if (chatButton) {
+                      chatButton.click();
+                      console.log("Clicked Voiceflow launcher button");
+                    } else {
+                      console.error(
+                        "No Voiceflow chat methods or button found"
+                      );
+                    }
+                  }
+                } else {
+                  console.error("Voiceflow not loaded");
+                }
+              } catch (err) {
+                console.error("Error opening Voiceflow chat:", err);
+              }
+            };
+
+            // Try to open immediately
+            openVoiceflowChat();
+
+            // Retry after a delay in case Voiceflow isn't fully loaded yet
+            setTimeout(openVoiceflowChat, 500);
+            setTimeout(openVoiceflowChat, 1500);
+          }}
           style={{
             backgroundColor: "purple",
             color: "white",
@@ -574,6 +716,25 @@ const Navbar = () => {
                 onClick={() => {
                   handleRegistrationClick("Doctor");
                   handleItemClick("Doctor");
+
+                  // Open Voiceflow bot
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened");
+                  } else {
+                    console.error("Voiceflow chat not available");
+                    // Fallback - if the chat isn't loaded yet, try again in a moment
+                    setTimeout(() => {
+                      if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                        console.log("Voiceflow chat opened on retry");
+                      } else {
+                        console.error(
+                          "Voiceflow chat still not available after retry"
+                        );
+                      }
+                    }, 1000);
+                  }
                 }}
                 sx={menuItemStyles("Doctor")}
               >
@@ -583,6 +744,25 @@ const Navbar = () => {
                 onClick={() => {
                   handleRegistrationClick("Patient");
                   handleItemClick("Patient");
+
+                  // Open Voiceflow bot
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened");
+                  } else {
+                    console.error("Voiceflow chat not available");
+                    // Fallback - if the chat isn't loaded yet, try again in a moment
+                    setTimeout(() => {
+                      if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                        console.log("Voiceflow chat opened on retry");
+                      } else {
+                        console.error(
+                          "Voiceflow chat still not available after retry"
+                        );
+                      }
+                    }, 1000);
+                  }
                 }}
                 sx={menuItemStyles("Patient")}
               >
@@ -629,6 +809,25 @@ const Navbar = () => {
                 onClick={() => {
                   handleRegistrationClick("School");
                   handleItemClick("School");
+
+                  // Open Voiceflow bot
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened");
+                  } else {
+                    console.error("Voiceflow chat not available");
+                    // Fallback - if the chat isn't loaded yet, try again in a moment
+                    setTimeout(() => {
+                      if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                        console.log("Voiceflow chat opened on retry");
+                      } else {
+                        console.error(
+                          "Voiceflow chat still not available after retry"
+                        );
+                      }
+                    }, 1000);
+                  }
                 }}
                 sx={menuItemStyles("School")}
               >
@@ -638,6 +837,25 @@ const Navbar = () => {
                 onClick={() => {
                   handleRegistrationClick("Pharmacy");
                   handleItemClick("Pharmacy");
+
+                  // Open Voiceflow bot
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened");
+                  } else {
+                    console.error("Voiceflow chat not available");
+                    // Fallback - if the chat isn't loaded yet, try again in a moment
+                    setTimeout(() => {
+                      if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                        console.log("Voiceflow chat opened on retry");
+                      } else {
+                        console.error(
+                          "Voiceflow chat still not available after retry"
+                        );
+                      }
+                    }, 1000);
+                  }
                 }}
                 sx={menuItemStyles("Pharmacy")}
               >
@@ -647,6 +865,25 @@ const Navbar = () => {
                 onClick={() => {
                   handleRegistrationClick("Laboratory");
                   handleItemClick("Laboratory");
+
+                  // Open Voiceflow bot
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened");
+                  } else {
+                    console.error("Voiceflow chat not available");
+                    // Fallback - if the chat isn't loaded yet, try again in a moment
+                    setTimeout(() => {
+                      if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                        console.log("Voiceflow chat opened on retry");
+                      } else {
+                        console.error(
+                          "Voiceflow chat still not available after retry"
+                        );
+                      }
+                    }, 1000);
+                  }
                 }}
                 sx={menuItemStyles("Laboratory")}
               >
@@ -654,7 +891,6 @@ const Navbar = () => {
               </MenuItem>
             </Menu>
           </ListItem>
-
           {/* Other Links in Drawer */}
           <ListItem>
             <Link
@@ -683,7 +919,53 @@ const Navbar = () => {
             <div
               onClick={() => {
                 handleDrawerClose();
-                openChatbot();
+
+                // Function to open Voiceflow chat
+                const openVoiceflowChat = () => {
+                  try {
+                    // Check if Voiceflow is loaded
+                    if (window.voiceflow) {
+                      // Try to open the chat widget using available methods
+                      if (window.voiceflow.chat && window.voiceflow.chat.open) {
+                        window.voiceflow.chat.open();
+                        console.log("Voiceflow chat opened via open()");
+                      } else if (
+                        window.voiceflow.chat &&
+                        window.voiceflow.chat.show
+                      ) {
+                        window.voiceflow.chat.show();
+                        console.log("Voiceflow chat opened via show()");
+                      } else if (window.voiceflow.show) {
+                        window.voiceflow.show();
+                        console.log("Voiceflow opened via show()");
+                      } else {
+                        // Fallback: Try to find and click the chat widget button
+                        const chatButton = document.querySelector(
+                          ".vfrc-launcher-button"
+                        );
+                        if (chatButton) {
+                          chatButton.click();
+                          console.log("Clicked Voiceflow launcher button");
+                        } else {
+                          console.error(
+                            "No Voiceflow chat methods or button found"
+                          );
+                        }
+                      }
+                    } else {
+                      console.error("Voiceflow not loaded");
+                    }
+                  } catch (err) {
+                    console.error("Error opening Voiceflow chat:", err);
+                  }
+                };
+
+                // Try to open immediately
+                openVoiceflowChat();
+
+                // Retry after a delay in case Voiceflow isn't fully loaded yet
+                setTimeout(openVoiceflowChat, 500);
+                setTimeout(openVoiceflowChat, 1500);
               }}
               style={{
                 backgroundColor: "purple",

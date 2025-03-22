@@ -1,7 +1,4 @@
 /* src/index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,13 +11,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-bottom: 100px; /* Add padding to avoid overlap */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  padding-top: 0px;
+  overflow-x: hidden;
+  font-family: "Inter", "Bricolage Grotesque", "Geist", sans-serif;
 }
 
 h1 {
@@ -54,4 +59,26 @@ button:hover {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Reset default margins and paddings */
+html.ai-style-change-2 {
+  padding-bottom: 0;
+  height: 100vh;
+}
+
+body.ai-style-change-1 {
+  padding-top: 0;
+  height: 100vh;
+}
+
+body {
+  padding-top: 0 !important;
+  height: 100vh !important;
+}
+html {
+  height: 100vh !important;
+}
+#root {
+  height: 100vh !important;
 }

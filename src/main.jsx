@@ -4,6 +4,7 @@ import "./index.css";
 import "./assets/css/navbar.css";
 import "./assets/css/styles.css";
 import "./index.css"; // Import Tailwind CSS
+import "./App.css";
 
 import App from "./App.jsx";
 

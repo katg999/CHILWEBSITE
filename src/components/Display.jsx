@@ -45,6 +45,7 @@ const Display = () => {
               color: "#800080",
               fontSize: "16px",
               cursor: "pointer",
+              marginTop: "100px",
               fontFamily: "'Geist', sans-serif", // Apply Geist font
             }}
           >
@@ -123,6 +124,27 @@ const Display = () => {
 
           {/* Access Expert Care Button (Below the text) */}
           <button
+            onClick={() => {
+              // Check if voiceflow is available
+              if (window.voiceflow && window.voiceflow.chat) {
+                // Open the chat widget
+                window.voiceflow.chat.open();
+                console.log("Voiceflow chat opened");
+              } else {
+                console.error("Voiceflow chat not available");
+                // Fallback - if the chat isn't loaded yet, try again in a moment
+                setTimeout(() => {
+                  if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.open();
+                    console.log("Voiceflow chat opened on retry");
+                  } else {
+                    console.error(
+                      "Voiceflow chat still not available after retry"
+                    );
+                  }
+                }, 1000);
+              }
+            }}
             style={{
               display: "flex",
               alignItems: "center",
