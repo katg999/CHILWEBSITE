@@ -3,8 +3,6 @@ import { Box, Typography, Button } from "@mui/material";
 
 // Import images and icons
 import NewsIcon from "../assets/images/News (2).svg"; // Updated icon
-import LeftIcon from "../assets/images/left1.svg";
-import RightIcon from "../assets/images/right.svg";
 import LogonvImage from "../assets/images/SHAM1.png";
 import BloombergImage from "../assets/images/Bloomberg New Economy Catalyst.webp";
 import ShamImage from "../assets/images/SHAM2.png";
@@ -22,61 +20,6 @@ const News = () => {
         position: "relative", // Relative positioning for scroll icons
       }}
     >
-      {/* Scroll Icons (Left and Right) */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          display: "flex",
-          gap: 2,
-        }}
-      >
-        {/* Left Icon with Circular Enclosure */}
-        <Box
-          sx={{
-            backgroundColor: "white", // White background
-            borderRadius: "50%", // Circular shape
-            width: "40px", // Fixed width
-            height: "40px", // Fixed height
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Optional: Add a subtle shadow
-            cursor: "pointer", // Pointer cursor on hover
-          }}
-        >
-          <Box
-            component="img"
-            src={LeftIcon}
-            alt="Left Icon"
-            sx={{ width: "24px", height: "24px" }}
-          />
-        </Box>
-
-        {/* Right Icon with Circular Enclosure */}
-        <Box
-          sx={{
-            backgroundColor: "white", // White background
-            borderRadius: "50%", // Circular shape
-            width: "40px", // Fixed width
-            height: "40px", // Fixed height
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Optional: Add a subtle shadow
-            cursor: "pointer", // Pointer cursor on hover
-          }}
-        >
-          <Box
-            component="img"
-            src={RightIcon}
-            alt="Right Icon"
-            sx={{ width: "24px", height: "24px" }}
-          />
-        </Box>
-      </Box>
-
       {/* News Icon with Purple Line and Text */}
       <Box
         sx={{

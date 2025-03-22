@@ -19,6 +19,8 @@ const Footer = () => {
         borderTop: "1px solid #ddd",
         width: "100%",
         color: "#333",
+        marginBottom: 0, // Ensure no margin at the bottom
+        paddingBottom: 0, // Ensure no padding at the bottom
       }}
     >
       {/* Main Content */}
@@ -404,6 +406,7 @@ const Footer = () => {
           paddingTop: 2,
           borderTop: "1px solid #ddd",
           textAlign: "center",
+          paddingBottom: 0, // Ensure no padding at the bottom
         }}
       >
         <Typography
@@ -499,6 +502,7 @@ const Footer = () => {
         sx={{
           marginTop: 2,
           textAlign: "center",
+          paddingBottom: 0, // Ensure no padding at the bottom
         }}
       >
         <Stack
