@@ -103,7 +103,6 @@ const Footer = () => {
             <Stack spacing={1}>
               {[
                 { name: "What we Treat", to: "/what-we-treat", isRoute: true },
-                { name: "Services", to: "#" },
 
                 { name: "E-Hygiene shop", to: "/ehygiene", isRoute: true }, // Updated link
               ].map((item, index) => (
@@ -112,6 +111,87 @@ const Footer = () => {
                   component={item.isRoute ? RouterLink : "a"} // Use RouterLink for routes
                   to={item.isRoute ? item.to : undefined} // Set the "to" prop for RouterLink
                   href={!item.isRoute ? item.to : undefined} // Set the "href" prop for anchor tags
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                    letterSpacing: "-2%",
+                    textAlign: { xs: "center", sm: "left" },
+                    color: "#333",
+                    textDecoration: "none",
+                    display: "block",
+                    "&:hover": {
+                      color: "#890085",
+                    },
+                  }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
+
+          {/* Column 3: Helpful Links */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: "20px",
+                letterSpacing: "-2%",
+                textAlign: { xs: "center", sm: "left" },
+                color: "#000000",
+                mb: 1.5,
+              }}
+            >
+              Helpful Links
+            </Typography>
+            <Stack spacing={1}>
+              {[
+                { name: "Disaster Medicine", to: "/disaster", isRoute: true },
+
+                {
+                  name: "Chat with Keti",
+                  to: "#",
+                  onClick: () => {
+                    // Open Voiceflow chatbot
+                    try {
+                      if (
+                        window.voiceflow &&
+                        window.voiceflow.chat &&
+                        window.voiceflow.chat.open
+                      ) {
+                        window.voiceflow.chat.open();
+                      } else if (
+                        window.voiceflow &&
+                        window.voiceflow.chat &&
+                        window.voiceflow.chat.show
+                      ) {
+                        window.voiceflow.chat.show();
+                      } else {
+                        const chatButton = document.querySelector(
+                          ".vfrc-launcher-button"
+                        );
+                        if (chatButton) {
+                          chatButton.click();
+                        }
+                      }
+                    } catch (err) {
+                      console.error("Error opening Voiceflow chat:", err);
+                    }
+                  },
+                },
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  component={item.isRoute ? RouterLink : "a"}
+                  to={item.isRoute ? item.to : undefined}
+                  href={!item.isRoute ? item.to : undefined}
+                  onClick={item.onClick}
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
