@@ -19,12 +19,14 @@ import TestimonialImage from "../assets/images/Testimonial123.svg"; // Testimoni
 import QuoteIcon from "../assets/images/QUOTE.svg"; // Quote icon
 import LeftIcon from "../assets/images/left1.svg"; // Left navigation icon
 import RightIcon from "../assets/images/right.svg"; // Right navigation icon
-import { Box, Typography, Button } from "@mui/material"; // Import MUI components
+import { Box, Typography, Button, Card, CardContent } from "@mui/material"; // Import MUI components
 // Add these imports at the top with the existing imports
 import PartnershipsIcon from "../assets/images/Partnerships.svg";
 import PrimarySchoolIcon1 from "../assets/images/PrimarySchoolIcon1.svg";
 import PrimarySchoolIcon2 from "../assets/images/PrimarySchoolIcon2.svg";
 import PrimarySchoolIcon3 from "../assets/images/PrimarySchoolIcon3.svg";
+import LogoMark1 from "../assets/images/logo mark 1.svg"; // Background decorative element
+import LogoMark2 from "../assets/images/logo mark 2.svg"; // Logo for bottom left
 
 const EHygiene = () => {
   return (
@@ -182,7 +184,6 @@ const EHygiene = () => {
           </button>
         </div>
       </div>
-
       {/* Benefits and Partner Section */}
       <Box
         display="flex"
@@ -199,33 +200,39 @@ const EHygiene = () => {
           flex={1}
           display="flex"
           flexDirection="column"
-          alignItems="flex-start"
-          textAlign="left"
+          alignItems="center"
+          textAlign="center"
           gap={4}
           pr={{ md: 4 }}
         >
-          {/* Benefits Section */}
+          {/* Benefits Section - FIXED to properly center */}
           <Box
             display="flex"
             alignItems="center"
-            justifyContent="flex-start"
-            gap={1}
+            justifyContent="center"
             position="relative"
-            sx={{ paddingLeft: { xs: "20px", md: "24px" } }}
+            width="100%"
           >
-            {/* Purple Line */}
             <Box
-              sx={{
-                position: "absolute",
-                left: 0,
-                height: "100%",
-                width: "4px",
-                backgroundColor: "#91368A",
-                borderRadius: "2px",
-              }}
-            />
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              gap={1}
+              position="relative"
+              sx={{ paddingLeft: { xs: "20px", md: "24px" } }}
+            >
+              {/* Purple Line */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  left: 0,
+                  height: "100%",
+                  width: "4px",
+                  backgroundColor: "#91368A",
+                  borderRadius: "2px",
+                }}
+              />
 
-            <Box display="flex" alignItems="center" gap={1}>
               {/* Benefits Icon */}
               <img
                 src={benefitsIcon}
@@ -276,10 +283,15 @@ const EHygiene = () => {
           </Typography>
 
           {/* Attendance Section */}
-          <Box display="flex" alignItems="center" gap={2}>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            gap={2}
+          >
             <img
               src={SupportIcon}
-              alt="Attendance Icon"
+              alt="AttendanceIcon"
               style={{ width: 40, height: 40 }}
             />
             <Box>
@@ -499,127 +511,182 @@ const EHygiene = () => {
           </Typography>
         </Box>
 
-        {/* Cards for Process */}
+        {/* Cards for Process - UPDATED to use Material UI Cards */}
         <Box
           display="flex"
           flexDirection={{ xs: "column", md: "row" }}
           gap={4}
           mt={4}
-          textAlign="center"
+          width="100%"
+          justifyContent="center"
         >
           {/* Sick Bay Card */}
-          <Box
-            flex={1}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap={2}
+          <Card
+            sx={{
+              flex: 1,
+              maxWidth: { xs: "100%", md: "30%" },
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              borderRadius: "12px",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              "&:hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+              },
+            }}
           >
-            <img
-              src={SickBayIcon}
-              alt="Sick Bay Icon"
-              style={{ width: 40, height: 40 }}
-            />
-            <Typography
-              variant="h6"
+            <CardContent
               sx={{
-                fontFamily: "Bricolage Grotesque",
-                fontWeight: 600,
-                fontSize: "18px",
-                lineHeight: "24px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                padding: "24px",
+                height: "100%",
               }}
             >
-              Visit School Sick Bay
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: "15px",
-                lineHeight: "20px",
-              }}
-            >
-              Students can discreetly visit their school's sick bay whenever
-              they need hygiene products.
-            </Typography>
-          </Box>
+              <img
+                src={SickBayIcon}
+                alt="Sick Bay Icon"
+                style={{ width: 60, height: 60, marginBottom: "16px" }}
+              />
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "20px",
+                  lineHeight: "24px",
+                  mb: 2,
+                }}
+              >
+                Visit School Sick Bay
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "15px",
+                  lineHeight: "1.6",
+                }}
+              >
+                Students can discreetly visit their school's sick bay whenever
+                they need hygiene products.
+              </Typography>
+            </CardContent>
+          </Card>
 
           {/* Credit Card */}
-          <Box
-            flex={1}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap={2}
+          <Card
+            sx={{
+              flex: 1,
+              maxWidth: { xs: "100%", md: "30%" },
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              borderRadius: "12px",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              "&:hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+              },
+            }}
           >
-            <img
-              src={CreditIcon}
-              alt="Credit Icon"
-              style={{ width: 40, height: 40 }}
-            />
-            <Typography
-              variant="h6"
+            <CardContent
               sx={{
-                fontFamily: "Bricolage Grotesque",
-                fontWeight: 600,
-                fontSize: "18px",
-                lineHeight: "24px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                padding: "24px",
+                height: "100%",
               }}
             >
-              Get Products on Credit
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: "15px",
-                lineHeight: "20px",
-              }}
-            >
-              Access quality products immediately with our student-friendly
-              credit system.
-            </Typography>
-          </Box>
+              <img
+                src={CreditIcon}
+                alt="Credit Icon"
+                style={{ width: 60, height: 60, marginBottom: "16px" }}
+              />
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "20px",
+                  lineHeight: "24px",
+                  mb: 2,
+                }}
+              >
+                Get Products on Credit
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "15px",
+                  lineHeight: "1.6",
+                }}
+              >
+                Access quality products immediately with our student-friendly
+                credit system.
+              </Typography>
+            </CardContent>
+          </Card>
 
           {/* Pay Later Card */}
-          <Box
-            flex={1}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap={2}
+          <Card
+            sx={{
+              flex: 1,
+              maxWidth: { xs: "100%", md: "30%" },
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              borderRadius: "12px",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              "&:hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+              },
+            }}
           >
-            <img
-              src={PayLaterIcon}
-              alt="Pay Later Icon"
-              style={{ width: 40, height: 40 }}
-            />
-            <Typography
-              variant="h6"
+            <CardContent
               sx={{
-                fontFamily: "Bricolage Grotesque",
-                fontWeight: 600,
-                fontSize: "18px",
-                lineHeight: "24px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                padding: "24px",
+                height: "100%",
               }}
             >
-              Pay Later
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 400,
-                fontSize: "15px",
-                lineHeight: "20px",
-              }}
-            >
-              Parents can settle the credit during visiting day or at the end of
-              term.
-            </Typography>
-          </Box>
+              <img
+                src={PayLaterIcon}
+                alt="Pay Later Icon"
+                style={{ width: 60, height: 60, marginBottom: "16px" }}
+              />
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "20px",
+                  lineHeight: "24px",
+                  mb: 2,
+                }}
+              >
+                Pay Later
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "15px",
+                  lineHeight: "1.6",
+                }}
+              >
+                Parents can settle the credit during visiting day or at the end
+                of term.
+              </Typography>
+            </CardContent>
+          </Card>
         </Box>
       </Box>
 
@@ -1279,6 +1346,139 @@ const EHygiene = () => {
             </svg>
           </div>
         </button>
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: "#FCEAFB", // Light pink background
+          padding: { xs: "40px 20px", md: "60px 40px" },
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+          boxSizing: "border-box",
+          borderRadius: "16px", // Rounded corners as shown in the example
+        }}
+      >
+        {/* Background decorative element (LogoMark1) - positioned as faded shape in the background */}
+        <Box
+          component="img"
+          src={LogoMark1}
+          alt="Background Element"
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            height: "90%", // Reduced height so it doesn't touch bottom
+            zIndex: 1,
+            opacity: 0.3,
+            marginBottom: "10%", // Add space at the bottom
+          }}
+        />
+
+        {/* Logo Mark 2 at bottom left - larger size, starting from bottom */}
+        <Box
+          component="img"
+          src={LogoMark2}
+          alt="Logo Mark 2"
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "250px", // Increased size from 120px to 150px
+            height: "auto",
+            zIndex: 2,
+            maxHeight: "50%", // Increased from 40% to 50% to allow it to be bigger
+          }}
+        />
+
+        {/* Content container - everything centered */}
+        <Box
+          sx={{
+            zIndex: 2,
+            position: "relative",
+            textAlign: "center",
+            maxWidth: "600px",
+            margin: "0 auto",
+          }}
+        >
+          {/* Heading */}
+          <Typography
+            sx={{
+              fontFamily: "Bricolage Grotesque, sans-serif",
+              fontWeight: 600,
+              fontSize: { xs: "28px", md: "32px" },
+              color: "#000000",
+              mb: 3,
+            }}
+          >
+            Join our Mission
+          </Typography>
+
+          {/* Body Text - no border, just centered text */}
+          <Typography
+            sx={{
+              fontFamily: "Geist, sans-serif",
+              fontWeight: 400,
+              fontSize: { xs: "14px", md: "16px" },
+              lineHeight: "1.5",
+              color: "#333",
+              mb: 4,
+              maxWidth: "90%",
+              margin: "0 auto 32px",
+            }}
+          >
+            Empower students with access to essential hygiene products and
+            improve school attendance by partnering with us. Bring the E-Hygiene
+            Shop to your institution or join our network of trusted hygiene
+            product suppliers to make a lasting impact.
+          </Typography>
+
+          {/* Buttons - horizontally aligned */}
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              justifyContent: "center", // Center the buttons
+            }}
+          >
+            {/* Button: Become a Supplier */}
+            <Button
+              sx={{
+                backgroundColor: "white",
+                color: "#000000",
+                borderRadius: "40px",
+                padding: "8px 20px",
+                textTransform: "none",
+                fontSize: "14px",
+                fontWeight: 500,
+                boxShadow: "0px 2px 4px rgba(0,0,0,0.1)", // Subtle shadow
+                "&:hover": {
+                  backgroundColor: "#f0f0f0",
+                },
+              }}
+            >
+              Become a Supplier
+            </Button>
+
+            {/* Button: Partner with Us */}
+            <Button
+              sx={{
+                backgroundColor: "#9C27B0", // Purple background
+                color: "white",
+                borderRadius: "40px",
+                padding: "8px 20px",
+                textTransform: "none",
+                fontSize: "14px",
+                fontWeight: 500,
+                boxShadow: "0px 2px 4px rgba(0,0,0,0.1)", // Subtle shadow
+                "&:hover": {
+                  backgroundColor: "#7B1FA2", // Darker purple on hover
+                },
+              }}
+            >
+              Partner with Us
+            </Button>
+          </Box>
+        </Box>
       </Box>
     </div>
   );
