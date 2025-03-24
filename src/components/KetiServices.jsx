@@ -196,7 +196,27 @@ const KetiServices = () => {
       </Box>
 
       {/* Join Keti Today Button */}
-      <StyledButton sx={{ mt: 6 }}>
+      <StyledButton
+        sx={{ mt: 6 }}
+        onClick={() => {
+          try {
+            if (window.voiceflow?.chat?.open) {
+              window.voiceflow.chat.open();
+            } else if (window.voiceflow?.chat?.show) {
+              window.voiceflow.chat.show();
+            } else {
+              const chatButton = document.querySelector(
+                ".vfrc-launcher-button"
+              );
+              if (chatButton) {
+                chatButton.click();
+              }
+            }
+          } catch (err) {
+            console.error("Error opening Voiceflow chat:", err);
+          }
+        }}
+      >
         Join Keti today
         <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Box
@@ -223,7 +243,6 @@ const KetiServices = () => {
           </Box>
         </Box>
       </StyledButton>
-
       {/* Awards Section */}
       <Box
         sx={{

@@ -159,46 +159,6 @@ const OurWorksSection = () => {
           </Box>
 
           {/* Purple Button */}
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#91368A",
-              color: "#FFF",
-              fontFamily: "Geist",
-              fontWeight: 500,
-              fontSize: { xs: "0.9rem", md: "1rem" },
-              textTransform: "none",
-              borderRadius: "24px",
-              px: 4,
-              py: 1.5,
-              width: "fit-content",
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              "&:hover": {
-                backgroundColor: "#7A2D75",
-              },
-            }}
-          >
-            See more of our work
-            <Box
-              sx={{
-                backgroundColor: "#FFF",
-                borderRadius: "50%",
-                width: "24px",
-                height: "24px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                src={ArrowIcon}
-                alt="Arrow Icon"
-                style={{ width: "16px", height: "16px" }}
-              />
-            </Box>
-          </Button>
         </Box>
       </Box>
     </Box>
