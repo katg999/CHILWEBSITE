@@ -3,6 +3,15 @@ import { Typography, TextField, Button, Box } from "@mui/material";
 import Image31 from "../assets/images/image 31.svg"; // Correctly import the image
 
 const FinanceLoans = () => {
+  // State to store form data
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    facilityName: "",
+  });
+
   // State to store uploaded files
   const [facilityReportFile, setFacilityReportFile] = useState(null);
   const [licenseFile, setLicenseFile] = useState(null);
@@ -28,21 +37,27 @@ const FinanceLoans = () => {
     event.preventDefault();
 
     // Create a FormData object to send files and form data
-    const formData = new FormData();
+    const formDataToSend = new FormData();
 
     // Append form fields to FormData
-    formData.append("first_name", event.target.firstName.value);
-    formData.append("last_name", event.target.lastName.value);
-    formData.append("phone", event.target.phone.value);
-    formData.append("email", event.target.email.value);
-    formData.append("facility_name", event.target.facilityName.value);
+    formDataToSend.append("first_name", formData.firstName);
+    formDataToSend.append("last_name", formData.lastName);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("facility_name", formData.facilityName);
 
     // Append files to FormData
     if (facilityReportFile) {
-      formData.append("facility_report", facilityReportFile);
+      formDataToSend.append("facility_report", facilityReportFile);
+    } else {
+      alert("Please upload a Facility Report.");
+      return;
     }
     if (licenseFile) {
-      formData.append("license", licenseFile);
+      formDataToSend.append("license", licenseFile);
+    } else {
+      alert("Please upload a License.");
+      return;
     }
 
     try {
@@ -51,7 +66,7 @@ const FinanceLoans = () => {
         "https://laravelbackendchil.onrender.com/api/finance-loan-data",
         {
           method: "POST",
-          body: formData, // Send FormData directly
+          body: formDataToSend, // Send FormData directly
         }
       );
 
@@ -59,9 +74,22 @@ const FinanceLoans = () => {
         const data = await response.json();
         console.log("Success:", data);
         alert("Form submitted successfully!");
+        // Reset form after successful submission
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phone: "",
+          email: "",
+          facilityName: "",
+        });
+        setFacilityReportFile(null);
+        setLicenseFile(null);
       } else {
-        console.error("Error:", response.statusText);
-        alert("Failed to submit form. Please try again.");
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        alert(
+          `Failed to submit form: ${errorData.message || "Please try again."}`
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -227,6 +255,11 @@ const FinanceLoans = () => {
             label="First Name (*)"
             variant="outlined"
             placeholder="Enter your first name"
+            name="firstName"
+            value={formData.firstName}
+            onChange={(e) =>
+              setFormData({ ...formData, firstName: e.target.value })
+            }
             required
           />
           <TextField
@@ -234,6 +267,11 @@ const FinanceLoans = () => {
             label="Last Name (*)"
             variant="outlined"
             placeholder="Enter your last name"
+            name="lastName"
+            value={formData.lastName}
+            onChange={(e) =>
+              setFormData({ ...formData, lastName: e.target.value })
+            }
             required
           />
         </Box>
@@ -251,6 +289,11 @@ const FinanceLoans = () => {
             label="Phone (*)"
             variant="outlined"
             placeholder="Enter your phone number"
+            name="phone"
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
             required
           />
           <TextField
@@ -258,6 +301,11 @@ const FinanceLoans = () => {
             label="Email (*)"
             variant="outlined"
             placeholder="Enter your email"
+            name="email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             required
           />
         </Box>
@@ -268,6 +316,11 @@ const FinanceLoans = () => {
           label="Facility Name (*)"
           variant="outlined"
           placeholder="Enter your facility name"
+          name="facilityName"
+          value={formData.facilityName}
+          onChange={(e) =>
+            setFormData({ ...formData, facilityName: e.target.value })
+          }
           required
         />
 

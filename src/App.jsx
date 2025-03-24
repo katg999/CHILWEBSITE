@@ -17,6 +17,7 @@ import FinanceLoans from "./components/FinanceLoans";
 import WhatWeTreat from "./components/WhatWeTreat";
 import Disaster from "./components/Disaster";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import EHygiene from "./components/EHygiene";
 
 // Material-UI Components
 import { Container, Box } from "@mui/material";
@@ -91,6 +92,7 @@ const App = () => {
               <Route path="/what-we-treat" element={<WhatWeTreat />} />
               <Route path="/disaster" element={<Disaster />} />
               <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="/ehygiene" element={<EHygiene />} />
             </Routes>
           </Container>
         </Box>
