@@ -26,6 +26,32 @@ const Footer = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
+  // Function to open Voiceflow chatbot
+  const openVoiceflowChat = () => {
+    try {
+      if (
+        window.voiceflow &&
+        window.voiceflow.chat &&
+        window.voiceflow.chat.open
+      ) {
+        window.voiceflow.chat.open();
+      } else if (
+        window.voiceflow &&
+        window.voiceflow.chat &&
+        window.voiceflow.chat.show
+      ) {
+        window.voiceflow.chat.show();
+      } else {
+        const chatButton = document.querySelector(".vfrc-launcher-button");
+        if (chatButton) {
+          chatButton.click();
+        }
+      }
+    } catch (err) {
+      console.error("Error opening Voiceflow chat:", err);
+    }
+  };
+
   return (
     <Container maxWidth="xl" disableGutters>
       <Box
@@ -55,6 +81,7 @@ const Footer = () => {
               />
               <Button
                 variant="contained"
+                onClick={openVoiceflowChat}
                 sx={{
                   backgroundColor: "#890085",
                   color: "white",
@@ -103,14 +130,13 @@ const Footer = () => {
             <Stack spacing={1}>
               {[
                 { name: "What we Treat", to: "/what-we-treat", isRoute: true },
-
-                { name: "E-Hygiene shop", to: "/ehygiene", isRoute: true }, // Updated link
+                { name: "E-Hygiene shop", to: "/ehygiene", isRoute: true },
               ].map((item, index) => (
                 <Link
                   key={index}
-                  component={item.isRoute ? RouterLink : "a"} // Use RouterLink for routes
-                  to={item.isRoute ? item.to : undefined} // Set the "to" prop for RouterLink
-                  href={!item.isRoute ? item.to : undefined} // Set the "href" prop for anchor tags
+                  component={item.isRoute ? RouterLink : "a"}
+                  to={item.isRoute ? item.to : undefined}
+                  href={!item.isRoute ? item.to : undefined}
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
@@ -153,37 +179,10 @@ const Footer = () => {
             <Stack spacing={1}>
               {[
                 { name: "Disaster Medicine", to: "/disaster", isRoute: true },
-
                 {
                   name: "Chat with Keti",
                   to: "#",
-                  onClick: () => {
-                    // Open Voiceflow chatbot
-                    try {
-                      if (
-                        window.voiceflow &&
-                        window.voiceflow.chat &&
-                        window.voiceflow.chat.open
-                      ) {
-                        window.voiceflow.chat.open();
-                      } else if (
-                        window.voiceflow &&
-                        window.voiceflow.chat &&
-                        window.voiceflow.chat.show
-                      ) {
-                        window.voiceflow.chat.show();
-                      } else {
-                        const chatButton = document.querySelector(
-                          ".vfrc-launcher-button"
-                        );
-                        if (chatButton) {
-                          chatButton.click();
-                        }
-                      }
-                    } catch (err) {
-                      console.error("Error opening Voiceflow chat:", err);
-                    }
-                  },
+                  onClick: openVoiceflowChat,
                 },
               ].map((item, index) => (
                 <Link

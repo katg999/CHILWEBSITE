@@ -13,20 +13,19 @@ const Statistics = () => {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "100vw", // Expand to full viewport width
         backgroundColor: "white",
-        padding: "40px 20px",
+        padding: "40px 0", // Remove side padding
+        overflowX: "hidden", // Prevent unwanted horizontal scrolling
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
-          justifyContent: "center",
+          justifyContent: "space-evenly", // Spread items evenly across width
           alignItems: "center",
-          maxWidth: "1200px",
-          margin: "0 auto",
-          gap: "20px",
+          width: "100%",
           textAlign: "center",
         }}
       >
@@ -38,10 +37,9 @@ const Statistics = () => {
   );
 };
 
-// Extracted reusable StatBox component
 const StatBox = ({ stat }) => {
   return (
-    <Box sx={{ minWidth: "120px", width: { xs: "100%", sm: "auto" } }}>
+    <Box sx={{ flexGrow: 1, textAlign: "center", minWidth: "120px" }}>
       <Typography
         sx={{
           fontFamily: "Geist",

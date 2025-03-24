@@ -3,11 +3,19 @@ import { Box, Typography, Button } from "@mui/material";
 
 // Import images and icons
 import NewsIcon from "../assets/images/News (2).svg"; // Updated icon
-import LogonvImage from "../assets/images/SHAM1.png";
-import BloombergImage from "../assets/images/Bloomberg New Economy Catalyst.webp";
-import ShamImage from "../assets/images/SHAM2.png";
+import LogonvImage from "../assets/images/CNBC-Africa-Logo.png";
+import BloombergImage from "../assets/images/Bloomberg.svg";
+import ShamImage from "../assets/images/INDEPENDENT.svg";
 
 const News = () => {
+  // Define the URLs
+  const cnbcUrl =
+    "https://www.cnbcafrica.com/media/6362431458112/ai-healthcare-in-africa-scaling-challenges-and-opportunities/";
+  const bloombergUrl =
+    "https://www.bloomberg.com/news/newsletters/2021-06-26/catalysts-lead-the-way-out-of-pandemic-new-economy-saturday";
+  const independentUrl =
+    "https://www.independent.co.uk/happylist/uganda-artificial-intelligence-b1926215.html";
+
   return (
     <Box
       sx={{
@@ -91,15 +99,24 @@ const News = () => {
           justifyContent: "center",
         }}
       >
-        {/* Card 1: New Vision */}
+        {/* Card 1: CNBC Africa */}
         <Box
+          component="a"
+          href={cnbcUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: 2,
             width: { xs: "100%", md: "30%" },
-            position: "relative", // Relative positioning for button overlay
+            position: "relative",
+            textDecoration: "none",
+            cursor: "pointer",
+            "&:hover": {
+              opacity: 0.9,
+            },
           }}
         >
           {/* Image */}
@@ -109,33 +126,34 @@ const News = () => {
             alt="New Vision"
             sx={{
               width: "100%",
+              height: "auto",
+              maxHeight: "200px",
+              objectFit: "contain",
               borderRadius: "10px",
-              height: "200px",
-              objectFit: "cover",
             }}
           />
 
           {/* Button */}
           <Button
             sx={{
-              position: "absolute", // Absolute positioning for button overlay
-              top: "10px", // Adjust top position as needed
-              left: "10px", // Adjust left position as needed
-              backgroundColor: "white", // White background
+              position: "absolute",
+              top: "10px",
+              left: "10px",
+              backgroundColor: "black",
               borderRadius: "20px",
-              color: "#CD8800", // Text color
+              color: "#CD8800",
               fontSize: "12px",
               fontWeight: "bold",
               textTransform: "none",
               px: 2,
               py: 1,
-              border: "2px solid #CD8800", // Border color
+              border: "2px solid #000000",
               "&:hover": {
-                backgroundColor: "#f0f0f0", // Light gray on hover
+                backgroundColor: "FFFFFF",
               },
             }}
           >
-            New Vision
+            CNBC AFRICA
           </Button>
 
           {/* Text */}
@@ -153,74 +171,106 @@ const News = () => {
 
         {/* Card 2: Bloomberg */}
         <Box
+          component="a"
+          href={bloombergUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: 2,
             width: { xs: "100%", md: "30%" },
-            position: "relative", // Relative positioning for button overlay
+            position: "relative",
+            textDecoration: "none",
+            cursor: "pointer",
+            "&:hover": {
+              opacity: 0.9,
+            },
           }}
         >
-          {/* Image */}
+          {/* Container for image with padding */}
           <Box
-            component="img"
-            src={BloombergImage}
-            alt="Bloomberg"
             sx={{
+              position: "relative",
               width: "100%",
-              borderRadius: "10px",
-              height: "200px",
-              objectFit: "cover",
-            }}
-          />
-
-          {/* Button */}
-          <Button
-            sx={{
-              position: "absolute", // Absolute positioning for button overlay
-              top: "10px", // Adjust top position as needed
-              left: "10px", // Adjust left position as needed
-              backgroundColor: "#F4FFED", // Background color
-              borderRadius: "20px",
-              color: "#3D7400", // Text color
-              fontSize: "12px",
-              fontWeight: "bold",
-              textTransform: "none",
-              px: 2,
-              py: 1,
-              border: "2px solid #529700", // Border color
-              "&:hover": {
-                backgroundColor: "#e0f5d7", // Lighter green on hover
-              },
+              pt: 5,
             }}
           >
-            Bloomberg
-          </Button>
+            {/* Image */}
+            <Box
+              component="img"
+              src={BloombergImage}
+              alt="Bloomberg"
+              sx={{
+                width: "100%",
+                height: "auto",
+                maxHeight: "180px",
+                objectFit: "contain",
+                borderRadius: "10px",
+                mt: 3,
+              }}
+            />
 
-          {/* Text */}
-          <Typography
-            variant="body1"
-            sx={{
-              fontFamily: "Geist",
-              color: "#333",
-              textAlign: "center",
-            }}
-          >
-            Drones and AI screen cancer in remote Uganda: Shamim Nabuuma
-            Kaliisa’s tech saves lives in rural villages.
-          </Typography>
+            {/* Button */}
+            <Button
+              sx={{
+                position: "absolute",
+                top: "10px",
+                left: "10px",
+                backgroundColor: "#F4FFED",
+                borderRadius: "20px",
+                color: "#3D7400",
+                fontSize: "12px",
+                fontWeight: "bold",
+                textTransform: "none",
+                px: 2,
+                py: 1,
+                border: "2px solid #529700",
+                "&:hover": {
+                  backgroundColor: "#e0f5d7",
+                },
+                zIndex: 2,
+              }}
+            >
+              Bloomberg
+            </Button>
+          </Box>
+
+          {/* Text Wrapper */}
+          <Box sx={{ mt: 2, textAlign: "center" }}>
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: "Geist",
+                color: "#333",
+                textAlign: "center",
+              }}
+            >
+              Drones and AI screen cancer in remote Uganda: Shamim Nabuuma
+              Kaliisa's tech saves lives in rural villages.
+            </Typography>
+          </Box>
         </Box>
 
         {/* Card 3: Independent */}
         <Box
+          component="a"
+          href={independentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: 2,
             width: { xs: "100%", md: "30%" },
-            position: "relative", // Relative positioning for button overlay
+            position: "relative",
+            textDecoration: "none",
+            cursor: "pointer",
+            "&:hover": {
+              opacity: 0.9,
+            },
           }}
         >
           {/* Image */}
@@ -230,29 +280,29 @@ const News = () => {
             alt="Independent"
             sx={{
               width: "100%",
-              borderRadius: "10px",
               height: "200px",
               objectFit: "cover",
+              borderRadius: "10px",
             }}
           />
 
           {/* Button */}
           <Button
             sx={{
-              position: "absolute", // Absolute positioning for button overlay
-              top: "10px", // Adjust top position as needed
-              left: "10px", // Adjust left position as needed
-              backgroundColor: "#FFF8F6", // Background color
+              position: "absolute",
+              top: "10px",
+              left: "10px",
+              backgroundColor: "#FFF8F6",
               borderRadius: "20px",
-              color: "#DD0005", // Text color
+              color: "#DD0005",
               fontSize: "12px",
               fontWeight: "bold",
               textTransform: "none",
               px: 2,
               py: 1,
-              border: "2px solid #FF3B30", // Border color
+              border: "2px solid #FF3B30",
               "&:hover": {
-                backgroundColor: "#ffe6e3", // Lighter red on hover
+                backgroundColor: "#ffe6e3",
               },
             }}
           >
