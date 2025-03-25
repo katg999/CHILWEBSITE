@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -10,8 +10,12 @@ import {
   Grid,
   useMediaQuery,
   useTheme,
+  Snackbar,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
 
 // Import images
 import ketiaiLogo from "../assets/images/emoji-logo-black.svg";
@@ -25,31 +29,70 @@ const Footer = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
 
   // Function to open Voiceflow chatbot
   const openVoiceflowChat = () => {
     try {
-      if (
-        window.voiceflow &&
-        window.voiceflow.chat &&
-        window.voiceflow.chat.open
-      ) {
+      if (window.voiceflow?.chat?.open) {
         window.voiceflow.chat.open();
-      } else if (
-        window.voiceflow &&
-        window.voiceflow.chat &&
-        window.voiceflow.chat.show
-      ) {
+      } else if (window.voiceflow?.chat?.show) {
         window.voiceflow.chat.show();
       } else {
         const chatButton = document.querySelector(".vfrc-launcher-button");
-        if (chatButton) {
-          chatButton.click();
-        }
+        if (chatButton) chatButton.click();
       }
     } catch (err) {
       console.error("Error opening Voiceflow chat:", err);
     }
+  };
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        "https://laravelbackendchil.onrender.com/api/newsletter/subscribe",
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+
+      setSnackbar({
+        open: true,
+        message: response.data.message || "Thank you for subscribing!",
+        severity: "success",
+      });
+      setEmail("");
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        error.response?.data?.errors?.email?.[0] ||
+        "Failed to subscribe. Please try again.";
+
+      setSnackbar({
+        open: true,
+        message,
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({ ...prev, open: false }));
   };
 
   return (
@@ -376,6 +419,8 @@ const Footer = () => {
             Subscribe to Our Newsletter
           </Typography>
           <Box
+            component="form"
+            onSubmit={handleSubscribe}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -395,20 +440,28 @@ const Footer = () => {
               placeholder="Enter your email to subscribe to our newsletter!"
               variant="standard"
               fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              required
+              disabled={loading}
               InputProps={{
                 disableUnderline: true,
-                style: { textDecoration: "none" },
+                style: {
+                  textDecoration: "none",
+                  fontSize: theme.typography.pxToRem(13),
+                },
               }}
               sx={{
                 flex: 1,
                 "& .MuiInputBase-input": {
-                  fontSize: { xs: "12px", md: "13px" },
                   color: "#333",
-                  textDecoration: "none",
                 },
               }}
             />
             <Button
+              type="submit"
+              disabled={loading}
               sx={{
                 backgroundColor: "#890085",
                 color: "white",
@@ -424,27 +477,36 @@ const Footer = () => {
                 "&:hover": {
                   backgroundColor: "#b37600",
                 },
+                "&:disabled": {
+                  backgroundColor: "#cccccc",
+                },
               }}
             >
-              Subscribe
-              <Box
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: "50%",
-                  width: "16px",
-                  height: "16px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Box
-                  component="img"
-                  src={arrowIcon}
-                  alt="Arrow Icon"
-                  sx={{ width: "14px", height: "14px" }}
-                />
-              </Box>
+              {loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                <>
+                  Subscribe
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      borderRadius: "50%",
+                      width: "16px",
+                      height: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={arrowIcon}
+                      alt="Arrow Icon"
+                      sx={{ width: "14px", height: "14px" }}
+                    />
+                  </Box>
+                </>
+              )}
             </Button>
           </Box>
         </Box>
@@ -519,6 +581,22 @@ const Footer = () => {
             </Button>
           </Stack>
         </Box>
+
+        {/* Snackbar for notifications */}
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleCloseSnackbar}
+            severity={snackbar.severity}
+            sx={{ width: "100%" }}
+          >
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
       </Box>
     </Container>
   );
