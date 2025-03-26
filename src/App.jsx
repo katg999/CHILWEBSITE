@@ -18,6 +18,7 @@ import WhatWeTreat from "./components/WhatWeTreat";
 import Disaster from "./components/Disaster";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import EHygiene from "./components/EHygiene";
+import MaternalHealth from "./components/MaternalHealth";
 
 // Material-UI Components
 import { Container, Box } from "@mui/material";
@@ -93,6 +94,7 @@ const App = () => {
               <Route path="/disaster" element={<Disaster />} />
               <Route path="/privacypolicy" element={<PrivacyPolicy />} />
               <Route path="/ehygiene" element={<EHygiene />} />
+              <Route path="/maternal-health" element={<MaternalHealth />} />
             </Routes>
           </Container>
         </Box>
