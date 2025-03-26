@@ -223,6 +223,11 @@ const Footer = () => {
               {[
                 { name: "Disaster Medicine", to: "/disaster", isRoute: true },
                 {
+                  name: "Maternal Health",
+                  to: "/maternal-health",
+                  isRoute: true,
+                },
+                {
                   name: "Chat with Keti",
                   to: "#",
                   onClick: openVoiceflowChat,
