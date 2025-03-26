@@ -842,10 +842,7 @@ const MaternalComponent = () => {
               px: { xs: 1, sm: 0 },
             }}
           >
-            Empower mothers with access to essential maternal healthcare and
-            improve pregnancy outcomes by partnering with us. Bring Keti
-            Maternity to your healthcare facility or join our network of trusted
-            maternal health providers to make a lasting impact.
+            Join hospitals and patients in transforming Maternal Care.
           </Typography>
 
           {/* Buttons */}
@@ -872,7 +869,7 @@ const MaternalComponent = () => {
                 minWidth: { xs: "140px", sm: "180px" },
               }}
             >
-              Become a Provider
+              Register As A Hospital
             </Button>
 
             <Button
@@ -890,7 +887,7 @@ const MaternalComponent = () => {
                 minWidth: { xs: "140px", sm: "180px" },
               }}
             >
-              Partner with Us
+              Register As A Patient
             </Button>
           </Box>
         </Box>
