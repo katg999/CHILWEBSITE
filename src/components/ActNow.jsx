@@ -6,26 +6,26 @@ import BackgroundSvg from "../assets/images/Vector.svg";
 import WhatsappIcon from "../assets/images/Watsapp.svg";
 import PlayStoreIcon from "../assets/images/Component 1.svg";
 import AppStoreIcon from "../assets/images/Component 2.png";
-import FemaleImage from "../assets/images/female.png";
+import FemaleImage from "../assets/images/HandImage.png";
 
 const ActNow = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#FCEAFB", // Background color
+        backgroundColor: "#FCEAFB",
         display: "flex",
-        flexDirection: { xs: "column", md: "row" }, // Stack on mobile, row on desktop
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         justifyContent: "space-between",
-        padding: { xs: "40px 20px", md: "60px 40px" }, // Responsive padding
-        position: "relative", // For absolute positioning of the background SVG
-        overflow: "hidden", // Ensure the image blends seamlessly
-        minHeight: "400px", // Reduced height
-        width: "100%", // Ensure it spans the full width
-        boxSizing: "border-box", // Prevent overflow
+        padding: { xs: "40px 20px", md: "60px 40px" },
+        position: "relative",
+        overflow: "hidden",
+        minHeight: "400px",
+        width: "100%",
+        boxSizing: "border-box",
       }}
     >
-      {/* Background SVG on the left */}
+      {/* Background SVG */}
       <Box
         component="img"
         src={BackgroundSvg}
@@ -35,77 +35,73 @@ const ActNow = () => {
           top: 0,
           left: 0,
           height: "100%",
-          width: "100%", // Ensure it covers the entire width
-          zIndex: 1, // Ensure it stays behind the content
-          opacity: 0.5, // Adjust opacity if needed
+          width: "100%",
+          zIndex: 1,
+          opacity: 0.5,
         }}
       />
 
       {/* Left Section: Text and Buttons */}
       <Box
         sx={{
-          zIndex: 2, // Ensure content is above the background SVG
-          maxWidth: { xs: "100%", md: "50%" }, // Limit width on desktop
-          width: "100%", // Ensure it spans the full width
-          textAlign: { xs: "center", md: "left" }, // Center text on mobile
+          zIndex: 2,
+          maxWidth: { xs: "100%", md: "50%" },
+          width: "100%",
+          textAlign: { xs: "center", md: "left" },
         }}
       >
-        {/* Heading */}
         <Typography
           sx={{
             fontFamily: "Bricolage Grotesque",
             fontWeight: 600,
-            fontSize: { xs: "32px", md: "44px" }, // Responsive font size
-            lineHeight: { xs: "40px", md: "52px" }, // Responsive line height
+            fontSize: { xs: "32px", md: "44px" },
+            lineHeight: { xs: "40px", md: "52px" },
             letterSpacing: "0%",
             color: "#000000",
-            mb: 2, // Margin bottom
+            mb: 2,
           }}
         >
-          Act now, your patients can’t wait
+          Act now, your patients can't wait
         </Typography>
 
-        {/* Body Text */}
         <Typography
           sx={{
             fontFamily: "Geist",
             fontWeight: 500,
-            fontSize: { xs: "14px", md: "16px" }, // Responsive font size
-            lineHeight: { xs: "20px", md: "26px" }, // Responsive line height
+            fontSize: { xs: "14px", md: "16px" },
+            lineHeight: { xs: "20px", md: "26px" },
             letterSpacing: "0%",
             color: "#333",
-            mb: 4, // Margin bottom
+            mb: 4,
           }}
         >
           Without Keti AI, patients miss expert care daily. Join 1,030+ thriving
           facilities via WhatsApp, Android, or iOS—start now!
         </Typography>
 
-        {/* Buttons Container */}
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", sm: "row" }, // Stack on mobile, row on desktop
-            gap: 2, // Spacing between buttons
-            justifyContent: { xs: "center", md: "flex-start" }, // Center buttons on mobile
+            flexDirection: { xs: "column", sm: "row" },
+            gap: 2,
+            justifyContent: { xs: "center", md: "flex-start" },
           }}
         >
-          {/* Button 1: Chat with Keti */}
           <Button
             sx={{
               backgroundColor: "white",
               color: "#000000",
               borderRadius: "40px",
-              padding: { xs: "6px 12px", md: "8px 16px" }, // Responsive padding
-              gap: "8px", // Adjusted gap between icon and text
+              padding: { xs: "6px 12px", md: "8px 16px" },
+              gap: "8px",
               textTransform: "none",
-              fontSize: { xs: "12px", md: "14px" }, // Responsive font size
+              fontSize: { xs: "12px", md: "14px" },
               fontWeight: 500,
               display: "flex",
               alignItems: "center",
-              whiteSpace: "nowrap", // Ensure text stays on one line
+              whiteSpace: "nowrap",
               "&:hover": {
-                backgroundColor: "#f0f0f0", // Light gray on hover
+                backgroundColor: "#f0f0f0",
               },
             }}
           >
@@ -113,27 +109,26 @@ const ActNow = () => {
               component="img"
               src={WhatsappIcon}
               alt="WhatsApp Icon"
-              sx={{ width: "20px", height: "20px" }} // Fixed icon size
+              sx={{ width: "20px", height: "20px" }}
             />
             Chat with Keti
           </Button>
 
-          {/* Button 2: Download Play Store */}
           <Button
             sx={{
               backgroundColor: "#000000",
               color: "white",
               borderRadius: "40px",
-              padding: { xs: "6px 12px", md: "8px 16px" }, // Responsive padding
-              gap: "8px", // Adjusted gap between icon and text
+              padding: { xs: "6px 12px", md: "8px 16px" },
+              gap: "8px",
               textTransform: "none",
-              fontSize: { xs: "12px", md: "14px" }, // Responsive font size
+              fontSize: { xs: "12px", md: "14px" },
               fontWeight: 500,
               display: "flex",
               alignItems: "center",
-              whiteSpace: "nowrap", // Ensure text stays on one line
+              whiteSpace: "nowrap",
               "&:hover": {
-                backgroundColor: "#333333", // Darker black on hover
+                backgroundColor: "#333333",
               },
             }}
           >
@@ -141,27 +136,26 @@ const ActNow = () => {
               component="img"
               src={PlayStoreIcon}
               alt="Play Store Icon"
-              sx={{ width: "20px", height: "20px" }} // Fixed icon size
+              sx={{ width: "20px", height: "20px" }}
             />
             Play Store
           </Button>
 
-          {/* Button 3: Download On AppStore */}
           <Button
             sx={{
               backgroundColor: "#000000",
               color: "white",
               borderRadius: "40px",
-              padding: { xs: "6px 12px", md: "8px 16px" }, // Responsive padding
-              gap: "8px", // Adjusted gap between icon and text
+              padding: { xs: "6px 12px", md: "8px 16px" },
+              gap: "8px",
               textTransform: "none",
-              fontSize: { xs: "12px", md: "14px" }, // Responsive font size
+              fontSize: { xs: "12px", md: "14px" },
               fontWeight: 500,
               display: "flex",
               alignItems: "center",
-              whiteSpace: "nowrap", // Ensure text stays on one line
+              whiteSpace: "nowrap",
               "&:hover": {
-                backgroundColor: "#333333", // Darker black on hover
+                backgroundColor: "#333333",
               },
             }}
           >
@@ -169,26 +163,24 @@ const ActNow = () => {
               component="img"
               src={AppStoreIcon}
               alt="App Store Icon"
-              sx={{ width: "20px", height: "20px" }} // Fixed icon size
+              sx={{ width: "20px", height: "20px" }}
             />
             AppStore
           </Button>
         </Box>
       </Box>
 
-      {/* Right Section: Female Image */}
+      {/* Right Section: Female Image - Hidden on small screens */}
       <Box
         sx={{
-          zIndex: 2, // Ensure content is above the background SVG
-          position: { xs: "relative", md: "absolute" }, // Relative on mobile, absolute on desktop
-          top: { xs: "auto", md: 0 }, // Reset top on mobile
-          right: { xs: "auto", md: 0 }, // Reset right on mobile
-          height: { xs: "auto", md: "100%" }, // Auto height on mobile
-          width: { xs: "100%", md: "40%" }, // Full width on mobile, 40% on desktop
-          display: "flex",
-          alignItems: { xs: "center", md: "flex-start" }, // Center on mobile
-          justifyContent: { xs: "center", md: "flex-end" }, // Center on mobile
-          mt: { xs: 4, md: 0 }, // Add margin top on mobile
+          zIndex: 2,
+          display: { xs: "none", md: "flex" }, // Hidden on xs, shown on md and up
+          position: "absolute",
+          right: 0,
+          height: "100%",
+          width: "40%",
+          alignItems: "flex-start",
+          justifyContent: "flex-end",
         }}
       >
         <Box
@@ -196,9 +188,9 @@ const ActNow = () => {
           src={FemaleImage}
           alt="Female Image"
           sx={{
-            width: { xs: "80%", md: "100%" }, // Adjust width on mobile
-            height: { xs: "auto", md: "100%" }, // Auto height on mobile
-            objectFit: "cover", // Ensure the image covers the area
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
             borderRadius: "10px",
           }}
         />

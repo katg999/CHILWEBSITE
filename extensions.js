@@ -78,15 +78,30 @@ export const FileUploadExtension = {
 };
 
 function sendFileUrlToBackend(fileUrl) {
-  // Send ONLY the file URL to your Laravel backend
+  // Retrieve school information from Voiceflow
+  const schoolData = window.sessionStorage.getItem("schoolData");
+
+  if (!schoolData) {
+    console.error("No school data found");
+    return;
+  }
+
+  const parsedData = JSON.parse(schoolData);
+
+  // Combine school data with file URL
+  const payload = {
+    name: parsedData.name,
+    email: parsedData.email,
+    contact: parsedData.contact,
+    file_url: fileUrl,
+  };
+
   fetch("https://laravelbackendchil.onrender.com/api/register-school", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      file_url: fileUrl, // Send ONLY the file URL
-    }),
+    body: JSON.stringify(payload),
   })
     .then((response) => {
       if (response.ok) {
@@ -96,9 +111,9 @@ function sendFileUrlToBackend(fileUrl) {
       }
     })
     .then((result) => {
-      console.log("File URL sent successfully:", result);
+      console.log("School data sent successfully:", result);
     })
     .catch((error) => {
-      console.error("Error sending file URL:", error);
+      console.error("Error sending school data:", error);
     });
 }

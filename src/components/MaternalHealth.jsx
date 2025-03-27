@@ -26,7 +26,7 @@ const MaternalComponent = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const statisticsData = [
-    { label: "Health Facilities Using KETI", value: "1000+" },
+    { label: "Health Facilities Using KETI", value: "1500+" },
     { label: "Reduction In Pregnancy Complications", value: "30%" },
     { label: "Mothers Supported", value: "100,000+", highlight: true },
     { label: "AI-Driven Infant Care Recovery", value: "9.5M" },
