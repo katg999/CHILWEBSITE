@@ -1,9 +1,77 @@
-import React from "react";
-import { Typography, TextField, Button, Box } from "@mui/material";
-import PolicyIcon from "../assets/images/Policy.svg"; // Ensure this path is correct
-import LocationIcon from "../assets/images/location-01.svg"; // Ensure this path is correct
+import React, { useState } from "react";
+import {
+  Typography,
+  TextField,
+  Button,
+  Box,
+  CircularProgress,
+  Alert,
+} from "@mui/material";
+import LocationIcon from "../assets/images/location-01.svg";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 
 const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    message: "",
+    accept_policy: false,
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.accept_policy) {
+      setError("Please accept the privacy policy");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const response = await fetch(
+        "https://laravelbackendchil.onrender.com/api/contact-submissions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to submit form");
+      }
+
+      setSuccess(true);
+      // Reset form
+      setFormData({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        message: "",
+        accept_policy: false,
+      });
+    } catch (err) {
+      setError(err.message || "An error occurred while submitting the form");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -40,27 +108,40 @@ const ContactUs = () => {
           marginBottom: "40px",
         }}
       >
-        We’d love to hear from you. Please fill out this form.
+        We'd love to hear from you. Please fill out this form.
       </Typography>
 
       {/* Form Section */}
       <Box
         component="form"
+        onSubmit={handleSubmit}
         sx={{
           display: "flex",
           flexDirection: "column",
           gap: "20px",
           maxWidth: "600px",
           margin: "0 auto",
-          marginBottom: "40px", // Add space below the form
+          marginBottom: "40px",
         }}
       >
-        {/* Flexbox for First Name and Last Name */}
+        {/* Display success/error messages */}
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" sx={{ mb: 2 }}>
+            Thank you! Your message has been submitted successfully.
+          </Alert>
+        )}
+
+        {/* Name Fields */}
         <Box
           sx={{
             display: "flex",
             gap: "20px",
-            flexDirection: { xs: "column", sm: "row" }, // Stack on mobile, row on desktop
+            flexDirection: { xs: "column", sm: "row" },
           }}
         >
           <TextField
@@ -68,29 +149,47 @@ const ContactUs = () => {
             label="First Name (*)"
             variant="outlined"
             placeholder="Enter your first name"
+            value={formData.first_name}
+            onChange={(e) =>
+              setFormData({ ...formData, first_name: e.target.value })
+            }
+            required
+            disabled={loading}
           />
           <TextField
             fullWidth
             label="Last Name (*)"
             variant="outlined"
             placeholder="Enter your last name"
+            value={formData.last_name}
+            onChange={(e) =>
+              setFormData({ ...formData, last_name: e.target.value })
+            }
+            required
+            disabled={loading}
           />
         </Box>
 
-        {/* Email Field */}
+        {/* Contact Fields */}
         <TextField
           fullWidth
           label="Email (*)"
           variant="outlined"
           placeholder="Enter your email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          required
+          disabled={loading}
         />
 
-        {/* Phone Field */}
         <TextField
           fullWidth
           label="Phone"
           variant="outlined"
           placeholder="Enter your phone number"
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          disabled={loading}
         />
 
         {/* Message Field */}
@@ -101,6 +200,12 @@ const ContactUs = () => {
           placeholder="Enter your message"
           multiline
           rows={4}
+          value={formData.message}
+          onChange={(e) =>
+            setFormData({ ...formData, message: e.target.value })
+          }
+          required
+          disabled={loading}
         />
 
         {/* Privacy Policy */}
@@ -110,9 +215,20 @@ const ContactUs = () => {
             alignItems: "center",
             gap: "8px",
             marginBottom: "20px",
+            cursor: "pointer",
           }}
+          onClick={() =>
+            !loading &&
+            setFormData({ ...formData, accept_policy: !formData.accept_policy })
+          }
         >
-          <img src={PolicyIcon} alt="Privacy Policy" />
+          {formData.accept_policy ? (
+            <CheckBoxIcon sx={{ color: "primary.main", fontSize: 24 }} />
+          ) : (
+            <CheckBoxOutlineBlankIcon
+              sx={{ color: "action.active", fontSize: 24 }}
+            />
+          )}
           <Typography
             variant="body2"
             sx={{
@@ -121,40 +237,50 @@ const ContactUs = () => {
               fontSize: "16px",
               lineHeight: "100%",
               letterSpacing: "0%",
+              userSelect: "none",
             }}
           >
             You agree to our privacy-friendly policy.
           </Typography>
         </Box>
 
-        {/* Send Message Button */}
+        {/* Submit Button */}
         <Button
+          type="submit"
           variant="contained"
+          disabled={loading}
           sx={{
             backgroundColor: "#890085",
             color: "white",
             padding: "10px 20px",
             fontSize: "16px",
             fontWeight: 500,
-            borderRadius: "25px", // Rounded button
+            borderRadius: "25px",
             "&:hover": {
               backgroundColor: "#6a0067",
             },
+            "&:disabled": {
+              backgroundColor: "#cccccc",
+            },
           }}
         >
-          Send Message
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: "white" }} />
+          ) : (
+            "Send Message"
+          )}
         </Button>
       </Box>
 
       {/* Location Section */}
       <Box
         sx={{
-          marginTop: "40px", // Add space above the location section
-          backgroundColor: "#FDF7FD", // Background color
-          borderRadius: "14px", // Rounded corners
-          padding: "55px 144px", // Padding
-          maxWidth: "991px", // Max width
-          margin: "0 auto", // Center the section
+          marginTop: "40px",
+          backgroundColor: "#FDF7FD",
+          borderRadius: "14px",
+          padding: "55px 144px",
+          maxWidth: "991px",
+          margin: "0 auto",
         }}
       >
         <Box
@@ -166,12 +292,7 @@ const ContactUs = () => {
           }}
         >
           {/* Kampala Location */}
-          <Box
-            sx={{
-              width: "165px",
-              textAlign: "center",
-            }}
-          >
+          <Box sx={{ width: "165px", textAlign: "center" }}>
             <img src={LocationIcon} alt="Location" />
             <Typography
               variant="h6"
@@ -202,12 +323,7 @@ const ContactUs = () => {
           </Box>
 
           {/* Kenya Location */}
-          <Box
-            sx={{
-              width: "165px",
-              textAlign: "center",
-            }}
-          >
+          <Box sx={{ width: "165px", textAlign: "center" }}>
             <img src={LocationIcon} alt="Location" />
             <Typography
               variant="h6"
@@ -238,12 +354,7 @@ const ContactUs = () => {
           </Box>
 
           {/* Tanzania Location */}
-          <Box
-            sx={{
-              width: "165px",
-              textAlign: "center",
-            }}
-          >
+          <Box sx={{ width: "165px", textAlign: "center" }}>
             <img src={LocationIcon} alt="Location" />
             <Typography
               variant="h6"
