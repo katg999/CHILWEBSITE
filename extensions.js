@@ -60,11 +60,11 @@ export const FileUploadExtension = {
           window.voiceflow.chat.interact({
             type: "complete",
             payload: {
-              file: fileUrl,
+              file_url: fileUrl, // Store the file_url variable in Voiceflow
             },
           });
 
-          // Send ONLY the file URL to your Laravel backend
+          // Retrieve school data from Voiceflow variables
           sendFileUrlToBackend(fileUrl);
         })
         .catch((error) => {
@@ -78,42 +78,38 @@ export const FileUploadExtension = {
 };
 
 function sendFileUrlToBackend(fileUrl) {
-  // Retrieve school information from Voiceflow
-  const schoolData = window.sessionStorage.getItem("schoolData");
-
-  if (!schoolData) {
-    console.error("No school data found");
-    return;
-  }
-
-  const parsedData = JSON.parse(schoolData);
-
-  // Combine school data with file URL
+  // Only send the file_url - backend will update the most recent record
   const payload = {
-    name: parsedData.name,
-    email: parsedData.email,
-    contact: parsedData.contact,
     file_url: fileUrl,
   };
 
-  fetch("https://laravelbackendchil.onrender.com/api/register-school", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to send file URL: " + response.statusText);
+  console.log("Sending file URL update:", payload);
+
+  fetch(
+    "https://laravelbackendchil.onrender.com/api/update-latest-school-file",
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }
+  )
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || `HTTP error! status: ${response.status}`
+        );
       }
+      return response.json();
     })
     .then((result) => {
-      console.log("School data sent successfully:", result);
+      console.log("File URL updated successfully:", result);
+      // Handle success in your Voiceflow interface
     })
     .catch((error) => {
-      console.error("Error sending school data:", error);
+      console.error("Error updating file URL:", error.message);
+      // Handle error in your Voiceflow interface
     });
 }
