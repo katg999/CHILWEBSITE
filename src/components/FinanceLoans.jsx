@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Typography, TextField, Button, Box } from "@mui/material";
 import Image31 from "../assets/images/image 31.svg"; // Correctly import the image
+import { InputAdornment } from "@mui/material";
 
 const FinanceLoans = () => {
   // State to store form data
@@ -288,13 +289,49 @@ const FinanceLoans = () => {
             fullWidth
             label="Phone (*)"
             variant="outlined"
-            placeholder="Enter your phone number"
+            placeholder="771234567"
             name="phone"
             value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
+            onChange={(e) => {
+              // Limit input to 9 characters and only allow numbers
+              const value = e.target.value.replace(/\D/g, "").slice(0, 9);
+              setFormData({ ...formData, phone: value });
+            }}
             required
+            InputProps={{
+              startAdornment: (
+                <InputAdornment
+                  position="start"
+                  sx={{
+                    mr: 1,
+                    borderRight: "1px solid rgba(0, 0, 0, 0.23)",
+                    paddingRight: 1.5,
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="body2" color="text.secondary">
+                    UG +256
+                  </Typography>
+                </InputAdornment>
+              ),
+              sx: {
+                "& .MuiInputBase-input": {
+                  paddingLeft: 1,
+                },
+              },
+            }}
+            inputProps={{
+              maxLength: 9,
+              inputMode: "numeric",
+              pattern: "[0-9]*",
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                paddingLeft: 1,
+              },
+            }}
           />
           <TextField
             fullWidth
