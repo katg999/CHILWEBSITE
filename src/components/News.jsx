@@ -164,9 +164,7 @@ const News = () => {
               color: "#333",
               textAlign: "center",
             }}
-          >
-            Medical AI Platform to predict childbirth risks
-          </Typography>
+          ></Typography>
         </Box>
 
         {/* Card 2: Bloomberg */}
@@ -246,10 +244,7 @@ const News = () => {
                 color: "#333",
                 textAlign: "center",
               }}
-            >
-              Drones and AI screen cancer in remote Uganda: Shamim Nabuuma
-              Kaliisa's tech saves lives in rural villages.
-            </Typography>
+            ></Typography>
           </Box>
         </Box>
 
@@ -317,9 +312,7 @@ const News = () => {
               color: "#333",
               textAlign: "center",
             }}
-          >
-            Fighting cervical cancer deaths with AI innovation
-          </Typography>
+          ></Typography>
         </Box>
       </Box>
     </Box>
