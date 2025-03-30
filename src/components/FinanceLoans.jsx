@@ -117,6 +117,7 @@ const FinanceLoans = () => {
           lineHeight: "40px",
           letterSpacing: "0%",
           textAlign: "center",
+          marginTop: "70px",
           marginBottom: "20px",
         }}
       >

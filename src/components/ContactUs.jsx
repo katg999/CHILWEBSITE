@@ -91,6 +91,7 @@ const ContactUs = () => {
           lineHeight: "40px",
           letterSpacing: "0%",
           textAlign: "center",
+          marginTop: "80px",
           marginBottom: "20px",
         }}
       >

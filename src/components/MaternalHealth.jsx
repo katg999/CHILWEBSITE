@@ -8,17 +8,18 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import MaternalImage from "../assets/images/MaternalImage.svg";
+import MaternalImage from "../assets/images/MaternalJPEG.jpeg";
 import MaternityIcon from "../assets/images/MaternityIcon.svg";
 import MaternalCareIcon from "../assets/images/MaternalCareIcon.svg";
 import PostnatalIcon from "../assets/images/PostnatalIcon.svg";
-import PregnantImage from "../assets/images/Pregnant.svg";
+import PregnantImage from "../assets/images/Maternal2.jpeg";
 import ProcessIcon from "../assets/images/ProcessIcon.svg";
 import PregnancyIcon1 from "../assets/images/PregnancyIcon1.svg";
 import RiskPredictionIcon from "../assets/images/RiskPrediction.svg";
 import PersonalisedCareIcon from "../assets/images/PersonalisedCare.svg";
 import LogoMark1 from "../assets/images/logo mark 1.svg";
 import LogoMark2 from "../assets/images/logo mark 2.svg";
+import TestingMothersImage from "../assets/images/Maternal3.jpeg";
 
 const MaternalComponent = () => {
   const theme = useTheme();
@@ -82,6 +83,9 @@ const MaternalComponent = () => {
               padding: "8px 16px",
               borderRadius: "20px",
               width: "fit-content",
+              position: "relative",
+              marginTop: "60px",
+              right: "-100px", // Negative = left, Positive = right
               boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
             }}
           >
@@ -106,21 +110,25 @@ const MaternalComponent = () => {
           <Typography
             sx={{
               fontFamily: "Bricolage Grotesque",
-              fontWeight: 600,
-              fontSize: { xs: "36px", sm: "44px", md: "58px" },
-              lineHeight: { xs: "40px", sm: "48px", md: "64px" },
-              letterSpacing: "-2%",
+              fontWeight: 200,
+              fontSize: { xs: "32px", sm: "38px", md: "48px" }, // Reduced from original
+              lineHeight: { xs: "36px", sm: "42px", md: "52px" }, // Tighter line heights
+              letterSpacing: "-0.02em",
               mb: 3,
+              whiteSpace: "pre-line", // Allows manual line breaks
+              textAlign: "center", // Helps with balanced line breaking
+              maxWidth: "800px", // Constrains container width
+              mx: "auto", // Centers the text block
             }}
           >
-            Transform Maternal Care with AI Precision
+            Transform Maternal Care{"\n"}with AI Precision
           </Typography>
 
           {/* Body Text */}
           <Typography
             sx={{
               fontFamily: "Geist",
-              fontWeight: 400,
+              fontWeight: 100,
               fontSize: { xs: "16px", md: "19px" },
               lineHeight: { xs: "24px", md: "26px" },
               letterSpacing: "-2%",
@@ -141,6 +149,7 @@ const MaternalComponent = () => {
               gap: "10px",
               padding: { xs: "12px 24px", md: "15px 30px" },
               borderRadius: "30px",
+              right: "-100px", // Moves left by 20px
               backgroundColor: "#800080",
               color: "white",
               fontSize: { xs: "16px", md: "18px" },
@@ -202,8 +211,14 @@ const MaternalComponent = () => {
             alt="Maternal Care"
             style={{
               width: "100%",
+              marginTop: "70px", // Add space above the image
               maxWidth: { xs: "300px", sm: "400px", md: "600px" },
               height: "auto",
+              display: "block", // Removes extra space below the image
+              margin: "0 auto", // Centers the image horizontally
+              paddingTop: "20px", // Adds space below the navbar (adjust as needed)
+              boxSizing: "border-box", // Ensures padding doesn't affect width
+              marginLeft: "-10%",
             }}
           />
         </Box>
@@ -473,10 +488,11 @@ const MaternalComponent = () => {
               src={PregnantImage}
               alt="Pregnant Woman"
               style={{
-                width: "100%",
                 maxWidth: { xs: "300px", sm: "400px", md: "500px" },
-                height: "auto",
+                width: "600px", // Fixed width
+                height: "500px", // Fixed height (adjust ratio as needed)
                 borderRadius: "8px",
+                objectFit: "contain", // Ensures no distortion (adds padding if needed)
               }}
             />
           </Box>
@@ -557,6 +573,29 @@ const MaternalComponent = () => {
           both healthcare providers and mothers with data-driven insights and
           personalized support throughout the pregnancy journey and beyond.
         </Typography>
+
+        {/* Image container - added with proper spacing */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: 2, // Adds top margin
+            mb: 4, // Adds bottom margin
+            px: { xs: 2, sm: 0 }, // Matches text padding
+          }}
+        >
+          <img
+            src={TestingMothersImage}
+            alt="Mothers using Keti Maternity services"
+            style={{
+              width: "100%",
+              maxWidth: "500px", // Matches text maxWidth
+              height: "500px",
+              borderRadius: "12px", // Slightly rounded corners
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)", // Subtle shadow
+            }}
+          />
+        </Box>
 
         {/* How It Works Section */}
         <Box sx={{ width: "100%", mt: 6 }}>
