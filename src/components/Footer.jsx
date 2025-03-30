@@ -28,7 +28,6 @@ import AppStoreIcon from "../assets/images/Component 2.png";
 const Footer = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
@@ -37,7 +36,6 @@ const Footer = () => {
     severity: "success",
   });
 
-  // Function to open Voiceflow chatbot
   const openVoiceflowChat = () => {
     try {
       if (window.voiceflow?.chat?.open) {
@@ -96,31 +94,43 @@ const Footer = () => {
   };
 
   return (
-    <Container maxWidth="xl" disableGutters>
+    <Container
+      maxWidth="xl"
+      sx={{
+        px: { xs: 2, sm: 3, md: 4 },
+        backgroundColor: "white",
+      }}
+      disableGutters
+    >
       <Box
         sx={{
-          backgroundColor: "white",
-          padding: { xs: 2, sm: 3, md: 4 },
+          padding: { xs: 3, sm: 4, md: 5 },
           borderTop: "1px solid #ddd",
           width: "100%",
           color: "#333",
-          marginBottom: 0,
-          paddingBottom: { xs: 3, md: 4 },
         }}
       >
         {/* Main Content */}
-        <Grid container spacing={{ xs: 3, md: 2 }}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           {/* Column 1: Logo and About Us */}
           <Grid item xs={12} sm={6} md={3}>
             <Stack
               direction="column"
               spacing={1.5}
               alignItems={{ xs: "center", sm: "flex-start" }}
+              sx={{
+                px: { xs: 2, sm: 0 },
+                maxWidth: { xs: "300px", sm: "none" },
+              }}
             >
               <img
                 src={ketiaiLogo}
                 alt="KETIAI Logo"
-                style={{ width: "120px", marginBottom: "12px" }}
+                style={{
+                  width: "120px",
+                  marginBottom: "12px",
+                  alignSelf: { xs: "center", sm: "flex-start" },
+                }}
               />
               <Button
                 variant="contained"
@@ -129,10 +139,11 @@ const Footer = () => {
                   backgroundColor: "#890085",
                   color: "white",
                   borderRadius: "32px",
-                  padding: { xs: "6px 16px", md: "8px 24px" },
-                  fontSize: { xs: "12px", md: "14px" },
+                  padding: { xs: "8px 20px", md: "10px 24px" },
+                  fontSize: { xs: "13px", md: "14px" },
                   fontWeight: 500,
                   textTransform: "none",
+                  width: { xs: "100%", sm: "auto" },
                   "&:hover": { backgroundColor: "#b37600" },
                 }}
               >
@@ -145,6 +156,7 @@ const Footer = () => {
                   fontSize: "12px",
                   mt: 1,
                   textAlign: { xs: "center", sm: "left" },
+                  width: "100%",
                 }}
               >
                 © 2025 Keti AI. All rights reserved.
@@ -162,7 +174,7 @@ const Footer = () => {
                 fontWeight: 500,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
-                letterSpacing: "-2%",
+                letterSpacing: "-0.02em",
                 textAlign: { xs: "center", sm: "left" },
                 color: "#000000",
                 mb: 1.5,
@@ -185,7 +197,7 @@ const Footer = () => {
                     fontWeight: 400,
                     fontSize: { xs: "12px", md: "14px" },
                     lineHeight: "18px",
-                    letterSpacing: "-2%",
+                    letterSpacing: "-0.02em",
                     textAlign: { xs: "center", sm: "left" },
                     color: "#333",
                     textDecoration: "none",
@@ -211,7 +223,7 @@ const Footer = () => {
                 fontWeight: 500,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
-                letterSpacing: "-2%",
+                letterSpacing: "-0.02em",
                 textAlign: { xs: "center", sm: "left" },
                 color: "#000000",
                 mb: 1.5,
@@ -244,7 +256,7 @@ const Footer = () => {
                     fontWeight: 400,
                     fontSize: { xs: "12px", md: "14px" },
                     lineHeight: "18px",
-                    letterSpacing: "-2%",
+                    letterSpacing: "-0.02em",
                     textAlign: { xs: "center", sm: "left" },
                     color: "#333",
                     textDecoration: "none",
@@ -270,7 +282,7 @@ const Footer = () => {
                 fontWeight: 500,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
-                letterSpacing: "-2%",
+                letterSpacing: "-0.02em",
                 textAlign: { xs: "center", sm: "left" },
                 color: "#000000",
                 mb: 1.5,
@@ -287,7 +299,7 @@ const Footer = () => {
                   fontWeight: 400,
                   fontSize: { xs: "12px", md: "14px" },
                   lineHeight: "18px",
-                  letterSpacing: "-2%",
+                  letterSpacing: "-0.02em",
                   textAlign: { xs: "center", sm: "left" },
                   color: "#333",
                   textDecoration: "none",
@@ -306,7 +318,7 @@ const Footer = () => {
                   fontWeight: 400,
                   fontSize: { xs: "12px", md: "14px" },
                   lineHeight: "18px",
-                  letterSpacing: "-2%",
+                  letterSpacing: "-0.02em",
                   textAlign: { xs: "center", sm: "left" },
                   color: "#333",
                   textDecoration: "none",
@@ -331,7 +343,7 @@ const Footer = () => {
                 fontWeight: 500,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
-                letterSpacing: "-2%",
+                letterSpacing: "-0.02em",
                 textAlign: { xs: "center", sm: "left" },
                 color: "#000000",
                 mb: 1.5,
@@ -402,7 +414,7 @@ const Footer = () => {
         <Box
           sx={{
             marginTop: { xs: 4, md: 5 },
-            paddingTop: { xs: 3, md: 3 },
+            paddingTop: { xs: 3, md: 4 },
             borderTop: "1px solid #ddd",
             textAlign: "center",
           }}
@@ -415,7 +427,7 @@ const Footer = () => {
               fontWeight: 500,
               fontSize: { xs: "14px", md: "16px" },
               lineHeight: "20px",
-              letterSpacing: "-2%",
+              letterSpacing: "-0.02em",
               textAlign: "center",
               color: "#000000",
               mb: 2,

@@ -1,6 +1,6 @@
 import React from "react";
 import KetiImage from "../assets/images/ImageKTI.png";
-import Statistics from "./Statistics"; // Import the Statistics component
+import Statistics from "./Statistics";
 
 const Display = () => {
   return (
@@ -12,7 +12,7 @@ const Display = () => {
           backgroundImage: `url(${KetiImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "100vh",
+          minHeight: "100vh", // Changed from height to minHeight
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -21,6 +21,7 @@ const Display = () => {
           marginTop: 0,
           paddingTop: 0,
           position: "relative",
+          padding: "20px", // Added padding for small screens
         }}
       >
         <div
@@ -29,10 +30,13 @@ const Display = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "20px", // Adds space between elements
+            gap: "20px",
+            width: "100%", // Ensure it takes full width
+            maxWidth: "1200px", // Maximum content width
+            padding: "0 20px", // Side padding for small screens
           }}
         >
-          {/* Button with Stethoscope Icon (Above the text) */}
+          {/* Button with Stethoscope Icon */}
           <button
             style={{
               display: "flex",
@@ -43,10 +47,10 @@ const Display = () => {
               border: "2px solid #800080",
               backgroundColor: "white",
               color: "#800080",
-              fontSize: "16px",
+              fontSize: "clamp(14px, 3vw, 16px)", // Responsive font size
               cursor: "pointer",
-              marginTop: "100px",
-              fontFamily: "'Geist', sans-serif", // Apply Geist font
+              marginTop: "clamp(50px, 10vh, 100px)", // Responsive margin
+              fontFamily: "'Geist', sans-serif",
             }}
           >
             <svg
@@ -98,9 +102,11 @@ const Display = () => {
           <h1
             style={{
               color: "white",
-              fontSize: "48px",
+              fontSize: "clamp(32px, 6vw, 48px)", // Responsive font size
               margin: "0",
-              fontFamily: "'Bricolage Grotesque', sans-serif", // Apply Bricolage Grotesque font
+              lineHeight: "1.2",
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              padding: "0 10px", // Added padding for small screens
             }}
           >
             Patients Deserve
@@ -114,25 +120,23 @@ const Display = () => {
               textAlign: "center",
               maxWidth: "600px",
               margin: "10px auto",
-              fontSize: "18px",
-              fontFamily: "'Geist', sans-serif", // Apply Geist font
+              fontSize: "clamp(16px, 3vw, 18px)", // Responsive font size
+              fontFamily: "'Geist', sans-serif",
+              padding: "0 15px", // Added padding for small screens
             }}
           >
             Join a network that brings expert doctors, labs, and pharmacies to
             your facility—affordably and instantly.
           </p>
 
-          {/* Access Expert Care Button (Below the text) */}
+          {/* Access Expert Care Button */}
           <button
             onClick={() => {
-              // Check if voiceflow is available
               if (window.voiceflow && window.voiceflow.chat) {
-                // Open the chat widget
                 window.voiceflow.chat.open();
                 console.log("Voiceflow chat opened");
               } else {
                 console.error("Voiceflow chat not available");
-                // Fallback - if the chat isn't loaded yet, try again in a moment
                 setTimeout(() => {
                   if (window.voiceflow && window.voiceflow.chat) {
                     window.voiceflow.chat.open();
@@ -149,14 +153,15 @@ const Display = () => {
               display: "flex",
               alignItems: "center",
               gap: "10px",
-              padding: "15px 30px",
+              padding: "clamp(12px, 3vw, 15px) clamp(20px, 4vw, 30px)", // Responsive padding
               borderRadius: "30px",
               backgroundColor: "#800080",
               color: "white",
-              fontSize: "18px",
+              fontSize: "clamp(16px, 3vw, 18px)", // Responsive font size
               border: "none",
               cursor: "pointer",
-              fontFamily: "'Geist', sans-serif", // Apply Geist font
+              fontFamily: "'Geist', sans-serif",
+              marginBottom: "20px", // Added bottom margin
             }}
           >
             <span>Access Expert Care Now</span>
@@ -165,8 +170,8 @@ const Display = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "30px",
-                height: "30px",
+                width: "clamp(25px, 5vw, 30px)", // Responsive size
+                height: "clamp(25px, 5vw, 30px)", // Responsive size
                 borderRadius: "50%",
                 backgroundColor: "white",
               }}
