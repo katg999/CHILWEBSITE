@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 
 // Import images and icons
-import NewsIcon from "../assets/images/News (2).svg"; // Updated icon
+import NewsIcon from "../assets/images/News (2).svg";
 import LogonvImage from "../assets/images/CNBC-Africa-Logo.png";
 import BloombergImage from "../assets/images/Bloomberg.svg";
 import ShamImage from "../assets/images/INDEPENDENT.svg";
@@ -19,13 +19,13 @@ const News = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "white", // White background
-        py: 8, // Padding for spacing
+        backgroundColor: "white",
+        py: { xs: 4, sm: 6, md: 8 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        px: { xs: 2, sm: 4, md: 6 },
-        position: "relative", // Relative positioning for scroll icons
+        px: { xs: 2, sm: 3, md: 6 },
+        position: "relative",
       }}
     >
       {/* News Icon with Purple Line and Text */}
@@ -33,19 +33,23 @@ const News = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
-          width: "180px", // Adjusted width to fit text
+          gap: { xs: "8px", sm: "16px" },
+          width: { xs: "auto", sm: "180px" },
           height: "32px",
-          borderLeft: "1px solid #91368A", // Purple left border
-          padding: "4px 16px", // Padding as specified
-          mb: 4,
+          borderLeft: "1px solid #91368A",
+          padding: { xs: "4px 8px", sm: "4px 16px" },
+          mb: { xs: 3, sm: 4 },
+          alignSelf: { xs: "flex-start", sm: "center" },
         }}
       >
         <Box
           component="img"
           src={NewsIcon}
           alt="News Icon"
-          sx={{ width: "24px", height: "24px" }} // Adjusted size
+          sx={{
+            width: { xs: "20px", sm: "24px" },
+            height: { xs: "20px", sm: "24px" },
+          }}
         />
         <Typography
           variant="h6"
@@ -53,7 +57,8 @@ const News = () => {
             fontFamily: "Bricolage Grotesque",
             color: "#91368A",
             fontWeight: 600,
-            fontSize: "1rem",
+            fontSize: { xs: "0.875rem", sm: "1rem" },
+            whiteSpace: "nowrap",
           }}
         >
           In the News
@@ -68,7 +73,9 @@ const News = () => {
           fontWeight: "bold",
           color: "#000000",
           textAlign: "center",
-          mb: 2,
+          mb: { xs: 1, sm: 2 },
+          fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
+          px: { xs: 1, sm: 0 },
         }}
       >
         See why Keti is making waves
@@ -82,7 +89,9 @@ const News = () => {
           color: "#333",
           textAlign: "center",
           maxWidth: "600px",
-          mb: 6,
+          mb: { xs: 4, sm: 6 },
+          fontSize: { xs: "0.875rem", sm: "1rem" },
+          px: { xs: 2, sm: 0 },
         }}
       >
         Top outlets spotlight our mission to transform healthcare.
@@ -92,11 +101,12 @@ const News = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" }, // Stack on mobile, row on desktop
-          gap: 4,
+          flexDirection: { xs: "column", sm: "row" },
+          gap: { xs: 3, sm: 4 },
           maxWidth: "1200px",
           width: "100%",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
         {/* Card 1: CNBC Africa */}
@@ -109,8 +119,9 @@ const News = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 2,
-            width: { xs: "100%", md: "30%" },
+            gap: { xs: 1, sm: 2 },
+            width: { xs: "90%", sm: "30%" },
+            maxWidth: { xs: "350px", sm: "none" },
             position: "relative",
             textDecoration: "none",
             cursor: "pointer",
@@ -123,13 +134,15 @@ const News = () => {
           <Box
             component="img"
             src={LogonvImage}
-            alt="New Vision"
+            alt="CNBC Africa"
             sx={{
               width: "100%",
               height: "auto",
-              maxHeight: "200px",
+              maxHeight: { xs: "150px", sm: "200px" },
               objectFit: "contain",
               borderRadius: "10px",
+              backgroundColor: "#f5f5f5",
+              p: { xs: 1, sm: 2 },
             }}
           />
 
@@ -137,34 +150,26 @@ const News = () => {
           <Button
             sx={{
               position: "absolute",
-              top: "10px",
-              left: "10px",
+              top: { xs: "8px", sm: "10px" },
+              left: { xs: "8px", sm: "10px" },
               backgroundColor: "black",
               borderRadius: "20px",
               color: "#CD8800",
-              fontSize: "12px",
+              fontSize: { xs: "10px", sm: "12px" },
               fontWeight: "bold",
               textTransform: "none",
-              px: 2,
-              py: 1,
+              px: { xs: 1, sm: 2 },
+              py: { xs: 0.5, sm: 1 },
               border: "2px solid #000000",
+              minWidth: "auto",
               "&:hover": {
-                backgroundColor: "FFFFFF",
+                backgroundColor: "#FFFFFF",
+                color: "#000000",
               },
             }}
           >
             CNBC AFRICA
           </Button>
-
-          {/* Text */}
-          <Typography
-            variant="body1"
-            sx={{
-              fontFamily: "Geist",
-              color: "#333",
-              textAlign: "center",
-            }}
-          ></Typography>
         </Box>
 
         {/* Card 2: Bloomberg */}
@@ -177,8 +182,9 @@ const News = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 2,
-            width: { xs: "100%", md: "30%" },
+            gap: { xs: 1, sm: 2 },
+            width: { xs: "90%", sm: "30%" },
+            maxWidth: { xs: "350px", sm: "none" },
             position: "relative",
             textDecoration: "none",
             cursor: "pointer",
@@ -192,7 +198,9 @@ const News = () => {
             sx={{
               position: "relative",
               width: "100%",
-              pt: 5,
+              pt: { xs: 3, sm: 5 },
+              backgroundColor: "#f5f5f5",
+              borderRadius: "10px",
             }}
           >
             {/* Image */}
@@ -203,10 +211,10 @@ const News = () => {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxHeight: "180px",
+                maxHeight: { xs: "130px", sm: "180px" },
                 objectFit: "contain",
-                borderRadius: "10px",
-                mt: 3,
+                mt: { xs: 1, sm: 3 },
+                p: { xs: 1, sm: 2 },
               }}
             />
 
@@ -214,17 +222,18 @@ const News = () => {
             <Button
               sx={{
                 position: "absolute",
-                top: "10px",
-                left: "10px",
+                top: { xs: "8px", sm: "10px" },
+                left: { xs: "8px", sm: "10px" },
                 backgroundColor: "#F4FFED",
                 borderRadius: "20px",
                 color: "#3D7400",
-                fontSize: "12px",
+                fontSize: { xs: "10px", sm: "12px" },
                 fontWeight: "bold",
                 textTransform: "none",
-                px: 2,
-                py: 1,
+                px: { xs: 1, sm: 2 },
+                py: { xs: 0.5, sm: 1 },
                 border: "2px solid #529700",
+                minWidth: "auto",
                 "&:hover": {
                   backgroundColor: "#e0f5d7",
                 },
@@ -233,18 +242,6 @@ const News = () => {
             >
               Bloomberg
             </Button>
-          </Box>
-
-          {/* Text Wrapper */}
-          <Box sx={{ mt: 2, textAlign: "center" }}>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "Geist",
-                color: "#333",
-                textAlign: "center",
-              }}
-            ></Typography>
           </Box>
         </Box>
 
@@ -258,8 +255,9 @@ const News = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 2,
-            width: { xs: "100%", md: "30%" },
+            gap: { xs: 1, sm: 2 },
+            width: { xs: "90%", sm: "30%" },
+            maxWidth: { xs: "350px", sm: "none" },
             position: "relative",
             textDecoration: "none",
             cursor: "pointer",
@@ -275,9 +273,10 @@ const News = () => {
             alt="Independent"
             sx={{
               width: "100%",
-              height: "200px",
+              height: { xs: "150px", sm: "200px" },
               objectFit: "cover",
               borderRadius: "10px",
+              backgroundColor: "#f5f5f5",
             }}
           />
 
@@ -285,17 +284,18 @@ const News = () => {
           <Button
             sx={{
               position: "absolute",
-              top: "10px",
-              left: "10px",
+              top: { xs: "8px", sm: "10px" },
+              left: { xs: "8px", sm: "10px" },
               backgroundColor: "#FFF8F6",
               borderRadius: "20px",
               color: "#DD0005",
-              fontSize: "12px",
+              fontSize: { xs: "10px", sm: "12px" },
               fontWeight: "bold",
               textTransform: "none",
-              px: 2,
-              py: 1,
+              px: { xs: 1, sm: 2 },
+              py: { xs: 0.5, sm: 1 },
               border: "2px solid #FF3B30",
+              minWidth: "auto",
               "&:hover": {
                 backgroundColor: "#ffe6e3",
               },
@@ -303,16 +303,6 @@ const News = () => {
           >
             Independent
           </Button>
-
-          {/* Text */}
-          <Typography
-            variant="body1"
-            sx={{
-              fontFamily: "Geist",
-              color: "#333",
-              textAlign: "center",
-            }}
-          ></Typography>
         </Box>
       </Box>
     </Box>

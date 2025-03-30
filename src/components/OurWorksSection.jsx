@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import WorkIcon from "../assets/images/Work.svg"; // Icon for "Our Works"
-import SHAM3 from "../assets/images/SHAM3.png"; // Image for the left side
-import ArrowIcon from "../assets/images/arrow-right-02-sharp.svg"; // Purple arrow icon
+import WorkIcon from "../assets/images/Work.svg";
+import SHAM3 from "../assets/images/SHAM3.png";
+import ArrowIcon from "../assets/images/arrow-right-02-sharp.svg";
 
 const OurWorksSection = () => {
   return (
@@ -11,9 +11,9 @@ const OurWorksSection = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: { xs: 4, md: 8 },
-        px: { xs: 2, md: 6 },
-        py: { xs: 4, md: 8 },
+        gap: { xs: 3, sm: 4, md: 8 },
+        px: { xs: 2, sm: 3, md: 6 },
+        py: { xs: 3, sm: 4, md: 8 },
         maxWidth: "1200px",
         margin: "0 auto",
       }}
@@ -23,17 +23,18 @@ const OurWorksSection = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
-          width: "132px",
+          gap: { xs: "8px", sm: "16px" },
+          width: { xs: "auto", sm: "132px" },
           height: "32px",
-          borderLeft: "1px solid #91368A", // Purple left border
-          padding: "4px 16px", // Padding as specified
+          borderLeft: "1px solid #91368A",
+          padding: { xs: "4px 8px", sm: "4px 16px" },
+          alignSelf: { xs: "flex-start", sm: "center" },
         }}
       >
         <img
           src={WorkIcon}
           alt="Our Works Icon"
-          style={{ width: 24, height: 24 }}
+          style={{ width: 20, height: 20 }}
         />
         <Typography
           variant="h6"
@@ -41,7 +42,8 @@ const OurWorksSection = () => {
             fontFamily: "Bricolage Grotesque",
             color: "#91368A",
             fontWeight: 600,
-            fontSize: "1rem",
+            fontSize: { xs: "0.875rem", sm: "1rem" },
+            whiteSpace: "nowrap",
           }}
         >
           Our Works
@@ -54,7 +56,7 @@ const OurWorksSection = () => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
-          gap: { xs: 4, md: 8 },
+          gap: { xs: 3, md: 8 },
           width: "100%",
         }}
       >
@@ -65,6 +67,9 @@ const OurWorksSection = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            width: "100%",
+            maxWidth: { xs: "350px", sm: "500px" },
+            margin: { xs: "0 auto", md: "0" },
           }}
         >
           <img
@@ -72,9 +77,9 @@ const OurWorksSection = () => {
             alt="Healthcare Impact"
             style={{
               width: "100%",
-              maxWidth: "500px",
               height: "auto",
               borderRadius: "8px",
+              maxWidth: "100%",
             }}
           />
         </Box>
@@ -85,7 +90,8 @@ const OurWorksSection = () => {
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            gap: 3,
+            gap: { xs: 2, md: 3 },
+            width: "100%",
           }}
         >
           {/* Heading */}
@@ -94,9 +100,10 @@ const OurWorksSection = () => {
             sx={{
               fontFamily: "Bricolage Grotesque",
               fontWeight: 600,
-              fontSize: { xs: "2rem", md: "44px" },
-              lineHeight: { xs: "1.2", md: "52px" },
+              fontSize: { xs: "1.5rem", sm: "2rem", md: "2.75rem" },
+              lineHeight: { xs: "1.3", md: "1.2" },
               color: "#000",
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             Real impact in action
@@ -108,16 +115,17 @@ const OurWorksSection = () => {
             sx={{
               fontFamily: "Geist",
               fontWeight: 400,
-              fontSize: { xs: "0.9rem", md: "16px" },
-              lineHeight: { xs: "1.5", md: "20px" },
+              fontSize: { xs: "0.875rem", sm: "1rem" },
+              lineHeight: { xs: "1.5", md: "1.6" },
               color: "#666",
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             Bringing healthcare closer to those who need it most. Through
-            innovative telemedicine and on-ground medical support, we’re
+            innovative telemedicine and on-ground medical support, we're
             transforming access to quality care. Every consultation, every
             diagnosis, and every treatment delivered makes a real difference in
-            people’s lives.
+            people's lives.
           </Typography>
 
           {/* Bullet Points */}
@@ -125,8 +133,9 @@ const OurWorksSection = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              gap: 1,
-              pl: 0, // Remove default padding
+              gap: { xs: 0.5, md: 1 },
+              pl: 0,
+              mt: { xs: 1, md: 0 },
             }}
           >
             {[
@@ -138,7 +147,7 @@ const OurWorksSection = () => {
                 key={index}
                 sx={{
                   display: "flex",
-                  alignItems: "flex-start", // Align items to the start
+                  alignItems: "flex-start",
                 }}
               >
                 <Typography
@@ -146,10 +155,10 @@ const OurWorksSection = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "30px",
+                    fontSize: { xs: "0.875rem", sm: "1rem" },
+                    lineHeight: { xs: "1.5", sm: "1.8" },
                     color: "#666",
-                    textAlign: "left", // Ensure text is aligned to the left
+                    textAlign: { xs: "center", md: "left" },
                   }}
                 >
                   {point}
@@ -157,8 +166,6 @@ const OurWorksSection = () => {
               </Box>
             ))}
           </Box>
-
-          {/* Purple Button */}
         </Box>
       </Box>
     </Box>
