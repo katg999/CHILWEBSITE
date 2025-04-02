@@ -186,6 +186,7 @@ const Footer = () => {
               {[
                 { name: "What we Treat", to: "/what-we-treat", isRoute: true },
                 { name: "E-Hygiene shop", to: "/ehygiene", isRoute: true },
+                { name: "Careers", to: "/careers", isRoute: true },
               ].map((item, index) => (
                 <Link
                   key={index}
