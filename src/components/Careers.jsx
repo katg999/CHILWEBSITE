@@ -120,9 +120,9 @@ const Careers = () => {
           >
             We are excited to announce our recent partnership, expanding
             tele-mental health services to young refugees residing in Ugandan
-            refugee camps. We are on the lookout for passionate Community Impact
-            Officers—dynamic professionals committed to driving social change on
-            the ground.
+            refugee settlements. We are on the lookout for passionate Community
+            Impact Officers—dynamic professionals committed to driving social
+            change on the ground.
           </Typography>
 
           {/* Role Overview */}
