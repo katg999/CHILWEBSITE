@@ -1,10 +1,18 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
-// https://vite.dev/config/
+import { resolve } from "path";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  assetsInclude: ["**/*.PNG"], // Add this line
+  assetsInclude: ["**/*.PNG"], // Keep this for PNG assets
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+      },
+    },
+    outDir: "dist",
+    emptyOutDir: true, // Ensures a clean build
+  },
+  publicDir: "public", // Ensures Netlify gets _redirects file
 });
