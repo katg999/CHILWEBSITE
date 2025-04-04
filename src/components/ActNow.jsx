@@ -87,6 +87,7 @@ const ActNow = () => {
             justifyContent: { xs: "center", md: "flex-start" },
           }}
         >
+          {/*
           <Button
             sx={{
               backgroundColor: "white",
@@ -113,7 +114,8 @@ const ActNow = () => {
             />
             Chat with Keti
           </Button>
-
+          */}
+          {/*
           <Button
             sx={{
               backgroundColor: "#000000",
@@ -140,7 +142,8 @@ const ActNow = () => {
             />
             Play Store
           </Button>
-
+          */}
+          {/*
           <Button
             sx={{
               backgroundColor: "#000000",
@@ -167,6 +170,7 @@ const ActNow = () => {
             />
             AppStore
           </Button>
+          */}
         </Box>
       </Box>
 

@@ -543,6 +543,7 @@ const Footer = () => {
             alignItems="center"
           >
             {/* Button 2: Download Play Store */}
+            {/*
             <Button
               sx={{
                 backgroundColor: "#000000",
@@ -569,8 +570,10 @@ const Footer = () => {
               />
               Play Store
             </Button>
+            */}
 
             {/* Button 3: Download On AppStore */}
+            {/*
             <Button
               sx={{
                 backgroundColor: "#000000",
@@ -597,6 +600,7 @@ const Footer = () => {
               />
               AppStore
             </Button>
+            */}
           </Stack>
         </Box>
 
