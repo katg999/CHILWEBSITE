@@ -8,7 +8,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import MaternalImage from "../assets/images/MaternalJPEG.jpeg";
+import MaternalImage from "../assets/images/HoldingAIComparison (2).png";
 import MaternityIcon from "../assets/images/MaternityIcon.svg";
 import MaternalCareIcon from "../assets/images/MaternalCareIcon.svg";
 import PostnatalIcon from "../assets/images/PostnatalIcon.svg";
@@ -19,7 +19,10 @@ import RiskPredictionIcon from "../assets/images/RiskPrediction.svg";
 import PersonalisedCareIcon from "../assets/images/PersonalisedCare.svg";
 import LogoMark1 from "../assets/images/logo mark 1.svg";
 import LogoMark2 from "../assets/images/logo mark 2.svg";
-import TestingMothersImage from "../assets/images/Maternal3.jpeg";
+import RegisterPatientImage from "../assets/images/register patient.png";
+import UploadRecordsImage from "../assets/images/upload medical records.png";
+import AIComparisonsImage from "../assets/images/get ai comparisons (1).png";
+import RecommendationImage from "../assets/images/get recommendation.png";
 
 const MaternalComponent = () => {
   const theme = useTheme();
@@ -84,7 +87,7 @@ const MaternalComponent = () => {
               borderRadius: "20px",
               width: "fit-content",
               position: "relative",
-              marginTop: "60px",
+              marginTop: "75px",
               right: "-100px", // Negative = left, Positive = right
               boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
             }}
@@ -119,6 +122,7 @@ const MaternalComponent = () => {
               textAlign: "center", // Helps with balanced line breaking
               maxWidth: "800px", // Constrains container width
               mx: "auto", // Centers the text block
+              marginLeft: "25%",
             }}
           >
             Transform Maternal Care{"\n"}with AI Precision
@@ -133,6 +137,7 @@ const MaternalComponent = () => {
               lineHeight: { xs: "24px", md: "26px" },
               letterSpacing: "-2%",
               color: "#666",
+              marginLeft: "25%",
               mb: 4,
             }}
           >
@@ -146,6 +151,7 @@ const MaternalComponent = () => {
             sx={{
               display: "flex",
               alignItems: "center",
+              marginLeft: "15%",
               gap: "10px",
               padding: { xs: "12px 24px", md: "15px 30px" },
               borderRadius: "30px",
@@ -202,8 +208,11 @@ const MaternalComponent = () => {
           sx={{
             flex: 1,
             display: "flex",
-            justifyContent: "center",
+            justifyContent: { xs: "center", md: "flex-end" },
+            width: "100%",
             order: { xs: 1, md: 2 },
+            mt: { xs: 2, md: 0 },
+            mb: { xs: 4, md: 0 },
           }}
         >
           <img
@@ -211,14 +220,15 @@ const MaternalComponent = () => {
             alt="Maternal Care"
             style={{
               width: "100%",
-              marginTop: "70px", // Add space above the image
-              maxWidth: { xs: "300px", sm: "400px", md: "600px" },
+              maxWidth: { xs: "280px", sm: "320px", md: "450px" },
               height: "auto",
-              display: "block", // Removes extra space below the image
-              margin: "0 auto", // Centers the image horizontally
-              paddingTop: "20px", // Adds space below the navbar (adjust as needed)
-              boxSizing: "border-box", // Ensures padding doesn't affect width
-              marginLeft: "-10%",
+              marginTop: "100px",
+              display: "block",
+              margin: "0 auto",
+              paddingTop: { xs: "0", md: "20px" },
+              boxSizing: "border-box",
+              marginLeft: { xs: "0", md: "30%" },
+              objectFit: "contain",
             }}
           />
         </Box>
@@ -451,6 +461,7 @@ const MaternalComponent = () => {
                 border: "1px solid #800080",
                 fontFamily: "'Geist', sans-serif",
                 textTransform: "none",
+                marginLeft: "25%",
                 mt: 2,
                 "&:hover": { backgroundColor: "#f5e5f5" },
               }}
@@ -497,105 +508,6 @@ const MaternalComponent = () => {
             />
           </Box>
         </Box>
-      </Box>
-
-      {/* Benefits Section */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: { xs: 4, md: 8 },
-          px: { xs: 2, md: 6 },
-          py: { xs: 4, md: 8 },
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
-        {/* Icon with Purple Line */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            height: "32px",
-            borderLeft: "1px solid #91368A",
-            padding: "4px 16px",
-            width: "fit-content",
-          }}
-        >
-          <img
-            src={ProcessIcon}
-            alt="Benefits Icon"
-            style={{ width: 24, height: 24 }}
-          />
-          <Typography
-            sx={{
-              fontFamily: "Bricolage Grotesque",
-              color: "#91368A",
-              fontWeight: 600,
-              fontSize: "1rem",
-            }}
-          >
-            Benefits
-          </Typography>
-        </Box>
-
-        {/* Heading */}
-        <Typography
-          sx={{
-            fontFamily: "Bricolage Grotesque",
-            fontWeight: 600,
-            fontSize: { xs: "28px", sm: "36px", md: "44px" },
-            lineHeight: { xs: "1.2", md: "52px" },
-            textAlign: "center",
-          }}
-        >
-          Why choose Keti Maternity?
-        </Typography>
-
-        {/* Benefits Content */}
-        <Typography
-          sx={{
-            fontFamily: "Geist",
-            fontWeight: 400,
-            fontSize: { xs: "14px", md: "16px" },
-            lineHeight: { xs: "20px", md: "24px" },
-            color: "#666",
-            maxWidth: "800px",
-            textAlign: "center",
-            mb: 4,
-            px: { xs: 2, sm: 0 },
-          }}
-        >
-          Keti Maternity combines cutting-edge AI technology with compassionate
-          care to revolutionize maternal health outcomes. Our platform empowers
-          both healthcare providers and mothers with data-driven insights and
-          personalized support throughout the pregnancy journey and beyond.
-        </Typography>
-
-        {/* Image container - added with proper spacing */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            mt: 2, // Adds top margin
-            mb: 4, // Adds bottom margin
-            px: { xs: 2, sm: 0 }, // Matches text padding
-          }}
-        >
-          <img
-            src={TestingMothersImage}
-            alt="Mothers using Keti Maternity services"
-            style={{
-              width: "100%",
-              maxWidth: "500px", // Matches text maxWidth
-              height: "500px",
-              borderRadius: "12px", // Slightly rounded corners
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)", // Subtle shadow
-            }}
-          />
-        </Box>
 
         {/* How It Works Section */}
         <Box sx={{ width: "100%", mt: 6 }}>
@@ -626,7 +538,7 @@ const MaternalComponent = () => {
                 fontSize: { xs: "1rem", md: "1.25rem" },
               }}
             >
-              How It Works
+              Why Choose KetiAI Maternity?
             </Typography>
           </Box>
 
@@ -802,6 +714,214 @@ const MaternalComponent = () => {
                 </Typography>
               </CardContent>
             </Card>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Benefits Section - Updated with Mockups */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: { xs: 4, md: 8 },
+          px: { xs: 2, md: 6 },
+          py: { xs: 4, md: 8 },
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
+      >
+        {/* Icon with Purple Line */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            height: "32px",
+            borderLeft: "1px solid #91368A",
+            padding: "4px 16px",
+            width: "fit-content",
+          }}
+        >
+          <img
+            src={ProcessIcon}
+            alt="Benefits Icon"
+            style={{ width: 24, height: 24 }}
+          />
+          <Typography
+            sx={{
+              fontFamily: "Bricolage Grotesque",
+              color: "#91368A",
+              fontWeight: 600,
+              fontSize: "1rem",
+            }}
+          >
+            Benefits
+          </Typography>
+        </Box>
+
+        {/* Heading */}
+        <Typography
+          sx={{
+            fontFamily: "Bricolage Grotesque",
+            fontWeight: 600,
+            fontSize: { xs: "28px", sm: "36px", md: "44px" },
+            lineHeight: { xs: "1.2", md: "52px" },
+            textAlign: "center",
+          }}
+        >
+          How It Works
+        </Typography>
+
+        {/* First Row of Mockups */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/* Register Patient */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: "Bricolage Grotesque",
+                fontWeight: 600,
+                fontSize: "20px",
+                color: "#800080",
+                textAlign: "center",
+              }}
+            >
+              1. Register Patient
+            </Typography>
+            <img
+              src={RegisterPatientImage}
+              alt="Register Patient"
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+                height: "auto",
+              }}
+            />
+          </Box>
+
+          {/* Upload Patient Records */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: "Bricolage Grotesque",
+                fontWeight: 600,
+                fontSize: "20px",
+                color: "#800080",
+                textAlign: "center",
+              }}
+            >
+              2. Upload Patient Records
+            </Typography>
+            <img
+              src={UploadRecordsImage}
+              alt="Upload Medical Records"
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+                height: "auto",
+              }}
+            />
+          </Box>
+        </Box>
+
+        {/* Second Row of Mockups */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/* Get AI Comparisons */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: "Bricolage Grotesque",
+                fontWeight: 600,
+                fontSize: "20px",
+                color: "#800080",
+                textAlign: "center",
+              }}
+            >
+              3. Get AI Comparisons
+            </Typography>
+            <img
+              src={AIComparisonsImage}
+              alt="Get AI Comparisons"
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+                height: "auto",
+              }}
+            />
+          </Box>
+
+          {/* Get AI Best Hospital */}
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: "Bricolage Grotesque",
+                fontWeight: 600,
+                fontSize: "20px",
+                color: "#800080",
+                textAlign: "center",
+              }}
+            >
+              4. Get AI Best Hospital
+            </Typography>
+            <img
+              src={RecommendationImage}
+              alt="Get AI Recommendation"
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+                height: "auto",
+              }}
+            />
           </Box>
         </Box>
       </Box>
