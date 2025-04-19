@@ -30,7 +30,7 @@ const MaternalComponent = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const statisticsData = [
-    { label: "Health Facilities Using KETI", value: "1500+" },
+    { label: "Health Facilities Using KETI", value: "150+" },
     { label: "Reduction In Pregnancy Complications", value: "30%" },
     { label: "Mothers Supported", value: "100,000+", highlight: true },
     { label: "AI-Driven Infant Care Recovery", value: "9.5M" },
@@ -76,38 +76,6 @@ const MaternalComponent = () => {
         {/* Left Content */}
         <Box sx={{ flex: 1, maxWidth: { md: "50%" }, order: { xs: 2, md: 1 } }}>
           {/* Maternity Tag */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              mb: 3,
-              backgroundColor: "white",
-              padding: "8px 16px",
-              borderRadius: "20px",
-              width: "fit-content",
-              position: "relative",
-              marginTop: "75px",
-              right: "-100px", // Negative = left, Positive = right
-              boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
-            }}
-          >
-            <img
-              src={MaternityIcon}
-              alt="Maternity"
-              style={{ width: 20, height: 20 }}
-            />
-            <Typography
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 500,
-                fontSize: "14px",
-                color: "#800080",
-              }}
-            >
-              Maternity
-            </Typography>
-          </Box>
 
           {/* Heading */}
           <Typography
@@ -208,11 +176,15 @@ const MaternalComponent = () => {
           sx={{
             flex: 1,
             display: "flex",
+            marginTop: "10px",
             justifyContent: { xs: "center", md: "flex-end" },
             width: "100%",
             order: { xs: 1, md: 2 },
             mt: { xs: 2, md: 0 },
             mb: { xs: 4, md: 0 },
+            pt: (theme) =>
+              `calc(${theme.mixins.toolbar.minHeight}px + ${theme.spacing(2)})`, // Reduced spacing
+            alignSelf: "center", // Better vertical alignment
           }}
         >
           <img
@@ -220,15 +192,16 @@ const MaternalComponent = () => {
             alt="Maternal Care"
             style={{
               width: "100%",
-              maxWidth: { xs: "280px", sm: "320px", md: "450px" },
+              maxWidth: { xs: "220px", sm: "260px", md: "350px" }, // Reduced sizes
               height: "auto",
-              marginTop: "100px",
+              maxHeight: "400px", // Added max-height constraint
               display: "block",
               margin: "0 auto",
-              paddingTop: { xs: "0", md: "20px" },
+              paddingTop: { xs: "0", md: "10px" }, // Reduced padding
               boxSizing: "border-box",
-              marginLeft: { xs: "0", md: "30%" },
+              marginLeft: { xs: "0", md: "20%" }, // Reduced margin
               objectFit: "contain",
+              objectPosition: "center", // Ensures proper centering
             }}
           />
         </Box>
@@ -342,7 +315,7 @@ const MaternalComponent = () => {
             sx={{
               fontFamily: "Bricolage Grotesque",
               color: "#91368A",
-              fontWeight: 600,
+              fontWeight: 1000,
               fontSize: "1rem",
             }}
           >
@@ -376,20 +349,49 @@ const MaternalComponent = () => {
             </Typography>
 
             {/* Feature 1 */}
-            <Box sx={{ display: "flex", gap: 3, alignItems: "flex-start" }}>
-              <img
-                src={MaternalCareIcon}
-                alt="Maternal Care"
-                style={{ width: 40, height: 40, flexShrink: 0 }}
-              />
+            <Box
+              sx={{
+                display: "flex",
+                gap: 3,
+                alignItems: "flex-start",
+                backgroundColor: "#f8f8f8",
+                borderRadius: "12px",
+                p: 3,
+                mb: 3,
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: "#f0f0f0",
+                  transform: "translateY(-2px)",
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  minWidth: "56px",
+                  height: "56px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "rgba(145, 54, 138, 0.1)",
+                  borderRadius: "10px",
+                  flexShrink: 0,
+                }}
+              >
+                <img
+                  src={MaternalCareIcon}
+                  alt="Maternal Care"
+                  style={{ width: 28, height: 28 }}
+                />
+              </Box>
               <Box>
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
+                    fontWeight: 700,
                     fontSize: { xs: "18px", md: "20px" },
-                    lineHeight: { xs: "24px", md: "28px" },
-                    mb: 1,
+                    lineHeight: 1.3,
+                    mb: 1.5,
+                    color: "#333",
                   }}
                 >
                   Empowering maternal care
@@ -398,9 +400,9 @@ const MaternalComponent = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: { xs: "14px", md: "16px" },
-                    lineHeight: { xs: "20px", md: "24px" },
-                    color: "#666",
+                    fontSize: { xs: "15px", md: "16px" },
+                    lineHeight: 1.6,
+                    color: "#555",
                   }}
                 >
                   Health facilities can monitor each mother's pregnancy journey,
@@ -411,20 +413,49 @@ const MaternalComponent = () => {
             </Box>
 
             {/* Feature 2 */}
-            <Box sx={{ display: "flex", gap: 3, alignItems: "flex-start" }}>
-              <img
-                src={PostnatalIcon}
-                alt="Postnatal Support"
-                style={{ width: 40, height: 40, flexShrink: 0 }}
-              />
+            <Box
+              sx={{
+                display: "flex",
+                gap: 3,
+                alignItems: "flex-start",
+                backgroundColor: "#f8f8f8",
+                borderRadius: "12px",
+                p: 3,
+                mb: 3,
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: "#f0f0f0",
+                  transform: "translateY(-2px)",
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  minWidth: "56px",
+                  height: "56px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "rgba(145, 54, 138, 0.1)",
+                  borderRadius: "10px",
+                  flexShrink: 0,
+                }}
+              >
+                <img
+                  src={PostnatalIcon}
+                  alt="Postnatal Support"
+                  style={{ width: 28, height: 28 }}
+                />
+              </Box>
               <Box>
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
+                    fontWeight: 700,
                     fontSize: { xs: "18px", md: "20px" },
-                    lineHeight: { xs: "24px", md: "28px" },
-                    mb: 1,
+                    lineHeight: 1.3,
+                    mb: 1.5,
+                    color: "#333",
                   }}
                 >
                   Comprehensive postnatal support
@@ -433,9 +464,9 @@ const MaternalComponent = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: { xs: "14px", md: "16px" },
-                    lineHeight: { xs: "20px", md: "24px" },
-                    color: "#666",
+                    fontSize: { xs: "15px", md: "16px" },
+                    lineHeight: 1.6,
+                    color: "#555",
                   }}
                 >
                   New mothers receive AI-generated postnatal guidance via text,
@@ -461,7 +492,7 @@ const MaternalComponent = () => {
                 border: "1px solid #800080",
                 fontFamily: "'Geist', sans-serif",
                 textTransform: "none",
-                marginLeft: "25%",
+                marginLeft: "43%",
                 mt: 2,
                 "&:hover": { backgroundColor: "#f5e5f5" },
               }}
@@ -491,21 +522,6 @@ const MaternalComponent = () => {
                 />
               </svg>
             </Button>
-          </Box>
-
-          {/* Right Side - Image */}
-          <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
-            <img
-              src={PregnantImage}
-              alt="Pregnant Woman"
-              style={{
-                maxWidth: { xs: "300px", sm: "400px", md: "500px" },
-                width: "600px", // Fixed width
-                height: "500px", // Fixed height (adjust ratio as needed)
-                borderRadius: "8px",
-                objectFit: "contain", // Ensures no distortion (adds padding if needed)
-              }}
-            />
           </Box>
         </Box>
 
@@ -560,12 +576,17 @@ const MaternalComponent = () => {
                 maxWidth: { md: "30%" },
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 borderRadius: "12px",
-                transition: "transform 0.3s, box-shadow 0.3s",
-                backgroundColor: "#800080",
-                color: "white",
+                transition: "all 0.3s ease",
+                backgroundColor: "white",
+                color: "inherit",
                 "&:hover": {
                   transform: "translateY(-5px)",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+                  backgroundColor: "#890085",
+                  color: "white",
+                  "& .MuiTypography-root": {
+                    color: "white",
+                  },
                 },
               }}
             >
@@ -579,17 +600,41 @@ const MaternalComponent = () => {
                   height: "100%",
                 }}
               >
-                <img
-                  src={PregnancyIcon1}
-                  alt="Pregnancy Monitoring"
-                  style={{ width: 60, height: 60, marginBottom: "16px" }}
-                />
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "white",
+                    borderRadius: "50%",
+                    mb: 3,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                    "&:hover": {
+                      backgroundColor: "white",
+                    },
+                  }}
+                >
+                  <img
+                    src={PregnancyIcon1}
+                    alt="Pregnancy Monitoring"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      transition: "all 0.3s ease",
+                      filter: "brightness(0.9)",
+                    }}
+                  />
+                </Box>
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
                     fontSize: { xs: "18px", md: "20px" },
                     mb: 2,
+                    color: "#333",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   Pregnancy Monitoring
@@ -600,6 +645,8 @@ const MaternalComponent = () => {
                     fontWeight: 400,
                     fontSize: { xs: "14px", md: "15px" },
                     lineHeight: "1.6",
+                    color: "#666",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   Track each mother's pregnancy journey with advanced AI
@@ -616,10 +663,17 @@ const MaternalComponent = () => {
                 maxWidth: { md: "30%" },
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 borderRadius: "12px",
-                transition: "transform 0.3s, box-shadow 0.3s",
+                transition: "all 0.3s ease",
+                backgroundColor: "white",
+                color: "inherit",
                 "&:hover": {
                   transform: "translateY(-5px)",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+                  backgroundColor: "#890085",
+                  color: "white",
+                  "& .MuiTypography-root": {
+                    color: "white",
+                  },
                 },
               }}
             >
@@ -633,17 +687,41 @@ const MaternalComponent = () => {
                   height: "100%",
                 }}
               >
-                <img
-                  src={RiskPredictionIcon}
-                  alt="Risk Prediction"
-                  style={{ width: 60, height: 60, marginBottom: "16px" }}
-                />
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "white", // White background
+                    borderRadius: "50%",
+                    mb: 3,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)", // Subtle shadow
+                    "&:hover": {
+                      backgroundColor: "white", // Stays white on card hover
+                    },
+                  }}
+                >
+                  <img
+                    src={RiskPredictionIcon}
+                    alt="Risk Prediction"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      transition: "all 0.3s ease",
+                      filter: "brightness(0.9)", // Slightly dimmed in normal state
+                    }}
+                  />
+                </Box>
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
                     fontSize: { xs: "18px", md: "20px" },
                     mb: 2,
+                    color: "#333",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   Risk Prediction
@@ -654,6 +732,8 @@ const MaternalComponent = () => {
                     fontWeight: 400,
                     fontSize: { xs: "14px", md: "15px" },
                     lineHeight: "1.6",
+                    color: "#666",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   Anticipate potential complications using AI-driven analysis.
@@ -669,10 +749,17 @@ const MaternalComponent = () => {
                 maxWidth: { md: "30%" },
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 borderRadius: "12px",
-                transition: "transform 0.3s, box-shadow 0.3s",
+                transition: "all 0.3s ease",
+                backgroundColor: "white",
+                color: "inherit",
                 "&:hover": {
                   transform: "translateY(-5px)",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+                  backgroundColor: "#890085",
+                  color: "white",
+                  "& .MuiTypography-root": {
+                    color: "white",
+                  },
                 },
               }}
             >
@@ -686,17 +773,41 @@ const MaternalComponent = () => {
                   height: "100%",
                 }}
               >
-                <img
-                  src={PersonalisedCareIcon}
-                  alt="Personalized Care"
-                  style={{ width: 60, height: 60, marginBottom: "16px" }}
-                />
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "white",
+                    borderRadius: "50%",
+                    mb: 3,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                    "&:hover": {
+                      backgroundColor: "white",
+                    },
+                  }}
+                >
+                  <img
+                    src={PersonalisedCareIcon}
+                    alt="Personalized Care"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      transition: "all 0.3s ease",
+                      filter: "brightness(0.9)",
+                    }}
+                  />
+                </Box>
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
                     fontSize: { xs: "18px", md: "20px" },
                     mb: 2,
+                    color: "#333",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   Personalized Care
@@ -707,6 +818,8 @@ const MaternalComponent = () => {
                     fontWeight: 400,
                     fontSize: { xs: "14px", md: "15px" },
                     lineHeight: "1.6",
+                    color: "#666",
+                    transition: "color 0.3s ease",
                   }}
                 >
                   Deliver tailored care and recommendations based on real-time
@@ -810,7 +923,7 @@ const MaternalComponent = () => {
               alt="Register Patient"
               style={{
                 width: "100%",
-                maxWidth: "400px",
+                maxWidth: "300px",
                 height: "auto",
               }}
             />
@@ -842,7 +955,7 @@ const MaternalComponent = () => {
               alt="Upload Medical Records"
               style={{
                 width: "100%",
-                maxWidth: "400px",
+                maxWidth: "300px",
                 height: "auto",
               }}
             />
@@ -886,7 +999,7 @@ const MaternalComponent = () => {
               alt="Get AI Comparisons"
               style={{
                 width: "100%",
-                maxWidth: "400px",
+                maxWidth: "300px",
                 height: "auto",
               }}
             />
@@ -918,7 +1031,7 @@ const MaternalComponent = () => {
               alt="Get AI Recommendation"
               style={{
                 width: "100%",
-                maxWidth: "400px",
+                maxWidth: "300px",
                 height: "auto",
               }}
             />
