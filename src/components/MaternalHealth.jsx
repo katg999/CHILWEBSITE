@@ -345,7 +345,7 @@ const MaternalComponent = () => {
                 lineHeight: { xs: "1.2", md: "52px" },
               }}
             >
-              Transforming maternal health
+              Transforming maternal health With Keti AI
             </Typography>
 
             {/* Feature 1 */}
