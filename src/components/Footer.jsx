@@ -171,7 +171,7 @@ const Footer = () => {
               gutterBottom
               sx={{
                 fontFamily: "Geist",
-                fontWeight: 500,
+                fontWeight: 700,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
                 letterSpacing: "-0.02em",
@@ -215,13 +215,21 @@ const Footer = () => {
           </Grid>
 
           {/* Column 3: Helpful Links */}
-          <Grid item xs={6} sm={3} md={2}>
+          <Grid
+            item
+            xs={6}
+            sm={3}
+            md={2}
+            sx={{
+              marginLeft: { xs: 0, sm: "50px" }, // <<< MOVE WHOLE COLUMN LEFT
+            }}
+          >
             <Typography
               variant="h6"
               gutterBottom
               sx={{
                 fontFamily: "Geist",
-                fontWeight: 500,
+                fontWeight: 700,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
                 letterSpacing: "-0.02em",
@@ -274,15 +282,24 @@ const Footer = () => {
           </Grid>
 
           {/* Column 4: Legal */}
-          <Grid item xs={6} sm={3} md={2}>
+          <Grid
+            item
+            xs={6}
+            sm={3}
+            md={2}
+            sx={{
+              marginLeft: { xs: 0, sm: "80px" }, // <<< MOVE WHOLE COLUMN LEFT
+            }}
+          >
             <Typography
               variant="h6"
               gutterBottom
               sx={{
                 fontFamily: "Geist",
-                fontWeight: 500,
+                fontWeight: 700,
                 fontSize: { xs: "14px", md: "16px" },
                 lineHeight: "20px",
+
                 letterSpacing: "-0.02em",
                 textAlign: { xs: "center", sm: "left" },
                 color: "#000000",
@@ -312,30 +329,30 @@ const Footer = () => {
               >
                 Privacy Policy
               </Link>
-              <Link
-                href="#"
-                sx={{
-                  fontFamily: "Geist",
-                  fontWeight: 400,
-                  fontSize: { xs: "12px", md: "14px" },
-                  lineHeight: "18px",
-                  letterSpacing: "-0.02em",
-                  textAlign: { xs: "center", sm: "left" },
-                  color: "#333",
-                  textDecoration: "none",
-                  display: "block",
-                  "&:hover": {
-                    color: "#890085",
-                  },
-                }}
-              >
-                Terms and Conditions
-              </Link>
+              {
+                <Link
+                  href="#"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                    letterSpacing: "-0.02em",
+                    textAlign: { xs: "center", sm: "left" },
+                    color: "#333",
+                    textDecoration: "none",
+                    display: "block",
+                    "&:hover": {
+                      color: "#890085",
+                    },
+                  }}
+                ></Link>
+              }
             </Stack>
           </Grid>
 
           {/* Column 5: Socials */}
-          <Grid item xs={6} sm={3} md={3}>
+          {/*<Grid item xs={6} sm={3} md={3}>
             <Typography
               variant="h6"
               gutterBottom
@@ -409,6 +426,7 @@ const Footer = () => {
               </Link>
             </Stack>
           </Grid>
+           */}
         </Grid>
 
         {/* Newsletter Section */}
