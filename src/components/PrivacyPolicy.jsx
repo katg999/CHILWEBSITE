@@ -131,12 +131,11 @@ const PrivacyPolicy = () => {
             <Typography
               sx={{ fontFamily: "Geist", fontSize: "16px", lineHeight: 1.6 }}
             >
-              Welcome to the Keti AI ("KETI") Telemedicine Platform. This Data
-              Privacy Policy ("Policy") outlines how Keti collects, uses,
-              discloses, and protects your personal information when you
-              interact with our Platform. The Platform encompasses the Keti
-              website, KETI AI chatbots (web and WhatsApp), and any associated
-              technologies used to deliver telemedicine services.
+              Welcome to the Keti AI Telemedicine Platform. This Data Privacy
+              Policy outlines how Keti collects, uses, discloses, and protects
+              your personal information when you interact with our Platform. The
+              Platform encompasses the Keti website, KETI AI chatbots, and any
+              associated technologies used to deliver telemedicine services.
             </Typography>
           </Box>
 
