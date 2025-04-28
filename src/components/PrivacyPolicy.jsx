@@ -576,6 +576,7 @@ const PrivacyPolicy = () => {
                 sx={{
                   bgcolor: "white",
                   color: "#890085",
+                  textTransform: "none", // Add this line to prevent auto-capitalization
                   "&:hover": {
                     bgcolor: "rgba(255,255,255,0.9)",
                   },
