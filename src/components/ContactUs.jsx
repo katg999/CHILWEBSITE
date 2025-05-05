@@ -6,12 +6,19 @@ import {
   Box,
   CircularProgress,
   Alert,
+  Container,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import LocationIcon from "../assets/images/location-01.svg";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 
 const ContactUs = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -73,11 +80,10 @@ const ContactUs = () => {
   };
 
   return (
-    <Box
+    <Container
+      maxWidth="lg"
       sx={{
-        maxWidth: "1440px",
-        margin: "0 auto",
-        padding: "40px 20px",
+        padding: { xs: "20px 16px", sm: "30px 24px", md: "40px 20px" },
         textAlign: "center",
       }}
     >
@@ -87,12 +93,12 @@ const ContactUs = () => {
         sx={{
           fontFamily: "Bricolage Grotesque, sans-serif",
           fontWeight: 700,
-          fontSize: "48px",
-          lineHeight: "40px",
+          fontSize: { xs: "28px", sm: "36px", md: "48px" },
+          lineHeight: { xs: "32px", sm: "36px", md: "40px" },
           letterSpacing: "0%",
           textAlign: "center",
-          marginTop: "80px",
-          marginBottom: "20px",
+          marginTop: { xs: "40px", md: "80px" },
+          marginBottom: { xs: "16px", md: "20px" },
         }}
       >
         Get in touch
@@ -102,11 +108,12 @@ const ContactUs = () => {
         sx={{
           fontFamily: "Geist, sans-serif",
           fontWeight: 400,
-          fontSize: "18px",
-          lineHeight: "26px",
+          fontSize: { xs: "16px", md: "18px" },
+          lineHeight: { xs: "22px", md: "26px" },
           letterSpacing: "0%",
           textAlign: "center",
-          marginBottom: "40px",
+          marginBottom: { xs: "24px", md: "40px" },
+          padding: { xs: "0 16px", md: 0 },
         }}
       >
         We'd love to hear from you. Please fill out this form.
@@ -119,20 +126,21 @@ const ContactUs = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
+          gap: { xs: "16px", md: "20px" },
           maxWidth: "600px",
           margin: "0 auto",
-          marginBottom: "40px",
+          marginBottom: { xs: "32px", md: "40px" },
+          width: "100%",
         }}
       >
         {/* Display success/error messages */}
         {error && (
-          <Alert severity="error" sx={{ mb: 2 }}>
+          <Alert severity="error" sx={{ mb: { xs: 1, md: 2 } }}>
             {error}
           </Alert>
         )}
         {success && (
-          <Alert severity="success" sx={{ mb: 2 }}>
+          <Alert severity="success" sx={{ mb: { xs: 1, md: 2 } }}>
             Thank you! Your message has been submitted successfully.
           </Alert>
         )}
@@ -141,8 +149,9 @@ const ContactUs = () => {
         <Box
           sx={{
             display: "flex",
-            gap: "20px",
+            gap: { xs: "12px", md: "20px" },
             flexDirection: { xs: "column", sm: "row" },
+            width: "100%",
           }}
         >
           <TextField
@@ -156,6 +165,7 @@ const ContactUs = () => {
             }
             required
             disabled={loading}
+            size={isMobile ? "small" : "medium"}
           />
           <TextField
             fullWidth
@@ -168,6 +178,7 @@ const ContactUs = () => {
             }
             required
             disabled={loading}
+            size={isMobile ? "small" : "medium"}
           />
         </Box>
 
@@ -181,6 +192,7 @@ const ContactUs = () => {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
           disabled={loading}
+          size={isMobile ? "small" : "medium"}
         />
 
         <TextField
@@ -191,6 +203,7 @@ const ContactUs = () => {
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           disabled={loading}
+          size={isMobile ? "small" : "medium"}
         />
 
         {/* Message Field */}
@@ -200,7 +213,7 @@ const ContactUs = () => {
           variant="outlined"
           placeholder="Enter your message"
           multiline
-          rows={4}
+          rows={isMobile ? 3 : 4}
           value={formData.message}
           onChange={(e) =>
             setFormData({ ...formData, message: e.target.value })
@@ -213,10 +226,11 @@ const ContactUs = () => {
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             gap: "8px",
-            marginBottom: "20px",
+            marginBottom: { xs: "16px", md: "20px" },
             cursor: "pointer",
+            textAlign: "left",
           }}
           onClick={() =>
             !loading &&
@@ -224,10 +238,12 @@ const ContactUs = () => {
           }
         >
           {formData.accept_policy ? (
-            <CheckBoxIcon sx={{ color: "primary.main", fontSize: 24 }} />
+            <CheckBoxIcon
+              sx={{ color: "primary.main", fontSize: 24, mt: 0.5 }}
+            />
           ) : (
             <CheckBoxOutlineBlankIcon
-              sx={{ color: "action.active", fontSize: 24 }}
+              sx={{ color: "action.active", fontSize: 24, mt: 0.5 }}
             />
           )}
           <Typography
@@ -235,8 +251,8 @@ const ContactUs = () => {
             sx={{
               fontFamily: "Geist, sans-serif",
               fontWeight: 400,
-              fontSize: "16px",
-              lineHeight: "100%",
+              fontSize: { xs: "14px", md: "16px" },
+              lineHeight: "140%",
               letterSpacing: "0%",
               userSelect: "none",
             }}
@@ -250,13 +266,16 @@ const ContactUs = () => {
           type="submit"
           variant="contained"
           disabled={loading}
+          fullWidth={isMobile}
           sx={{
             backgroundColor: "#890085",
             color: "white",
-            padding: "10px 20px",
-            fontSize: "16px",
+            padding: { xs: "8px 16px", md: "10px 20px" },
+            fontSize: { xs: "14px", md: "16px" },
             fontWeight: 500,
             borderRadius: "25px",
+            alignSelf: isMobile ? "stretch" : "center",
+            maxWidth: isMobile ? "100%" : "200px",
             "&:hover": {
               backgroundColor: "#6a0067",
             },
@@ -266,7 +285,10 @@ const ContactUs = () => {
           }}
         >
           {loading ? (
-            <CircularProgress size={24} sx={{ color: "white" }} />
+            <CircularProgress
+              size={isMobile ? 20 : 24}
+              sx={{ color: "white" }}
+            />
           ) : (
             "Send Message"
           )}
@@ -276,31 +298,44 @@ const ContactUs = () => {
       {/* Location Section */}
       <Box
         sx={{
-          marginTop: "40px",
+          marginTop: { xs: "32px", md: "40px" },
           backgroundColor: "#FDF7FD",
-          borderRadius: "14px",
-          padding: "55px 144px",
+          borderRadius: { xs: "10px", md: "14px" },
+          padding: {
+            xs: "24px 16px",
+            sm: "32px 24px",
+            md: "48px 32px",
+            lg: "55px 144px",
+          },
           maxWidth: "991px",
           margin: "0 auto",
+          width: "100%",
         }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
-            gap: "40px",
+            gap: { xs: "24px", md: "40px" },
             flexWrap: "wrap",
           }}
         >
           {/* Kampala Location */}
-          <Box sx={{ width: "165px", textAlign: "center" }}>
+          <Box
+            sx={{
+              width: { xs: "100%", sm: "160px", md: "165px" },
+              textAlign: "center",
+              maxWidth: { xs: "240px", sm: "none" },
+              margin: { xs: "0 auto", sm: "0" },
+            }}
+          >
             <img src={LocationIcon} alt="Location" />
             <Typography
               variant="h6"
               sx={{
                 fontFamily: "Bricolage Grotesque, sans-serif",
                 fontWeight: 600,
-                fontSize: "20px",
+                fontSize: { xs: "18px", md: "20px" },
                 lineHeight: "100%",
                 letterSpacing: "0%",
                 marginTop: "8px",
@@ -313,8 +348,8 @@ const ContactUs = () => {
               sx={{
                 fontFamily: "Geist, sans-serif",
                 fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "22px",
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: { xs: "20px", md: "22px" },
                 letterSpacing: "0%",
                 marginTop: "8px",
               }}
@@ -324,14 +359,21 @@ const ContactUs = () => {
           </Box>
 
           {/* Kenya Location */}
-          <Box sx={{ width: "165px", textAlign: "center" }}>
+          <Box
+            sx={{
+              width: { xs: "100%", sm: "160px", md: "165px" },
+              textAlign: "center",
+              maxWidth: { xs: "240px", sm: "none" },
+              margin: { xs: "0 auto", sm: "0" },
+            }}
+          >
             <img src={LocationIcon} alt="Location" />
             <Typography
               variant="h6"
               sx={{
                 fontFamily: "Bricolage Grotesque, sans-serif",
                 fontWeight: 600,
-                fontSize: "20px",
+                fontSize: { xs: "18px", md: "20px" },
                 lineHeight: "100%",
                 letterSpacing: "0%",
                 marginTop: "8px",
@@ -344,8 +386,8 @@ const ContactUs = () => {
               sx={{
                 fontFamily: "Geist, sans-serif",
                 fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "22px",
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: { xs: "20px", md: "22px" },
                 letterSpacing: "0%",
                 marginTop: "8px",
               }}
@@ -355,14 +397,21 @@ const ContactUs = () => {
           </Box>
 
           {/* Tanzania Location */}
-          <Box sx={{ width: "165px", textAlign: "center" }}>
+          <Box
+            sx={{
+              width: { xs: "100%", sm: "160px", md: "165px" },
+              textAlign: "center",
+              maxWidth: { xs: "240px", sm: "none" },
+              margin: { xs: "0 auto", sm: "0" },
+            }}
+          >
             <img src={LocationIcon} alt="Location" />
             <Typography
               variant="h6"
               sx={{
                 fontFamily: "Bricolage Grotesque, sans-serif",
                 fontWeight: 600,
-                fontSize: "20px",
+                fontSize: { xs: "18px", md: "20px" },
                 lineHeight: "100%",
                 letterSpacing: "0%",
                 marginTop: "8px",
@@ -375,8 +424,8 @@ const ContactUs = () => {
               sx={{
                 fontFamily: "Geist, sans-serif",
                 fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "22px",
+                fontSize: { xs: "14px", md: "16px" },
+                lineHeight: { xs: "20px", md: "22px" },
                 letterSpacing: "0%",
                 marginTop: "8px",
               }}
@@ -386,7 +435,7 @@ const ContactUs = () => {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
