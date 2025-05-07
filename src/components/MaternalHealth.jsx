@@ -36,24 +36,50 @@ const MaternalComponent = () => {
     { label: "AI-Driven Infant Care Recovery", value: "9.5M" },
   ];
 
-  const openChatBot = () => {
-    if (window.voiceflow && window.voiceflow.chat) {
-      window.voiceflow.chat.open();
-      console.log("Voiceflow chat opened");
-    } else {
-      console.error("Voiceflow chat not available");
-      setTimeout(() => {
-        if (window.voiceflow && window.voiceflow.chat) {
-          window.voiceflow.chat.open();
-          console.log("Voiceflow chat opened on retry");
-        } else {
-          console.error("Voiceflow chat still not available after retry");
-        }
-      }, 1000);
+  const openChatBot = async () => {
+    try {
+      // First open the chat
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
+
+        // Get the current user ID (or set one if needed)
+        const userID =
+          window.voiceflow.chat.userID ||
+          "user-" + Math.random().toString(36).substring(2, 9);
+
+        // Make a direct API call to set the conversation state
+        await fetch(
+          "https://general-runtime.voiceflow.com/state/user/" +
+            userID +
+            "/interact",
+          {
+            method: "POST",
+            headers: {
+              Authorization: "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb", // Replace with your actual API key
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: {
+                type: "jump",
+                payload: {
+                  blockID: "67d5cdf8b95dee3341a81a87",
+                  // Replace with your actual block ID
+                },
+              },
+            }),
+          }
+        );
+
+        console.log("API call made to jump to health facility");
+      } else {
+        console.error("Voiceflow chat not available");
+      }
+    } catch (error) {
+      console.error("Error using API approach:", error);
     }
+
     window.scrollTo(0, 0);
   };
-
   return (
     <Box
       sx={{

@@ -50,21 +50,260 @@ const Navbar = () => {
     setDrawerOpen(false);
   };
 
-  // Function to open the chatbot
-  const openChatbot = () => {
-    const dfMessenger = document.querySelector("df-messenger");
-    if (dfMessenger) {
-      // Try to find the chat button in the shadow DOM
-      const chatButton = dfMessenger.shadowRoot.querySelector(
-        "df-messenger-button button.df-messenger-button"
-      );
+  const openChatBot = async (blockID = null) => {
+    try {
+      // First open the chat
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
 
-      if (chatButton) {
-        chatButton.click();
-        return true;
+        // Only make the API call if a blockID is provided
+        if (blockID) {
+          // Get the current user ID (or set one if needed)
+          const userID =
+            window.voiceflow.chat.userID ||
+            "user-" + Math.random().toString(36).substring(2, 9);
+
+          // Make a direct API call to set the conversation state
+          await fetch(
+            "https://general-runtime.voiceflow.com/state/user/" +
+              userID +
+              "/interact",
+            {
+              method: "POST",
+              headers: {
+                Authorization:
+                  "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                action: {
+                  type: "jump",
+                  payload: {
+                    blockID: blockID,
+                  },
+                },
+              }),
+            }
+          );
+
+          console.log(`API call made to jump to block ${blockID}`);
+        }
+      } else {
+        console.error("Voiceflow chat not available");
+        // Fallback - if the chat isn't loaded yet, try again in a moment
+        setTimeout(() => {
+          if (window.voiceflow && window.voiceflow.chat) {
+            window.voiceflow.chat.open();
+            console.log("Voiceflow chat opened on retry");
+          } else {
+            console.error("Voiceflow chat still not available after retry");
+          }
+        }, 1000);
       }
+    } catch (error) {
+      console.error("Error using API approach:", error);
     }
-    return false;
+
+    window.scrollTo(0, 0);
+  };
+
+  // Doctor-specific function
+  const openChatBotDoctor = async () => {
+    try {
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
+        const userID =
+          window.voiceflow.chat.userID ||
+          "user-" + Math.random().toString(36).substring(2, 9);
+
+        await fetch(
+          `https://general-runtime.voiceflow.com/state/user/${userID}/interact`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: {
+                type: "jump",
+                payload: {
+                  blockID: "67d5d1beb95dee3341a81acf", // Doctor block ID
+                },
+              },
+            }),
+          }
+        );
+        console.log("Jumped to Doctor registration");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    window.scrollTo(0, 0);
+  };
+
+  // School-specific function
+  const openChatBotSchool = async () => {
+    try {
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
+        const userID =
+          window.voiceflow.chat.userID ||
+          "user-" + Math.random().toString(36).substring(2, 9);
+
+        await fetch(
+          `https://general-runtime.voiceflow.com/state/user/${userID}/interact`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: {
+                type: "jump",
+                payload: {
+                  blockID: "67d3f72304956905c694c469", // School block ID
+                },
+              },
+            }),
+          }
+        );
+        console.log("Jumped to School registration");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    window.scrollTo(0, 0);
+  };
+
+  // Pharmacy-specific function
+  const openChatBotPharmacy = async () => {
+    try {
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
+        const userID =
+          window.voiceflow.chat.userID ||
+          "user-" + Math.random().toString(36).substring(2, 9);
+
+        await fetch(
+          `https://general-runtime.voiceflow.com/state/user/${userID}/interact`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: {
+                type: "jump",
+                payload: {
+                  blockID: "67d5df761899296d470aa1d8", // Pharmacy block ID
+                },
+              },
+            }),
+          }
+        );
+        console.log("Jumped to Pharmacy registration");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    window.scrollTo(0, 0);
+  };
+
+  // Laboratory-specific function
+  const openChatBotLaboratory = async () => {
+    try {
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
+        const userID =
+          window.voiceflow.chat.userID ||
+          "user-" + Math.random().toString(36).substring(2, 9);
+
+        await fetch(
+          `https://general-runtime.voiceflow.com/state/user/${userID}/interact`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: {
+                type: "jump",
+                payload: {
+                  blockID: "67d5d756b95dee3341a81b27", // Laboratory block ID
+                },
+              },
+            }),
+          }
+        );
+        console.log("Jumped to Laboratory registration");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    window.scrollTo(0, 0);
+  };
+
+  // Patient-specific function
+  const openChatBotPatient = async () => {
+    try {
+      if (window.voiceflow && window.voiceflow.chat) {
+        window.voiceflow.chat.open();
+        const userID =
+          window.voiceflow.chat.userID ||
+          "user-" + Math.random().toString(36).substring(2, 9);
+
+        await fetch(
+          `https://general-runtime.voiceflow.com/state/user/${userID}/interact`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "VF.DM.67d83b405ba282486271b4c2.WWCyGXI9kTCxOHdb",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: {
+                type: "jump",
+                payload: {
+                  blockID: "patient-block-id-here", // Patient block ID
+                },
+              },
+            }),
+          }
+        );
+        console.log("Jumped to Patient registration");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    window.scrollTo(0, 0);
+  };
+
+  // Doctor registration handler
+  const handleDoctorClick = () => {
+    handleItemClick("Doctor");
+    openChatBot("64dbb6696a8fab0013dba194"); // Doctor block ID
+  };
+
+  // School registration handler
+  const handleSchoolClick = () => {
+    handleItemClick("School");
+    openChatBot("67d3f72304956905c694c469"); // School block ID
+  };
+
+  // Pharmacy registration handler
+  const handlePharmacyClick = () => {
+    handleItemClick("Pharmacy");
+    openChatBot("67d5df761899296d470aa1d8"); // Pharmacy block ID
+  };
+
+  // Laboratory registration handler
+  const handleLaboratoryClick = () => {
+    handleItemClick("Laboratory");
+    openChatBot("67d5d756b95dee3341a81b27"); // Laboratory block ID
   };
 
   // Function to send a message to the chatbot
@@ -127,8 +366,6 @@ const Navbar = () => {
     } else {
       // If chatbot didn't open, try again after a delay
       setTimeout(() => {
-        openChatbot();
-
         // Try to send the message after another delay
         setTimeout(() => {
           sendMessageToChatbot(`I want to register as a ${type}`);
@@ -173,8 +410,6 @@ const Navbar = () => {
         } else {
           // If opening failed, try again after a longer delay
           setTimeout(() => {
-            openChatbot();
-
             setTimeout(() => {
               if (
                 sendMessageToChatbot(
@@ -369,61 +604,26 @@ const Navbar = () => {
                   style: { padding: 0 },
                 }}
               >
-                <MenuItem
-                  onClick={() => {
-                    handleRegistrationClick("Doctor");
-                    handleItemClick("Doctor");
+                {/*
+<MenuItem
+  onClick={() => {
+    handleItemClick("Patient");
+    openChatBotPatient();
+  }}
+  sx={menuItemStyles("Patient")}
+>
+  Register as a Patient
+</MenuItem>
+*/}
 
-                    // Open Voiceflow bot
-                    if (window.voiceflow && window.voiceflow.chat) {
-                      window.voiceflow.chat.open();
-                      console.log("Voiceflow chat opened");
-                    } else {
-                      console.error("Voiceflow chat not available");
-                      // Fallback - if the chat isn't loaded yet, try again in a moment
-                      setTimeout(() => {
-                        if (window.voiceflow && window.voiceflow.chat) {
-                          window.voiceflow.chat.open();
-                          console.log("Voiceflow chat opened on retry");
-                        } else {
-                          console.error(
-                            "Voiceflow chat still not available after retry"
-                          );
-                        }
-                      }, 1000);
-                    }
-                  }}
-                  sx={menuItemStyles("Doctor")}
-                >
-                  Register as a Doctor
-                </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    handleRegistrationClick("Patient");
                     handleItemClick("Patient");
-
-                    // Open Voiceflow bot
-                    if (window.voiceflow && window.voiceflow.chat) {
-                      window.voiceflow.chat.open();
-                      console.log("Voiceflow chat opened");
-                    } else {
-                      console.error("Voiceflow chat not available");
-                      // Fallback - if the chat isn't loaded yet, try again in a moment
-                      setTimeout(() => {
-                        if (window.voiceflow && window.voiceflow.chat) {
-                          window.voiceflow.chat.open();
-                          console.log("Voiceflow chat opened on retry");
-                        } else {
-                          console.error(
-                            "Voiceflow chat still not available after retry"
-                          );
-                        }
-                      }, 1000);
-                    }
+                    openChatBotPatient();
                   }}
                   sx={menuItemStyles("Patient")}
                 >
-                  Register as a Patient
+                  Register as a Doctor
                 </MenuItem>
               </Menu>
             </li>
@@ -467,27 +667,8 @@ const Navbar = () => {
               >
                 <MenuItem
                   onClick={() => {
-                    handleRegistrationClick("School");
                     handleItemClick("School");
-
-                    // Open Voiceflow bot
-                    if (window.voiceflow && window.voiceflow.chat) {
-                      window.voiceflow.chat.open();
-                      console.log("Voiceflow chat opened");
-                    } else {
-                      console.error("Voiceflow chat not available");
-                      // Fallback - if the chat isn't loaded yet, try again in a moment
-                      setTimeout(() => {
-                        if (window.voiceflow && window.voiceflow.chat) {
-                          window.voiceflow.chat.open();
-                          console.log("Voiceflow chat opened on retry");
-                        } else {
-                          console.error(
-                            "Voiceflow chat still not available after retry"
-                          );
-                        }
-                      }, 1000);
-                    }
+                    openChatBotSchool();
                   }}
                   sx={menuItemStyles("School")}
                 >
@@ -495,27 +676,8 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    handleRegistrationClick("Pharmacy");
                     handleItemClick("Pharmacy");
-
-                    // Open Voiceflow bot
-                    if (window.voiceflow && window.voiceflow.chat) {
-                      window.voiceflow.chat.open();
-                      console.log("Voiceflow chat opened");
-                    } else {
-                      console.error("Voiceflow chat not available");
-                      // Fallback - if the chat isn't loaded yet, try again in a moment
-                      setTimeout(() => {
-                        if (window.voiceflow && window.voiceflow.chat) {
-                          window.voiceflow.chat.open();
-                          console.log("Voiceflow chat opened on retry");
-                        } else {
-                          console.error(
-                            "Voiceflow chat still not available after retry"
-                          );
-                        }
-                      }, 1000);
-                    }
+                    openChatBotPharmacy();
                   }}
                   sx={menuItemStyles("Pharmacy")}
                 >
@@ -523,27 +685,8 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    handleRegistrationClick("Laboratory");
                     handleItemClick("Laboratory");
-
-                    // Open Voiceflow bot
-                    if (window.voiceflow && window.voiceflow.chat) {
-                      window.voiceflow.chat.open();
-                      console.log("Voiceflow chat opened");
-                    } else {
-                      console.error("Voiceflow chat not available");
-                      // Fallback - if the chat isn't loaded yet, try again in a moment
-                      setTimeout(() => {
-                        if (window.voiceflow && window.voiceflow.chat) {
-                          window.voiceflow.chat.open();
-                          console.log("Voiceflow chat opened on retry");
-                        } else {
-                          console.error(
-                            "Voiceflow chat still not available after retry"
-                          );
-                        }
-                      }, 1000);
-                    }
+                    openChatBotLaboratory();
                   }}
                   sx={menuItemStyles("Laboratory")}
                 >

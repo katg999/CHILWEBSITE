@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import WorkIcon from "../assets/images/Work.svg";
-import SHAM3 from "../assets/images/SHAM3.png";
+import SHAM3 from "../assets/images/SHAM56.jpeg";
 import ArrowIcon from "../assets/images/arrow-right-02-sharp.svg";
 
 const OurWorksSection = () => {
