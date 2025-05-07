@@ -86,7 +86,7 @@ function sendFileUrlToBackend(fileUrl) {
   console.log("Sending file URL update:", payload);
 
   fetch(
-    "https://laravelbackendchil.onrender.com/api/update-latest-school-file",
+    "https://laravelbackendchil.onrender.com/api/update-latest-health-facility-file",
     {
       method: "PATCH",
       headers: {
