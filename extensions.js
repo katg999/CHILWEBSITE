@@ -183,7 +183,7 @@ function sendFileUrlToBackend(fileUrl, endpoint, uploadType) {
   console.log(`Sending ${uploadType} file URL to backend:`, payload);
 
   fetch(
-    "https://laravelbackendchil.onrender.com/api/update-latest-doctor-file",
+    "https://laravelbackendchil.onrender.com/api/update-latest-health-facility-file",
     {
       method: "PATCH",
       headers: {
