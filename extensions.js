@@ -18,9 +18,9 @@ export const FileUploadExtension = {
       ? "https://laravelbackendchil.onrender.com/api/update-latest-doctor-file"
       : "https://laravelbackendchil.onrender.com/api/update-latest-school-file";
     const signedUrlEndpoint =
-      "https://laravelbackendchil.onrender.com/signed-url";
+      "https://laravelbackendchil.onrender.com/api/documents/signed-url";
     const storeUrlsEndpoint =
-      "https://laravelbackendchil.onrender.com/store-file-urls";
+      "https://laravelbackendchil.onrender.com/api/documents/store-file-urls";
 
     console.log(`[FileUpload] Initializing for ${uploadType} upload`);
     console.log(`[Endpoints] 
