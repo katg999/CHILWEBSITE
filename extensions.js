@@ -169,8 +169,7 @@ export const FileUploadExtension = {
             <img src="https://s3.amazonaws.com/com.voiceflow.studio/share/check/check.gif" 
                  alt="Success" width="50" height="50">
             <div class="small mt-2">Document uploaded successfully!</div>
-            <div class="small mt-2">Temporary link: <a href="${tempFileUrl}" target="_blank">View File</a></div>
-            <div class="small mt-2">Permanent link: <a href="${permanentUrl}" target="_blank">View File</a></div>
+      
           </div>
         `;
 
