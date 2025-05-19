@@ -168,9 +168,7 @@ export const FileUploadExtension = {
           <div class="text-center text-success">
             <img src="https://s3.amazonaws.com/com.voiceflow.studio/share/check/check.gif" 
                  alt="Success" width="50" height="50">
-            <div class="small mt-2">Document uploaded successfully!</div>
-      
-          </div>
+            <div class="small mt-2">Document uploaded successfully!</div>          </div>
         `;
 
         // Send to Voiceflow
@@ -185,14 +183,8 @@ export const FileUploadExtension = {
         });
 
         // Send to the original endpoint for compatibility (optional since our proxy already updates the model)
-        console.log(`[Legacy Backend] Updating record at: ${endpoint}`);
-        await sendFileUrlToBackend(
-          {
-            permanent_url: permanentUrl,
-            temp_url: tempFileUrl,
-          },
-          endpoint,
-          uploadType
+        console.log(
+          `[Legacy Backend] Skipping redundant update as proxy already handled it`
         );
       } catch (error) {
         console.error(`[Error] ${uploadType} file upload error:`, error);
