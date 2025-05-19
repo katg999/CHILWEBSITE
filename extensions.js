@@ -1,3 +1,4 @@
+// Modified FileUploadExtension.js to use the proxy upload approach
 export const FileUploadExtension = {
   name: "UnifiedFileUpload",
   type: "response",
@@ -17,6 +18,12 @@ export const FileUploadExtension = {
     const endpoint = isDoctorUpload
       ? "https://laravelbackendchil.onrender.com/api/update-latest-doctor-file"
       : "https://laravelbackendchil.onrender.com/api/update-latest-school-file";
+
+    // New proxy upload endpoint
+    const proxyUploadEndpoint =
+      "https://laravelbackendchil.onrender.com/api/documents/proxy-upload";
+
+    // Keep these for fallback
     const signedUrlEndpoint =
       "https://laravelbackendchil.onrender.com/api/documents/signed-url";
     const storeUrlsEndpoint =
@@ -24,6 +31,7 @@ export const FileUploadExtension = {
 
     console.log(`[FileUpload] Initializing for ${uploadType} upload`);
     console.log(`[Endpoints] 
+      Proxy Upload: ${proxyUploadEndpoint}
       Signed URL: ${signedUrlEndpoint}
       Store URLs: ${storeUrlsEndpoint}
       Update Endpoint: ${endpoint}`);
@@ -123,104 +131,46 @@ export const FileUploadExtension = {
       `;
 
       try {
-        // Step 1: Upload to temporary storage (for admin preview)
-        console.log(`[Temporary Upload] Starting upload to tmpfiles.org`);
-        const tempUploadResponse = await fetch(
-          "https://tmpfiles.org/api/v1/upload",
-          {
-            method: "POST",
-            body: (() => {
-              const data = new FormData();
-              data.append("file", file);
-              return data;
-            })(),
-          }
-        );
-
+        // Using the proxy upload method which handles everything server-side
         console.log(
-          `[Temporary Upload] Response status:`,
-          tempUploadResponse.status
+          `[ProxyUpload] Starting server-side upload via ${proxyUploadEndpoint}`
         );
-        if (!tempUploadResponse.ok) {
-          const errorText = await tempUploadResponse.text();
-          console.error(`[Temporary Upload] Failed:`, errorText);
-          throw new Error(
-            `Temporary upload failed: ${tempUploadResponse.statusText}`
-          );
-        }
 
-        const tempResult = await tempUploadResponse.json();
-        console.log(`[Temporary Upload] Response data:`, tempResult);
-        const tempFileUrl = tempResult.data.url.replace(
-          "https://tmpfiles.org/",
-          "https://tmpfiles.org/dl/"
-        );
-        console.log(`[Temporary Upload] Final URL:`, tempFileUrl);
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_type", uploadType);
 
-        // Step 2: Get signed URL for permanent storage
-        console.log(
-          `[DigitalOcean] Requesting signed URL from:`,
-          signedUrlEndpoint
-        );
-        const signedUrlResponse = await fetch(signedUrlEndpoint, {
+        const proxyUploadResponse = await fetch(proxyUploadEndpoint, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            filename: file.name,
-            upload_type: uploadType,
-            content_type: file.type,
-          }),
+          body: formData,
         });
 
         console.log(
-          `[DigitalOcean] Signed URL response status:`,
-          signedUrlResponse.status
+          `[ProxyUpload] Response status:`,
+          proxyUploadResponse.status
         );
-        if (!signedUrlResponse.ok) {
-          const errorText = await signedUrlResponse.text();
-          console.error(`[DigitalOcean] Failed to get signed URL:`, errorText);
-          throw new Error(
-            `Failed to get signed URL: ${signedUrlResponse.statusText}`
-          );
+
+        if (!proxyUploadResponse.ok) {
+          const errorText = await proxyUploadResponse.text();
+          console.error(`[ProxyUpload] Failed:`, errorText);
+          throw new Error(`Upload failed: ${proxyUploadResponse.statusText}`);
         }
 
-        const signedUrlData = await signedUrlResponse.json();
-        console.log(`[DigitalOcean] Signed URL data:`, signedUrlData);
-        const { upload_url, public_url } = signedUrlData;
+        const result = await proxyUploadResponse.json();
+        console.log(`[ProxyUpload] Success:`, result);
 
-        // Step 3: Upload to DigitalOcean Spaces (permanent storage)
-        console.log(`[DigitalOcean] Uploading to Spaces using signed URL`);
-        const permanentUploadResponse = await fetch(upload_url, {
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type,
-          },
-          body: file,
-        });
-
-        console.log(
-          `[DigitalOcean] Upload response status:`,
-          permanentUploadResponse.status
-        );
-        if (!permanentUploadResponse.ok) {
-          const errorText = await permanentUploadResponse.text();
-          console.error(`[DigitalOcean] Upload failed:`, errorText);
-          throw new Error(
-            `Permanent upload failed: ${permanentUploadResponse.statusText}`
-          );
-        }
+        const permanentUrl = result.file_url;
+        const tempFileUrl = result.temp_file_url;
 
         // Success UI
-        console.log(`[Success] Both uploads completed successfully`);
+        console.log(`[Success] Server-side upload completed successfully`);
         fileUploadContainer.innerHTML = `
           <div class="text-center text-success">
             <img src="https://s3.amazonaws.com/com.voiceflow.studio/share/check/check.gif" 
                  alt="Success" width="50" height="50">
             <div class="small mt-2">Document uploaded successfully!</div>
             <div class="small mt-2">Temporary link: <a href="${tempFileUrl}" target="_blank">View File</a></div>
-            <div class="small mt-2">Permanent link: <a href="${public_url}" target="_blank">View File</a></div>
+            <div class="small mt-2">Permanent link: <a href="${permanentUrl}" target="_blank">View File</a></div>
           </div>
         `;
 
@@ -229,39 +179,17 @@ export const FileUploadExtension = {
         window.voiceflow.chat.interact({
           type: "complete",
           payload: {
-            file_url: public_url,
+            file_url: permanentUrl,
             temp_file_url: tempFileUrl,
             upload_type: uploadType,
           },
         });
 
-        // Send to backend - using the new store-file-urls endpoint
-        console.log(`[Backend] Storing URLs at: ${storeUrlsEndpoint}`);
-        const storeResponse = await fetch(storeUrlsEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            permanent_url: public_url,
-            temp_url: tempFileUrl,
-            upload_type: uploadType,
-          }),
-        });
-
-        if (!storeResponse.ok) {
-          const errorText = await storeResponse.text();
-          console.error(`[Backend] Failed to store URLs:`, errorText);
-        } else {
-          const result = await storeResponse.json();
-          console.log(`[Backend] URLs stored successfully:`, result);
-        }
-
-        // Also send to the original endpoint for compatibility
-        console.log(`[Backend] Updating record at: ${endpoint}`);
+        // Send to the original endpoint for compatibility (optional since our proxy already updates the model)
+        console.log(`[Legacy Backend] Updating record at: ${endpoint}`);
         await sendFileUrlToBackend(
           {
-            permanent_url: public_url,
+            permanent_url: permanentUrl,
             temp_url: tempFileUrl,
           },
           endpoint,
