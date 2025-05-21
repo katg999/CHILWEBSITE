@@ -23,7 +23,7 @@ export const FileUploadExtension = {
 
     // Health facility endpoint that needs to be called in all cases
     const healthFacilityEndpoint =
-      "https://laravelbackendchil.onrender.com/api/update-latest-doctor-file";
+      "https://laravelbackendchil.onrender.com/api/update-latest-health-facility-file";
 
     // New proxy upload endpoint for Digital Ocean
     const proxyUploadEndpoint =
