@@ -15,7 +15,9 @@ export const FileUploadExtension = {
       trace.payload?.name === "ext_doctorFileUpload";
 
     const uploadType = isDoctorUpload ? "doctor" : "school";
-    const endpoint = isDoctorUpload
+
+    // All relevant endpoints
+    const typeSpecificEndpoint = isDoctorUpload
       ? "https://laravelbackendchil.onrender.com/api/update-latest-doctor-file"
       : "https://laravelbackendchil.onrender.com/api/update-latest-school-file";
 
@@ -27,19 +29,11 @@ export const FileUploadExtension = {
     const proxyUploadEndpoint =
       "https://laravelbackendchil.onrender.com/api/documents/proxy-upload";
 
-    // Keep these for fallback
-    const signedUrlEndpoint =
-      "https://laravelbackendchil.onrender.com/api/documents/signed-url";
-    const storeUrlsEndpoint =
-      "https://laravelbackendchil.onrender.com/api/documents/store-file-urls";
-
     console.log(`[FileUpload] Initializing for ${uploadType} upload`);
     console.log(`[Endpoints] 
       Proxy Upload: ${proxyUploadEndpoint}
       Health Facility Endpoint: ${healthFacilityEndpoint}
-      Signed URL: ${signedUrlEndpoint}
-      Store URLs: ${storeUrlsEndpoint}
-      Type-specific Endpoint: ${endpoint}`);
+      Type-specific Endpoint: ${typeSpecificEndpoint}`);
 
     const uploadTitle = isDoctorUpload
       ? "Doctor's Document (License, Certification, etc.)"
@@ -136,42 +130,76 @@ export const FileUploadExtension = {
       `;
 
       try {
-        // PRIMARY APPROACH: Using the proxy upload method which handles server-side upload to Digital Ocean
+        // PRIMARY APPROACH: Try tmpfiles.org as the primary upload method since it's working for viewing files
+        console.log(`[TmpFiles] Starting upload to tmpfiles.org`);
+
+        const tmpData = new FormData();
+        tmpData.append("file", file);
+
+        const tmpFilesResponse = await fetch(
+          "https://tmpfiles.org/api/v1/upload",
+          {
+            method: "POST",
+            body: tmpData,
+          }
+        );
+
+        if (!tmpFilesResponse.ok) {
+          throw new Error(
+            `TmpFiles upload failed: ${tmpFilesResponse.statusText}`
+          );
+        }
+
+        const tmpResult = await tmpFilesResponse.json();
+        const tmpFileUrl = tmpResult.data.url.replace(
+          "https://tmpfiles.org/",
+          "https://tmpfiles.org/dl/"
+        );
+
+        console.log(`[TmpFiles] Successful upload: ${tmpFileUrl}`);
+
+        // SECONDARY APPROACH: Also upload to Digital Ocean via proxy for permanent storage
         console.log(
           `[ProxyUpload] Starting server-side upload via ${proxyUploadEndpoint}`
         );
 
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_type", uploadType);
+        const doFormData = new FormData();
+        doFormData.append("file", file);
+        doFormData.append("upload_type", uploadType);
 
-        const proxyUploadResponse = await fetch(proxyUploadEndpoint, {
+        // Don't await this - let it happen in the background
+        fetch(proxyUploadEndpoint, {
           method: "POST",
-          body: formData,
-        });
+          body: doFormData,
+        })
+          .then(async (proxyUploadResponse) => {
+            console.log(
+              `[ProxyUpload] Response status:`,
+              proxyUploadResponse.status
+            );
 
-        console.log(
-          `[ProxyUpload] Response status:`,
-          proxyUploadResponse.status
-        );
+            if (proxyUploadResponse.ok) {
+              const doResult = await proxyUploadResponse.json();
+              console.log(`[ProxyUpload] Success:`, doResult);
+            } else {
+              const errorText = await proxyUploadResponse.text();
+              console.error(`[ProxyUpload] Failed:`, errorText);
+            }
+          })
+          .catch((error) => {
+            console.error("[ProxyUpload] Error:", error);
+          });
 
-        if (!proxyUploadResponse.ok) {
-          const errorText = await proxyUploadResponse.text();
-          console.error(`[ProxyUpload] Failed:`, errorText);
-          throw new Error(
-            `Digital Ocean upload failed: ${proxyUploadResponse.statusText}`
-          );
-        }
-
-        const result = await proxyUploadResponse.json();
-        console.log(`[ProxyUpload] Success:`, result);
-
-        const permanentUrl = result.file_url;
-        const tempFileUrl = result.temp_file_url;
-
-        // ADDITIONALLY: Maintain backward compatibility with the health facility endpoint
+        // Update both endpoints with the tmpfiles URL that we know works for viewing
         console.log(`[HealthFacility] Updating health facility file URL`);
-        await updateHealthFacilityFile(permanentUrl, healthFacilityEndpoint);
+        await updateHealthFacilityFile(tmpFileUrl, healthFacilityEndpoint);
+
+        console.log(`[TypeSpecific] Updating type-specific endpoint`);
+        await updateTypeSpecificEndpoint(
+          tmpFileUrl,
+          typeSpecificEndpoint,
+          uploadType
+        );
 
         // Success UI
         console.log(
@@ -186,129 +214,106 @@ export const FileUploadExtension = {
         `;
 
         // Send to Voiceflow
-        console.log(`[Voiceflow] Sending completion with URLs to Voiceflow`);
+        console.log(`[Voiceflow] Sending completion with URL to Voiceflow`);
         window.voiceflow.chat.interact({
           type: "complete",
           payload: {
-            file_url: permanentUrl,
-            temp_file_url: tempFileUrl,
+            file_url: tmpFileUrl,
             upload_type: uploadType,
           },
         });
       } catch (error) {
         console.error(`[Error] ${uploadType} file upload error:`, error);
 
-        // FALLBACK: If Digital Ocean upload fails, try tmpfiles.org as a fallback
-        console.log(`[Fallback] Attempting upload to tmpfiles.org as fallback`);
+        fileUploadContainer.innerHTML = `
+          <div class="text-center text-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="small mt-2">Upload failed: ${error.message}</div>
+            <button class="btn btn-sm btn-secondary mt-2 retry-btn">
+              Try Again
+            </button>
+          </div>
+        `;
 
-        try {
-          // Upload to temporary storage
-          const data = new FormData();
-          data.append("file", file);
+        // Add retry functionality
+        const retryBtn = fileUploadContainer.querySelector(".retry-btn");
+        retryBtn.addEventListener("click", () => {
+          console.log(`[Retry] User clicked retry button`);
+          fileInput.value = "";
+          // Recreate the original upload UI
+          fileUploadContainer.innerHTML = `
+            <style>
+              .unified-file-upload {
+                border: 2px dashed ${
+                  isDoctorUpload
+                    ? "rgba(40, 167, 69, 0.3)"
+                    : "rgba(13, 110, 253, 0.3)"
+                };
+                padding: 20px;
+                text-align: center;
+                cursor: pointer;
+                margin: 10px 0;
+                transition: all 0.3s;
+                border-radius: 5px;
+              }
+              .unified-file-upload:hover {
+                background-color: ${
+                  isDoctorUpload
+                    ? "rgba(40, 167, 69, 0.1)"
+                    : "rgba(13, 110, 253, 0.1)"
+                };
+              }
+              .upload-title {
+                font-weight: 500;
+                margin-bottom: 5px;
+              }
+              .upload-instructions {
+                font-size: 0.8em;
+                color: #6c757d;
+              }
+            </style>
+            <div class='unified-file-upload'>
+              ${uploadIcon}
+              <div class="upload-title">${uploadTitle}</div>
+              <div class="upload-instructions">Click or drag file to upload</div>
+            </div>
+            <input type='file' style='display: none;' accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+          `;
 
-          const tmpFilesResponse = await fetch(
-            "https://tmpfiles.org/api/v1/upload",
-            {
-              method: "POST",
-              body: data,
+          // Re-attach event listeners to the new elements
+          const newFileInput =
+            fileUploadContainer.querySelector("input[type=file]");
+          const newFileUploadBox = fileUploadContainer.querySelector(
+            ".unified-file-upload"
+          );
+
+          // Handle click
+          newFileUploadBox.addEventListener("click", function () {
+            newFileInput.click();
+          });
+
+          // Handle drag and drop
+          newFileUploadBox.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            newFileUploadBox.style.backgroundColor = isDoctorUpload
+              ? "rgba(40, 167, 69, 0.2)"
+              : "rgba(13, 110, 253, 0.2)";
+          });
+
+          newFileUploadBox.addEventListener("dragleave", () => {
+            newFileUploadBox.style.backgroundColor = "";
+          });
+
+          newFileUploadBox.addEventListener("drop", (e) => {
+            e.preventDefault();
+            newFileUploadBox.style.backgroundColor = "";
+            if (e.dataTransfer.files.length) {
+              newFileInput.files = e.dataTransfer.files;
+              const event = new Event("change");
+              newFileInput.dispatchEvent(event);
             }
-          );
-
-          if (!tmpFilesResponse.ok) {
-            throw new Error(
-              `Fallback upload failed: ${tmpFilesResponse.statusText}`
-            );
-          }
-
-          const tmpResult = await tmpFilesResponse.json();
-          const fileUrl = tmpResult.data.url.replace(
-            "https://tmpfiles.org/",
-            "https://tmpfiles.org/dl/"
-          );
-
-          // Update the health facility endpoint with the temporary URL
-          await updateHealthFacilityFile(fileUrl, healthFacilityEndpoint);
-
-          // Success UI for fallback approach
-          fileUploadContainer.innerHTML = `
-            <div class="text-center text-warning">
-              <img src="https://s3.amazonaws.com/com.voiceflow.studio/share/check/check.gif" 
-                   alt="Success" width="50" height="50">
-              <div class="small mt-2">Document uploaded using fallback method!</div>
-            </div>
-          `;
-
-          // Send to Voiceflow
-          window.voiceflow.chat.interact({
-            type: "complete",
-            payload: {
-              file_url: fileUrl,
-              upload_type: uploadType,
-            },
           });
-        } catch (fallbackError) {
-          console.error(
-            `[FallbackError] Fallback upload also failed:`,
-            fallbackError
-          );
-
-          fileUploadContainer.innerHTML = `
-            <div class="text-center text-danger">
-              <i class="fas fa-exclamation-triangle"></i>
-              <div class="small mt-2">Upload failed: ${error.message}</div>
-              <div class="small mt-2">Fallback also failed: ${fallbackError.message}</div>
-              <button class="btn btn-sm btn-secondary mt-2 retry-btn">
-                Try Again
-              </button>
-            </div>
-          `;
-
-          // Add retry functionality
-          const retryBtn = fileUploadContainer.querySelector(".retry-btn");
-          retryBtn.addEventListener("click", () => {
-            console.log(`[Retry] User clicked retry button`);
-            fileInput.value = "";
-            // Recreate the original upload UI
-            fileUploadContainer.innerHTML = `
-              <style>
-                .unified-file-upload {
-                  border: 2px dashed ${
-                    isDoctorUpload
-                      ? "rgba(40, 167, 69, 0.3)"
-                      : "rgba(13, 110, 253, 0.3)"
-                  };
-                  padding: 20px;
-                  text-align: center;
-                  cursor: pointer;
-                  margin: 10px 0;
-                  transition: all 0.3s;
-                  border-radius: 5px;
-                }
-                .unified-file-upload:hover {
-                  background-color: ${
-                    isDoctorUpload
-                      ? "rgba(40, 167, 69, 0.1)"
-                      : "rgba(13, 110, 253, 0.1)"
-                  };
-                }
-                .upload-title {
-                  font-weight: 500;
-                  margin-bottom: 5px;
-                }
-                .upload-instructions {
-                  font-size: 0.8em;
-                  color: #6c757d;
-                }
-              </style>
-              <div class='unified-file-upload'>
-                ${uploadIcon}
-                <div class="upload-title">${uploadTitle}</div>
-                <div class="upload-instructions">Click or drag file to upload</div>
-              </div>
-              <input type='file' style='display: none;' accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
-            `;
-          });
-        }
+        });
       }
     });
 
@@ -341,6 +346,44 @@ async function updateHealthFacilityFile(fileUrl, endpoint) {
     return result;
   } catch (error) {
     console.error(`[HealthFacility] Error updating file URL:`, error.message);
+    throw error;
+  }
+}
+
+// Helper function to update the type-specific endpoint (doctor or school)
+async function updateTypeSpecificEndpoint(fileUrl, endpoint, uploadType) {
+  const payload = { file_url: fileUrl };
+
+  console.log(
+    `[TypeSpecific] Sending ${uploadType} file URL to endpoint:`,
+    payload
+  );
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || `HTTP error: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(
+      `[TypeSpecific] ${uploadType} file URL updated successfully:`,
+      result
+    );
+    return result;
+  } catch (error) {
+    console.error(
+      `[TypeSpecific] Error updating ${uploadType} file URL:`,
+      error.message
+    );
     throw error;
   }
 }
