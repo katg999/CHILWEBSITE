@@ -73,6 +73,7 @@ const WhatWeTreat = () => {
           lineHeight: "40px",
           letterSpacing: "0%",
           marginBottom: "20px",
+          marginTop: "100px",
         }}
       >
         What we treat
