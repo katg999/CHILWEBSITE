@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { sendDiscordMessage } from "../actions";
 import {
   Typography,
   TextField,
@@ -44,6 +45,7 @@ const ContactUs = () => {
     setSuccess(false);
 
     try {
+      // Submit to your API first
       const response = await fetch(
         "https://laravelbackendchil.onrender.com/api/contact-submissions",
         {
@@ -60,6 +62,22 @@ const ContactUs = () => {
 
       if (!response.ok) {
         throw new Error(data.message || "Failed to submit form");
+      }
+
+      // After successful API submission, send to Discord
+      try {
+        // Create FormData for the Discord action
+        const discordFormData = new FormData();
+        discordFormData.append("first_name", formData.first_name);
+        discordFormData.append("last_name", formData.last_name);
+        discordFormData.append("email", formData.email);
+        discordFormData.append("phone", formData.phone);
+        discordFormData.append("message", formData.message);
+
+        await sendDiscordMessage(discordFormData);
+      } catch (discordError) {
+        // Log Discord error but don't fail the entire submission
+        console.warn("Failed to send Discord notification:", discordError);
       }
 
       setSuccess(true);
@@ -122,6 +140,7 @@ const ContactUs = () => {
       {/* Form Section */}
       <Box
         component="form"
+        action={sendDiscordMessage}
         onSubmit={handleSubmit}
         sx={{
           display: "flex",
@@ -156,6 +175,7 @@ const ContactUs = () => {
         >
           <TextField
             fullWidth
+            name="first_name"
             label="First Name (*)"
             variant="outlined"
             placeholder="Enter your first name"
@@ -169,6 +189,7 @@ const ContactUs = () => {
           />
           <TextField
             fullWidth
+            name="last_name"
             label="Last Name (*)"
             variant="outlined"
             placeholder="Enter your last name"
@@ -185,6 +206,7 @@ const ContactUs = () => {
         {/* Contact Fields */}
         <TextField
           fullWidth
+          name="email"
           label="Email (*)"
           variant="outlined"
           placeholder="Enter your email"
@@ -197,6 +219,7 @@ const ContactUs = () => {
 
         <TextField
           fullWidth
+          name="phone"
           label="Phone"
           variant="outlined"
           placeholder="Enter your phone number"
@@ -209,6 +232,7 @@ const ContactUs = () => {
         {/* Message Field */}
         <TextField
           fullWidth
+          name="message"
           label="Message (*)"
           variant="outlined"
           placeholder="Enter your message"
@@ -260,6 +284,13 @@ const ContactUs = () => {
             You agree to our privacy-friendly policy.
           </Typography>
         </Box>
+
+        {/* Hidden input for accept_policy */}
+        <input
+          type="hidden"
+          name="accept_policy"
+          value={formData.accept_policy ? "true" : "false"}
+        />
 
         {/* Submit Button */}
         <Button
