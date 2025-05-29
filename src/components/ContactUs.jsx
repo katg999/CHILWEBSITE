@@ -160,7 +160,8 @@ const ContactUs = () => {
         )}
         {success && (
           <Alert severity="success" sx={{ mb: { xs: 1, md: 2 } }}>
-            Thank you! Your message has been submitted successfully.
+            Thank you! Your message has been submitted successfully(We will Get
+            To You Shortly).
           </Alert>
         )}
 
