@@ -589,10 +589,10 @@ const Careers = () => {
                 sx={{
                   fontFamily: "Bricolage Grotesque",
                   fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "24px",
+                  fontSize: { xs: "16px", sm: "18px" },
+                  lineHeight: { xs: "22px", sm: "24px" },
                   color: "black",
-                  margin: "24px 0 8px 0",
+                  margin: { xs: "20px 0 6px 0", sm: "24px 0 8px 0" },
                   textAlign: "left",
                 }}
               >
@@ -603,10 +603,11 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    ml: -67,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: -10, sm: -3 },
+                    mb: 1,
                   }}
                 >
                   <strong>Sector:</strong> Digital Health / Telemedicine / AI
@@ -615,11 +616,11 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    ml: -70,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
-                    mt: 1,
+                    ml: { xs: -12, sm: -3 },
+                    mb: 1,
                   }}
                 >
                   <strong>Application Deadline:</strong> 25th June 2025
@@ -628,11 +629,11 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    ml: -65,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
-                    mt: 1,
+                    ml: { xs: -7, sm: -3 },
+                    mb: 1,
                   }}
                 >
                   <strong>Apply via Email:</strong> info@chilhygienecenter.org
@@ -642,15 +643,29 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    ml: -14,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: -1, sm: -2 },
                     color: "rgba(0, 0, 0, 0.8)",
                     mt: 2,
                   }}
                 >
-                  <strong>How to Apply:</strong> Send your CV, GitHub/Portfolio
-                  link, and a short cover letter to: info@chilhygienecenter.org
+                  <strong>How to Apply:</strong>
+                  <br />
+                  Send your CV, GitHub/Portfolio link, and a short cover letter
+                  to:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    info@chilhygienecenter.org
+                  </Box>
                 </Typography>
               </Box>
             </CardContent>
