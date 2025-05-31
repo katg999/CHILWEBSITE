@@ -79,7 +79,7 @@ const Careers = () => {
             },
           }}
         >
-          Developers
+          Developers(2)
         </Button>
         <Button
           onClick={() => setActiveTab("impact")}
@@ -473,15 +473,16 @@ const Careers = () => {
               >
                 Preferred Tools & Technologies
               </Typography>
-              <Box sx={{ pl: 3, mb: 2 }}>
+              <Box sx={{ pl: { xs: 2, sm: 3 }, mb: 2 }}>
+                {/* Front-End Section */}
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
-                    ml: -90,
                     color: "rgba(0, 0, 0, 0.9)",
+                    mb: 1,
                   }}
                 >
                   Front-End:
@@ -491,25 +492,25 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.8)",
-
-                    pl: 2,
+                    pl: { xs: 1, sm: 2 },
+                    mb: 2,
                   }}
                 >
-                  React.js, Next.js, JavaScript/TypeScript, HTML/CSS
+                  • React.js, Next.js, JavaScript/TypeScript, HTML/CSS
                 </Typography>
 
+                {/* Back-End Section */}
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.9)",
-                    ml: -90,
-                    marginTop: "8px",
+                    mb: 1,
                   }}
                 >
                   Back-End:
@@ -519,24 +520,25 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.8)",
-                    pl: 2,
+                    pl: { xs: 1, sm: 2 },
+                    mb: 2,
                   }}
                 >
-                  Node.js, Python (Django or FastAPI), PostgreSQL, MongoDB
+                  • Node.js, Python (Django or FastAPI), PostgreSQL, MongoDB
                 </Typography>
 
+                {/* Chatbot Development Section */}
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
-                    ml: -79,
                     color: "rgba(0, 0, 0, 0.9)",
-                    marginTop: "8px",
+                    mb: 1,
                   }}
                 >
                   Chatbot Development:
@@ -546,24 +548,25 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.8)",
-                    pl: 2,
+                    pl: { xs: 1, sm: 2 },
+                    mb: 2,
                   }}
                 >
-                  Rasa, Dialogflow, Microsoft Bot Framework, LangChain
+                  • Rasa, Dialogflow, Microsoft Bot Framework, LangChain
                 </Typography>
 
+                {/* Cloud Section */}
                 <Typography
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.9)",
-                    ml: -94,
-                    marginTop: "8px",
+                    mb: 1,
                   }}
                 >
                   Cloud:
@@ -573,14 +576,13 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.8)",
-                    pl: 2,
+                    pl: { xs: 1, sm: 2 },
                   }}
                 >
-                  AWS, Azure, or Google Cloud Platform
+                  • AWS, Azure, or Google Cloud Platform
                 </Typography>
               </Box>
 
@@ -942,42 +944,56 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    ml: -60,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
                     color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
                   }}
                 >
                   <strong>Location:</strong> Uganda (Remote and Field-Based
                   Work)
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
-                    ml: -48,
-                    mt: 1,
+                    ml: { xs: 0, sm: -2 },
+                    mb: 1,
                   }}
                 >
                   <strong>Application Deadline:</strong> Wednesday, 25th June
                   2025, 5:00 PM EAT
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
-                    ml: -36,
-                    mt: 1,
+                    ml: { xs: 0, sm: -1 },
                   }}
                 >
                   <strong>How to Apply:</strong> Submit your CV and a cover
-                  letter to: info@chilhygienecenter.org
+                  letter to:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    info@chilhygienecenter.org
+                  </Box>
                 </Typography>
               </Box>
             </CardContent>
@@ -1281,42 +1297,56 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    ml: -55,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
                     color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
                   }}
                 >
                   <strong>Location:</strong> Dar es Salaam, Tanzania (with
                   regional travel)
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
-                    ml: -48,
-                    mt: 1,
+                    ml: { xs: 0, sm: -2 },
+                    mb: 1,
                   }}
                 >
                   <strong>Application Deadline:</strong> Wednesday, 25th June
                   2025, 5:00 PM EAT
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
                     color: "rgba(0, 0, 0, 0.8)",
-                    ml: -36,
-                    mt: 1,
+                    ml: { xs: 0, sm: -1 },
                   }}
                 >
                   <strong>How to Apply:</strong> Submit your CV and a cover
-                  letter to: info@chilhygienecenter.org
+                  letter to:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    info@chilhygienecenter.org
+                  </Box>
                 </Typography>
               </Box>
             </CardContent>
@@ -1604,38 +1634,44 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
-                    ml: -50,
+                    ml: { xs: 0, sm: -6.25 }, // 0 on mobile, -50px equivalent on larger screens
                     color: "rgba(0, 0, 0, 0.8)",
+                    px: { xs: 2, sm: 0 }, // Add padding on mobile
                   }}
                 >
                   <strong>Location:</strong> Dubai or Abu Dhabi, United Arab
                   Emirates
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
-                    ml: -40,
+                    ml: { xs: 0, sm: -5 }, // 0 on mobile, -40px equivalent on larger screens
                     color: "rgba(0, 0, 0, 0.8)",
                     mt: 1,
+                    px: { xs: 2, sm: 0 }, // Add padding on mobile
                   }}
                 >
                   <strong>Application Deadline:</strong> Wednesday, 25th June
                   2025, 5:00 PM GST
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.8)",
-                    ml: -27,
+                    ml: { xs: 0, sm: -3.375 }, // 0 on mobile, -27px equivalent on larger screens
                     mt: 1,
+                    px: { xs: 2, sm: 0 }, // Add padding on mobile
+                    wordBreak: "break-word", // Handle long email address
                   }}
                 >
                   <strong>How to Apply:</strong> Submit your CV and a cover
@@ -1915,38 +1951,44 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
-                    ml: -55,
+                    ml: { xs: 0, sm: -6.875 }, // 0 on mobile, -55px equivalent on larger screens
                     color: "rgba(0, 0, 0, 0.8)",
+                    px: { xs: 2, sm: 0 }, // Add padding on mobile
                   }}
                 >
                   <strong>Location:</strong> Various locations across Uganda
                   (Field-based)
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
                     color: "rgba(0, 0, 0, 0.8)",
-                    ml: -48,
+                    ml: { xs: 0, sm: -6 }, // 0 on mobile, -48px equivalent on larger screens
                     mt: 1,
+                    px: { xs: 2, sm: 0 }, // Add padding on mobile
                   }}
                 >
                   <strong>Application Deadline:</strong> Wednesday, 25th June
                   2025, 5:00 PM EAT
                 </Typography>
+
                 <Typography
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px" },
                     lineHeight: "24px",
-                    ml: -30,
+                    ml: { xs: 0, sm: -3.75 }, // 0 on mobile, -30px equivalent on larger screens
                     color: "rgba(0, 0, 0, 0.8)",
                     mt: 1,
+                    px: { xs: 2, sm: 0 }, // Add padding on mobile
+                    wordBreak: "break-word", // Handle long email address
                   }}
                 >
                   <strong>How to Apply:</strong> Submit your CV and a brief
