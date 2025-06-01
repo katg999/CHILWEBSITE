@@ -44,6 +44,7 @@ const Disaster = () => {
           fontSize: "48px",
           lineHeight: "54px",
           letterSpacing: "0%",
+          marginTop: "70px",
           marginBottom: "20px",
         }}
       >
