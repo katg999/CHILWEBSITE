@@ -20,6 +20,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import EHygiene from "./components/EHygiene";
 import MaternalHealth from "./components/MaternalHealth";
 import Careers from "./components/Careers";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Material-UI Components
 import { Container, Box } from "@mui/material";
@@ -61,6 +62,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Box
         sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
