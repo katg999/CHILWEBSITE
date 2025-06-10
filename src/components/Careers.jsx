@@ -966,7 +966,7 @@ const Careers = () => {
                     mb: 1,
                   }}
                 >
-                  <strong>Application Deadline:</strong> Wednesday, 25th June
+                  <strong>Application Deadline:</strong> Wednesday, 30th June
                   2025, 5:00 PM EAT
                 </Typography>
 
@@ -1319,7 +1319,7 @@ const Careers = () => {
                     mb: 1,
                   }}
                 >
-                  <strong>Application Deadline:</strong> Wednesday, 25th June
+                  <strong>Application Deadline:</strong> Wednesday, 30th June
                   2025, 5:00 PM EAT
                 </Typography>
 
@@ -1657,7 +1657,7 @@ const Careers = () => {
                     px: { xs: 2, sm: 0 }, // Add padding on mobile
                   }}
                 >
-                  <strong>Application Deadline:</strong> Wednesday, 25th June
+                  <strong>Application Deadline:</strong> Wednesday, 30th June
                   2025, 5:00 PM GST
                 </Typography>
 
@@ -1974,7 +1974,7 @@ const Careers = () => {
                     px: { xs: 2, sm: 0 }, // Add padding on mobile
                   }}
                 >
-                  <strong>Application Deadline:</strong> Wednesday, 25th June
+                  <strong>Application Deadline:</strong> Wednesday, 30th June
                   2025, 5:00 PM EAT
                 </Typography>
 
