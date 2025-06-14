@@ -188,28 +188,64 @@ const Footer = () => {
                 { name: "E-Hygiene shop", to: "/ehygiene", isRoute: true },
                 { name: "Careers", to: "/careers", isRoute: true },
               ].map((item, index) => (
-                <Link
+                <Box
                   key={index}
-                  component={item.isRoute ? RouterLink : "a"}
-                  to={item.isRoute ? item.to : undefined}
-                  href={!item.isRoute ? item.to : undefined}
                   sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "12px", md: "14px" },
-                    lineHeight: "18px",
-                    letterSpacing: "-0.02em",
-                    textAlign: { xs: "center", sm: "left" },
-                    color: "#333",
-                    textDecoration: "none",
-                    display: "block",
-                    "&:hover": {
-                      color: "#890085",
-                    },
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
                   }}
                 >
-                  {item.name}
-                </Link>
+                  <Link
+                    component={item.isRoute ? RouterLink : "a"}
+                    to={item.isRoute ? item.to : undefined}
+                    href={!item.isRoute ? item.to : undefined}
+                    sx={{
+                      fontFamily: "Geist",
+                      fontWeight: 400,
+                      fontSize: { xs: "12px", md: "14px" },
+                      lineHeight: "18px",
+                      letterSpacing: "-0.02em",
+                      textAlign: { xs: "center", sm: "left" },
+                      color: "#333",
+                      textDecoration: "none",
+                      "&:hover": {
+                        color: "#890085",
+                      },
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                  {item.name === "Careers" && (
+                    <Button
+                      variant="outlined"
+                      component={RouterLink}
+                      to="/careers"
+                      sx={{
+                        fontFamily: "Geist",
+                        fontWeight: 500,
+                        fontSize: "14px",
+                        lineHeight: "21px",
+                        letterSpacing: "-0.02em",
+                        backgroundColor: "#F4FFE9",
+                        color: "#529700",
+                        borderRadius: "20px",
+                        border: "0.6px solid #F4FFE9",
+                        padding: "3px 12px",
+                        minWidth: "55px",
+                        height: "24px",
+                        marginRight: "20px",
+                        textTransform: "none",
+                        "&:hover": {
+                          backgroundColor: "#E0F5D1",
+                          border: "0.6px solid #E0F5D1",
+                        },
+                      }}
+                    >
+                      We're hiring!
+                    </Button>
+                  )}
+                </Box>
               ))}
             </Stack>
           </Grid>
