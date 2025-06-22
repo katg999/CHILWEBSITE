@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, Card, CardContent } from "@mui/material";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const Careers = () => {
-  const [activeTab, setActiveTab] = useState("developers");
+  const [activeTab, setActiveTab] = useState("bids");
 
   return (
     <Box
@@ -60,7 +61,7 @@ const Careers = () => {
         }}
       >
         <Button
-          onClick={() => setActiveTab("developers")}
+          onClick={() => setActiveTab("bids")}
           sx={{
             fontFamily: "Geist",
             fontWeight: 500,
@@ -79,7 +80,7 @@ const Careers = () => {
             },
           }}
         >
-          Developers(2)
+          BID NOTICE(4)
         </Button>
         <Button
           onClick={() => setActiveTab("impact")}
@@ -142,23 +143,25 @@ const Careers = () => {
         </Button>
       </Box>
 
-      {/* Developers Section */}
-      {activeTab === "developers" && (
+      {/* Bids  Section */}
+      {/* Bids Section */}
+      {activeTab === "bids" && (
         <Box sx={{ width: "100%", maxWidth: "900px" }}>
+          {/* Bid Notice 1 */}
           <Card
             sx={{
               width: "100%",
               borderRadius: "12px",
               boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-              marginBottom: "40px",
+              marginBottom: "24px",
             }}
           >
-            <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
+            <CardContent sx={{ padding: { xs: "20px", md: "24px" } }}>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  marginBottom: "24px",
+                  marginBottom: "16px",
                   gap: "12px",
                   flexWrap: "wrap",
                 }}
@@ -167,13 +170,12 @@ const Careers = () => {
                   sx={{
                     fontFamily: "Bricolage Grotesque",
                     fontWeight: 600,
-                    fontSize: "22px",
+                    fontSize: "20px",
                     lineHeight: "24px",
                     color: "#7F007B",
-                    marginRight: "12px",
                   }}
                 >
-                  Front-End & Back-End Developers
+                  Dettol Hygiene Quest Data Assessment Consultancy Services
                 </Typography>
                 <Button
                   variant="outlined"
@@ -197,7 +199,7 @@ const Careers = () => {
                     },
                   }}
                 >
-                  Hiring
+                  Active
                 </Button>
               </Box>
 
@@ -209,469 +211,318 @@ const Careers = () => {
                   lineHeight: "24px",
                   color: "rgba(0, 0, 0, 0.8)",
                   marginBottom: "16px",
-                  textAlign: "left",
                 }}
               >
-                Are you passionate about building intelligent, scalable digital
-                health solutions? KETI AI Solutions is expanding! We're looking
-                for 1 Front-End Developer and 1 Back-End Developer to join our
-                team and help scale our AI-powered telemedicine and chatbot
-                platforms across Africa.
+                Official bid notice for the Dettol Hygiene Quest program
+                implementation. Includes scope of work, requirements, and
+                submission guidelines.
               </Typography>
 
-              {/* Positions Available */}
-              <Typography
+              <Button
+                variant="contained"
+                href="https://docs.google.com/document/d/1IOWB6qTascKrqKMSFX2xjQznIxuD2c8-/edit?usp=sharing&ouid=103687665460868616174&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
                 sx={{
-                  fontFamily: "Bricolage Grotesque",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "24px",
-                  color: "black",
-                  margin: "24px 0 8px 0",
-                  textAlign: "left",
+                  backgroundColor: "#7F007B",
+                  "&:hover": { backgroundColor: "#6A0066" },
+                  textTransform: "none",
+                  mt: 1,
                 }}
               >
-                Positions Available
-              </Typography>
-              <Box sx={{ pl: 3, mb: 2 }}>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                  }}
-                >
-                  • Front-End Developer
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                  }}
-                >
-                  • Back-End Developer
-                </Typography>
-              </Box>
-
-              {/* Experience Required */}
-              <Typography
-                sx={{
-                  fontFamily: "Bricolage Grotesque",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "24px",
-                  color: "black",
-                  margin: "24px 0 8px 0",
-                  textAlign: "left",
-                }}
-              >
-                Experience Required
-              </Typography>
-              <Box sx={{ pl: 3, mb: 2 }}>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                  }}
-                >
-                  • Minimum 3 years of professional software development
-                  experience
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                  }}
-                >
-                  • Proven track record in building intelligent chatbots and
-                  scalable systems
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                  }}
-                >
-                  • Health tech experience is a strong plus
-                </Typography>
-              </Box>
-
-              {/* Key Responsibilities */}
-              <Typography
-                sx={{
-                  fontFamily: "Bricolage Grotesque",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "24px",
-                  color: "black",
-                  margin: "24px 0 8px 0",
-                  textAlign: "left",
-                }}
-              >
-                Key Responsibilities
-              </Typography>
-              <Box sx={{ pl: 3, mb: 2 }}>
-                <Typography
-                  sx={{
-                    fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.9)",
-                    marginTop: "12px",
-                  }}
-                >
-                  Front-End Developer:
-                </Typography>
-                <Box sx={{ pl: 2 }}>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Build and maintain responsive, user-friendly web and
-                    mobile interfaces
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Integrate chatbot and telemedicine features seamlessly
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Collaborate with designers and product teams for an
-                    excellent UX
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Optimize performance and ensure cross-device compatibility
-                  </Typography>
-                </Box>
-
-                <Typography
-                  sx={{
-                    fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.9)",
-                    marginTop: "12px",
-                  }}
-                >
-                  Back-End Developer:
-                </Typography>
-                <Box sx={{ pl: 2 }}>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Develop and manage robust APIs and server-side logic
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Integrate with chatbot engines and AI services
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Ensure platform security, data encryption, and scalability
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontFamily: "Geist",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      color: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  >
-                    • Monitor and optimize system performance
-                  </Typography>
-                </Box>
-              </Box>
-
-              {/* Preferred Tools */}
-              <Typography
-                sx={{
-                  fontFamily: "Bricolage Grotesque",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "24px",
-                  color: "black",
-                  margin: "24px 0 8px 0",
-                  textAlign: "left",
-                }}
-              >
-                Preferred Tools & Technologies
-              </Typography>
-              <Box sx={{ pl: { xs: 2, sm: 3 }, mb: 2 }}>
-                {/* Front-End Section */}
-                <Typography
-                  sx={{
-                    fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.9)",
-                    mb: 1,
-                  }}
-                >
-                  Front-End:
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                    pl: { xs: 1, sm: 2 },
-                    mb: 2,
-                  }}
-                >
-                  • React.js, Next.js, JavaScript/TypeScript, HTML/CSS
-                </Typography>
-
-                {/* Back-End Section */}
-                <Typography
-                  sx={{
-                    fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.9)",
-                    mb: 1,
-                  }}
-                >
-                  Back-End:
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                    pl: { xs: 1, sm: 2 },
-                    mb: 2,
-                  }}
-                >
-                  • Node.js, Python (Django or FastAPI), PostgreSQL, MongoDB
-                </Typography>
-
-                {/* Chatbot Development Section */}
-                <Typography
-                  sx={{
-                    fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.9)",
-                    mb: 1,
-                  }}
-                >
-                  Chatbot Development:
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                    pl: { xs: 1, sm: 2 },
-                    mb: 2,
-                  }}
-                >
-                  • Rasa, Dialogflow, Microsoft Bot Framework, LangChain
-                </Typography>
-
-                {/* Cloud Section */}
-                <Typography
-                  sx={{
-                    fontFamily: "Bricolage Grotesque",
-                    fontWeight: 600,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.9)",
-                    mb: 1,
-                  }}
-                >
-                  Cloud:
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: "24px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                    pl: { xs: 1, sm: 2 },
-                  }}
-                >
-                  • AWS, Azure, or Google Cloud Platform
-                </Typography>
-              </Box>
-
-              {/* Application Details */}
-              <Typography
-                sx={{
-                  fontFamily: "Bricolage Grotesque",
-                  fontWeight: 600,
-                  fontSize: { xs: "16px", sm: "18px" },
-                  lineHeight: { xs: "22px", sm: "24px" },
-                  color: "black",
-                  margin: { xs: "20px 0 6px 0", sm: "24px 0 8px 0" },
-                  textAlign: "left",
-                }}
-              >
-                Application Details
-              </Typography>
-              <Box sx={{ pl: 3, mb: 2 }}>
-                <Typography
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: { xs: "20px", sm: "24px" },
-                    color: "rgba(0, 0, 0, 0.8)",
-                    ml: { xs: -10, sm: -3 },
-                    mb: 1,
-                  }}
-                >
-                  <strong>Sector:</strong> Digital Health / Telemedicine / AI
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: { xs: "20px", sm: "24px" },
-                    color: "rgba(0, 0, 0, 0.8)",
-                    ml: { xs: -12, sm: -3 },
-                    mb: 1,
-                  }}
-                >
-                  <strong>Application Deadline:</strong> 25th June 2025
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: { xs: "20px", sm: "24px" },
-                    color: "rgba(0, 0, 0, 0.8)",
-                    ml: { xs: -7, sm: -3 },
-                    mb: 1,
-                  }}
-                >
-                  <strong>Apply via Email:</strong> info@chilhygienecenter.org
-                </Typography>
-
-                <Typography
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "14px", sm: "16px" },
-                    lineHeight: { xs: "20px", sm: "24px" },
-                    ml: { xs: -1, sm: -2 },
-                    color: "rgba(0, 0, 0, 0.8)",
-                    mt: 2,
-                  }}
-                >
-                  <strong>How to Apply:</strong>
-                  <br />
-                  Send your CV, GitHub/Portfolio link, and a short cover letter
-                  to:{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      wordBreak: { xs: "break-all", sm: "normal" },
-                      display: { xs: "block", sm: "inline" },
-                      mt: { xs: 0.5, sm: 0 },
-                      fontWeight: 500,
-                      color: "rgba(0, 0, 0, 0.9)",
-                    }}
-                  >
-                    info@chilhygienecenter.org
-                  </Box>
-                </Typography>
-              </Box>
+                Download Full Bid Document
+              </Button>
             </CardContent>
           </Card>
+
+          {/* Bid Notice 2 */}
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "24px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "24px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "16px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                  }}
+                >
+                  Dettol Hygiene Quest Booklet Printing Bid
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Active
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                }}
+              >
+                Request for proposals for printing educational booklets for the
+                hygiene awareness campaign. Specifications and quantity
+                requirements included.
+              </Typography>
+
+              <Button
+                variant="contained"
+                href="https://docs.google.com/document/d/1ig9ZX6bXqiNPfGfs5JggUt4ucCALb5n9/edit?usp=sharing&ouid=103687665460868616174&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  backgroundColor: "#7F007B",
+                  "&:hover": { backgroundColor: "#6A0066" },
+                  textTransform: "none",
+                  mt: 1,
+                }}
+              >
+                Download Full Bid Document
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Bid Notice 3 */}
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "24px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "24px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "16px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                  }}
+                >
+                  Dettol Hygiene Quest Construction Bid
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Active
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                }}
+              >
+                Bid for construction and renovation of hygiene facilities in
+                target schools. Includes architectural plans and material
+                specifications.
+              </Typography>
+
+              <Button
+                variant="contained"
+                href="https://drive.google.com/file/d/YOUR_FILE_ID_3/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  backgroundColor: "#7F007B",
+                  "&:hover": { backgroundColor: "#6A0066" },
+                  textTransform: "none",
+                  mt: 1,
+                }}
+              >
+                Download Full Bid Document
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Bid Notice 4 */}
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "24px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "24px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "16px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                  }}
+                >
+                  Dettol Hygiene Translation Bid Notice
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Active
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                }}
+              >
+                Request for translation services of hygiene education materials
+                into multiple local languages. Language pairs and volume
+                specified.
+              </Typography>
+
+              <Button
+                variant="contained"
+                href="https://drive.google.com/file/d/YOUR_FILE_ID_4/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  backgroundColor: "#7F007B",
+                  "&:hover": { backgroundColor: "#6A0066" },
+                  textTransform: "none",
+                  mt: 1,
+                }}
+              >
+                Download Full Bid Document
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* General Information */}
+          <Typography
+            sx={{
+              fontFamily: "Geist",
+              fontWeight: 400,
+              fontSize: "14px",
+              lineHeight: "20px",
+              color: "rgba(0, 0, 0, 0.6)",
+              textAlign: "center",
+              mt: 2,
+              mb: 4,
+              px: 2,
+            }}
+          >
+            For any questions regarding these bids, please contact our
+            procurement team at:
+            <Box
+              component="span"
+              sx={{ fontWeight: 500, color: "rgba(0, 0, 0, 0.8)" }}
+            >
+              {" "}
+              procurement@ketiai.org
+            </Box>
+          </Typography>
         </Box>
       )}
 
