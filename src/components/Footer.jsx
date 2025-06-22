@@ -121,6 +121,7 @@ const Footer = () => {
               sx={{
                 px: { xs: 2, sm: 0 },
                 maxWidth: { xs: "300px", sm: "none" },
+                mx: { xs: "auto", sm: 0 },
               }}
             >
               <img
@@ -129,7 +130,6 @@ const Footer = () => {
                 style={{
                   width: "120px",
                   marginBottom: "12px",
-                  alignSelf: { xs: "center", sm: "flex-start" },
                 }}
               />
               <Button
@@ -165,41 +165,83 @@ const Footer = () => {
           </Grid>
 
           {/* Column 2: Quick Links */}
-          <Grid item xs={6} sm={3} md={2}>
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 700,
-                fontSize: { xs: "14px", md: "16px" },
-                lineHeight: "20px",
-                letterSpacing: "-0.02em",
-                textAlign: { xs: "center", sm: "left" },
-                color: "#000000",
-                mb: 1.5,
-              }}
+          <Grid item xs={12} sm={3} md={2}>
+            <Stack
+              spacing={1.5}
+              alignItems={{ xs: "center", sm: "flex-start" }}
             >
-              Company
-            </Typography>
-            <Stack spacing={1}>
-              {[
-                { name: "What we Treat", to: "/what-we-treat", isRoute: true },
-                { name: "E-Hygiene shop", to: "/ehygiene", isRoute: true },
-                { name: "Careers", to: "/careers", isRoute: true },
-              ].map((item, index) => (
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 700,
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: "20px",
+                  letterSpacing: "-0.02em",
+                  textAlign: { xs: "center", sm: "left" },
+                  color: "#000000",
+                  mb: 1.5,
+                }}
+              >
+                Company
+              </Typography>
+              <Stack
+                spacing={1.5}
+                alignItems={{ xs: "center", sm: "flex-start" }}
+              >
+                <Link
+                  component={RouterLink}
+                  to="/what-we-treat"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                    letterSpacing: "-0.02em",
+                    textAlign: { xs: "center", sm: "left" },
+                    color: "#333",
+                    textDecoration: "none",
+                    display: "block",
+                    "&:hover": {
+                      color: "#890085",
+                    },
+                  }}
+                >
+                  What we Treat
+                </Link>
+                <Link
+                  component={RouterLink}
+                  to="/ehygiene"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "12px", md: "14px" },
+                    lineHeight: "18px",
+                    letterSpacing: "-0.02em",
+                    textAlign: { xs: "center", sm: "left" },
+                    color: "#333",
+                    textDecoration: "none",
+                    display: "block",
+                    "&:hover": {
+                      color: "#890085",
+                    },
+                  }}
+                >
+                  E-Hygiene shop
+                </Link>
                 <Box
-                  key={index}
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "8px",
+                    gap: 1,
+                    flexDirection: { xs: "column", sm: "row" },
+                    justifyContent: { xs: "center", sm: "flex-start" },
                   }}
                 >
                   <Link
-                    component={item.isRoute ? RouterLink : "a"}
-                    to={item.isRoute ? item.to : undefined}
-                    href={!item.isRoute ? item.to : undefined}
+                    component={RouterLink}
+                    to="/careers"
                     sx={{
                       fontFamily: "Geist",
                       fontWeight: 400,
@@ -214,160 +256,152 @@ const Footer = () => {
                       },
                     }}
                   >
-                    {item.name}
+                    Careers
                   </Link>
-                  {item.name === "Careers" && (
-                    <Button
-                      variant="outlined"
-                      component={RouterLink}
-                      to="/careers"
-                      sx={{
-                        fontFamily: "Geist",
-                        fontWeight: 500,
-                        fontSize: "14px",
-                        lineHeight: "21px",
-                        letterSpacing: "-0.02em",
-                        backgroundColor: "#F4FFE9",
-                        color: "#529700",
-                        borderRadius: "20px",
-                        border: "0.6px solid #F4FFE9",
-                        padding: "3px 12px",
-                        minWidth: "55px",
-                        height: "24px",
-                        marginRight: "20px",
-                        textTransform: "none",
-                        "&:hover": {
-                          backgroundColor: "#E0F5D1",
-                          border: "0.6px solid #E0F5D1",
-                        },
-                      }}
-                    >
-                      We're hiring!
-                    </Button>
-                  )}
+                  <Button
+                    variant="outlined"
+                    component={RouterLink}
+                    to="/careers"
+                    sx={{
+                      fontFamily: "Geist",
+                      fontWeight: 500,
+                      fontSize: "10px",
+                      lineHeight: "14px",
+                      letterSpacing: "-0.02em",
+                      backgroundColor: "#F4FFE9",
+                      color: "#529700",
+                      borderRadius: "12px",
+                      border: "0.6px solid #F4FFE9",
+                      padding: "2px 6px",
+                      minWidth: "auto",
+                      height: "18px",
+                      textTransform: "none",
+                      whiteSpace: "nowrap",
+                      "&:hover": {
+                        backgroundColor: "#E0F5D1",
+                        border: "0.6px solid #E0F5D1",
+                      },
+                    }}
+                  >
+                    We're hiring!
+                  </Button>
                 </Box>
-              ))}
+              </Stack>
             </Stack>
           </Grid>
 
           {/* Column 3: Helpful Links */}
           <Grid
             item
-            xs={6}
+            xs={12}
             sm={3}
             md={2}
             sx={{
-              marginLeft: { xs: 0, sm: "50px" }, // <<< MOVE WHOLE COLUMN LEFT
+              marginLeft: { xs: 0, sm: "50px" },
             }}
           >
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 700,
-                fontSize: { xs: "14px", md: "16px" },
-                lineHeight: "20px",
-                letterSpacing: "-0.02em",
-                textAlign: { xs: "center", sm: "left" },
-                color: "#000000",
-                mb: 1.5,
-              }}
+            <Stack
+              spacing={1.5}
+              alignItems={{ xs: "center", sm: "flex-start" }}
             >
-              Helpful Links
-            </Typography>
-            <Stack spacing={1}>
-              {[
-                { name: "Disaster Medicine", to: "/disaster", isRoute: true },
-                {
-                  name: "Maternal Health",
-                  to: "/maternal-health",
-                  isRoute: true,
-                },
-                {
-                  name: "Chat with Keti",
-                  to: "#",
-                  onClick: openVoiceflowChat,
-                },
-              ].map((item, index) => (
-                <Link
-                  key={index}
-                  component={item.isRoute ? RouterLink : "a"}
-                  to={item.isRoute ? item.to : undefined}
-                  href={!item.isRoute ? item.to : undefined}
-                  onClick={item.onClick}
-                  sx={{
-                    fontFamily: "Geist",
-                    fontWeight: 400,
-                    fontSize: { xs: "12px", md: "14px" },
-                    lineHeight: "18px",
-                    letterSpacing: "-0.02em",
-                    textAlign: { xs: "center", sm: "left" },
-                    color: "#333",
-                    textDecoration: "none",
-                    display: "block",
-                    "&:hover": {
-                      color: "#890085",
-                    },
-                  }}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 700,
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: "20px",
+                  letterSpacing: "-0.02em",
+                  textAlign: { xs: "center", sm: "left" },
+                  color: "#000000",
+                  mb: 1.5,
+                }}
+              >
+                Helpful Links
+              </Typography>
+              <Stack
+                spacing={1}
+                alignItems={{ xs: "center", sm: "flex-start" }}
+              >
+                {[
+                  { name: "Disaster Medicine", to: "/disaster", isRoute: true },
+                  {
+                    name: "Maternal Health",
+                    to: "/maternal-health",
+                    isRoute: true,
+                  },
+                  {
+                    name: "Chat with Keti",
+                    to: "#",
+                    onClick: openVoiceflowChat,
+                  },
+                ].map((item, index) => (
+                  <Link
+                    key={index}
+                    component={item.isRoute ? RouterLink : "a"}
+                    to={item.isRoute ? item.to : undefined}
+                    href={!item.isRoute ? item.to : undefined}
+                    onClick={item.onClick}
+                    sx={{
+                      fontFamily: "Geist",
+                      fontWeight: 400,
+                      fontSize: { xs: "12px", md: "14px" },
+                      lineHeight: "18px",
+                      letterSpacing: "-0.02em",
+                      textAlign: { xs: "center", sm: "left" },
+                      color: "#333",
+                      textDecoration: "none",
+                      display: "block",
+                      "&:hover": {
+                        color: "#890085",
+                      },
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </Stack>
             </Stack>
           </Grid>
 
           {/* Column 4: Legal */}
           <Grid
             item
-            xs={6}
+            xs={12}
             sm={3}
             md={2}
             sx={{
-              marginLeft: { xs: 0, sm: "80px" }, // <<< MOVE WHOLE COLUMN LEFT
+              marginLeft: { xs: 0, sm: "80px" },
             }}
           >
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 700,
-                fontSize: { xs: "14px", md: "16px" },
-                lineHeight: "20px",
-
-                letterSpacing: "-0.02em",
-                textAlign: { xs: "center", sm: "left" },
-                color: "#000000",
-                mb: 1.5,
-              }}
+            <Stack
+              spacing={1.5}
+              alignItems={{ xs: "center", sm: "flex-start" }}
             >
-              Legal
-            </Typography>
-            <Stack spacing={1}>
-              <Link
-                component={RouterLink}
-                to="/privacypolicy"
+              <Typography
+                variant="h6"
+                gutterBottom
                 sx={{
                   fontFamily: "Geist",
-                  fontWeight: 400,
-                  fontSize: { xs: "12px", md: "14px" },
-                  lineHeight: "18px",
+                  fontWeight: 700,
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: "20px",
                   letterSpacing: "-0.02em",
                   textAlign: { xs: "center", sm: "left" },
-                  color: "#333",
-                  textDecoration: "none",
-                  display: "block",
-                  "&:hover": {
-                    color: "#890085",
-                  },
+                  color: "#000000",
+                  mb: 1.5,
                 }}
               >
-                Privacy Policy
-              </Link>
-              {
+                Legal
+              </Typography>
+              <Stack
+                spacing={1}
+                alignItems={{ xs: "center", sm: "flex-start" }}
+              >
                 <Link
-                  href="#"
+                  component={RouterLink}
+                  to="/privacypolicy"
                   sx={{
                     fontFamily: "Geist",
                     fontWeight: 400,
@@ -382,87 +416,12 @@ const Footer = () => {
                       color: "#890085",
                     },
                   }}
-                ></Link>
-              }
+                >
+                  Privacy Policy
+                </Link>
+              </Stack>
             </Stack>
           </Grid>
-
-          {/* Column 5: Socials */}
-          {/*<Grid item xs={6} sm={3} md={3}>
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{
-                fontFamily: "Geist",
-                fontWeight: 500,
-                fontSize: { xs: "14px", md: "16px" },
-                lineHeight: "20px",
-                letterSpacing: "-0.02em",
-                textAlign: { xs: "center", sm: "left" },
-                color: "#000000",
-                mb: 1.5,
-              }}
-            >
-              Socials
-            </Typography>
-            <Stack
-              spacing={1}
-              direction="column"
-              alignItems={{ xs: "center", sm: "flex-start" }}
-            >
-              <Link
-                href="#"
-                sx={{
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  "&:hover": { opacity: 0.8 },
-                }}
-              >
-                <Box
-                  component="img"
-                  src={linkedinIcon}
-                  alt="LinkedIn Icon"
-                  sx={{ width: "20px", height: "20px", mr: 1 }}
-                />
-                <Typography
-                  sx={{
-                    color: "#333",
-                    fontSize: { xs: "12px", md: "14px" },
-                    lineHeight: "18px",
-                  }}
-                >
-                  LinkedIn
-                </Typography>
-              </Link>
-              <Link
-                href="#"
-                sx={{
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  "&:hover": { opacity: 0.8 },
-                }}
-              >
-                <Box
-                  component="img"
-                  src={twitterIcon}
-                  alt="Twitter Icon"
-                  sx={{ width: "20px", height: "20px", mr: 1 }}
-                />
-                <Typography
-                  sx={{
-                    color: "#333",
-                    fontSize: { xs: "12px", md: "14px" },
-                    lineHeight: "18px",
-                  }}
-                >
-                  (Formerly Twitter)
-                </Typography>
-              </Link>
-            </Stack>
-          </Grid>
-           */}
         </Grid>
 
         {/* Newsletter Section */}
@@ -596,65 +555,7 @@ const Footer = () => {
             justifyContent="center"
             alignItems="center"
           >
-            {/* Button 2: Download Play Store */}
-            {/*
-            <Button
-              sx={{
-                backgroundColor: "#000000",
-                color: "white",
-                borderRadius: "40px",
-                padding: { xs: "8px 16px", md: "8px 20px" },
-                gap: "6px",
-                textTransform: "none",
-                fontSize: { xs: "12px", md: "13px" },
-                fontWeight: 500,
-                display: "flex",
-                alignItems: "center",
-                whiteSpace: "nowrap",
-                "&:hover": {
-                  backgroundColor: "#333333",
-                },
-              }}
-            >
-              <Box
-                component="img"
-                src={PlayStoreIcon}
-                alt="Play Store Icon"
-                sx={{ width: "18px", height: "18px", mr: 0.5 }}
-              />
-              Play Store
-            </Button>
-            */}
-
-            {/* Button 3: Download On AppStore */}
-            {/*
-            <Button
-              sx={{
-                backgroundColor: "#000000",
-                color: "white",
-                borderRadius: "40px",
-                padding: { xs: "8px 16px", md: "8px 20px" },
-                gap: "6px",
-                textTransform: "none",
-                fontSize: { xs: "12px", md: "13px" },
-                fontWeight: 500,
-                display: "flex",
-                alignItems: "center",
-                whiteSpace: "nowrap",
-                "&:hover": {
-                  backgroundColor: "#333333",
-                },
-              }}
-            >
-              <Box
-                component="img"
-                src={AppStoreIcon}
-                alt="App Store Icon"
-                sx={{ width: "18px", height: "18px", mr: 0.5 }}
-              />
-              AppStore
-            </Button>
-            */}
+            {/* Commented out app store buttons */}
           </Stack>
         </Box>
 
