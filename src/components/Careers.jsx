@@ -396,7 +396,7 @@ const Careers = () => {
 
               <Button
                 variant="contained"
-                href="https://drive.google.com/file/d/YOUR_FILE_ID_3/view?usp=sharing"
+                href="https://docs.google.com/document/d/1jYc9tbL8f1w266WkwaPmzLhF7IVMJ12g/edit?usp=sharing&ouid=103687665460868616174&rtpof=true&sd=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
@@ -484,7 +484,7 @@ const Careers = () => {
 
               <Button
                 variant="contained"
-                href="https://drive.google.com/file/d/YOUR_FILE_ID_4/view?usp=sharing"
+                href="https://docs.google.com/document/d/1LBEWZIDjSUrVDs4AAmoHV4hH2PWBDVM0/edit?usp=sharing&ouid=103687665460868616174&rtpof=true&sd=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
