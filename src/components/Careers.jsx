@@ -581,7 +581,7 @@ const Careers = () => {
                     },
                   }}
                 >
-                  Hiring
+                  Opportunity
                 </Button>
               </Box>
 
@@ -907,7 +907,7 @@ const Careers = () => {
                     },
                   }}
                 >
-                  Hiring
+                  Opportunity
                 </Button>
               </Box>
 
@@ -1255,7 +1255,7 @@ const Careers = () => {
                     },
                   }}
                 >
-                  Hiring
+                  Opportunity
                 </Button>
               </Box>
 
@@ -1588,7 +1588,7 @@ const Careers = () => {
                     },
                   }}
                 >
-                  Hiring
+                  Opportunity
                 </Button>
               </Box>
 

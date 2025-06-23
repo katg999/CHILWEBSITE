@@ -283,7 +283,7 @@ const Footer = () => {
                       },
                     }}
                   >
-                    We're hiring!
+                    Opportunities
                   </Button>
                 </Box>
               </Stack>
