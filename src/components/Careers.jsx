@@ -513,14 +513,13 @@ const Careers = () => {
               px: 2,
             }}
           >
-            For any questions regarding these bids, please contact our
-            procurement team at:
+            For any questions regarding these bids, please contact our team at:
             <Box
               component="span"
               sx={{ fontWeight: 500, color: "rgba(0, 0, 0, 0.8)" }}
             >
               {" "}
-              procurement@ketiai.org
+              info@chilhygienecenter.org
             </Box>
           </Typography>
         </Box>
