@@ -82,6 +82,25 @@ const Careers = () => {
         >
           BID NOTICE(4)
         </Button>
+        <Button
+          onClick={() => setActiveTab("impact")}
+          sx={{
+            fontFamily: "Geist",
+            fontWeight: 500,
+            fontSize: "16px",
+            lineHeight: "24px",
+            color: activeTab === "impact" ? "#7F007B" : "rgba(0, 0, 0, 0.6)",
+            textTransform: "none",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            backgroundColor: activeTab === "impact" ? "#F9F0F9" : "transparent",
+            "&:hover": {
+              backgroundColor: activeTab === "impact" ? "#F9F0F9" : "#F5F5F5",
+            },
+          }}
+        >
+          Junior FullStack Developer (1)
+        </Button>
       </Box>
 
       {/* Bids  Section */}
@@ -463,6 +482,337 @@ const Careers = () => {
               info@chilhygienecenter.org
             </Box>
           </Typography>
+        </Box>
+      )}
+
+      {/* Impact Management Section */}
+      {activeTab === "impact" && (
+        <Box sx={{ width: "100%", maxWidth: "900px" }}>
+          {/* Junior Developer Card */}
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "40px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "24px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "22px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                    marginRight: "12px",
+                  }}
+                >
+                  Junior Fullstack Software Developer
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Opportunity
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                  textAlign: "left",
+                }}
+              >
+                KETI AI Solutions is seeking a talented and motivated Junior
+                Fullstack Software Developer to join our dynamic development
+                team. This is an excellent opportunity for a passionate
+                developer to grow their career while working on innovative
+                AI-powered solutions and educational technology platforms. We
+                particularly encourage applications from female developers as
+                part of our commitment to diversity and inclusion in tech.
+              </Typography>
+
+              {/* Key Responsibilities */}
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Key Responsibilities
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Develop and maintain web applications using modern frontend
+                  and backend technologies
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Write clean, efficient, and well-documented code following
+                  best practices
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Collaborate with senior developers and participate in code
+                  reviews
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Assist in database design, API development, and system
+                  integration
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Participate in testing, debugging, and troubleshooting
+                  applications
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Contribute to project planning and technical documentation
+                </Typography>
+              </Box>
+
+              {/* Qualifications */}
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Qualifications and Experience
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Bachelor's degree in Computer Science, Software Engineering,
+                  or related field
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • 1-2 years of experience in fullstack development or strong
+                  portfolio of projects
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Proficiency in JavaScript, HTML, CSS, and at least one
+                  modern framework (React, Vue, Angular)
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Experience with backend technologies (Node.js, Python, or
+                  similar) and databases
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Understanding of version control systems (Git) and
+                  collaborative development
+                </Typography>
+              </Box>
+
+              {/* Application Details */}
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Application Details
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
+                  }}
+                >
+                  <strong>Location:</strong> Uganda ( Office-Based Work)
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -2 },
+                    mb: 1,
+                  }}
+                >
+                  <strong>Application Deadline:</strong> Tuesday, 15th July
+                  2025, 5:00 PM EAT
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -1 },
+                  }}
+                >
+                  <strong>How to Apply:</strong> Submit your CV, cover letter,
+                  and portfolio/GitHub links to:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    info@ketiai.com
+                  </Box>
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
         </Box>
       )}
     </Box>
