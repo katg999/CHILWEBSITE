@@ -388,6 +388,40 @@ const ContactUs = () => {
             >
               4th Floor Bible House Bombo Road Kampala
             </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "Geist, sans-serif",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "15px" },
+                lineHeight: { xs: "18px", md: "20px" },
+                letterSpacing: "0%",
+                color: "#8B4513",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+              }}
+            >
+              <Box
+                component="span"
+                sx={{
+                  width: "16px",
+                  height: "16px",
+                  backgroundColor: "#8B4513",
+                  borderRadius: "50%",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  fontSize: "10px",
+                  fontWeight: "bold",
+                }}
+              >
+                ☎
+              </Box>
+              +256 751062999
+            </Typography>
           </Box>
 
           {/* Kenya Location */}
