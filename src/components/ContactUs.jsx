@@ -341,7 +341,7 @@ const ContactUs = () => {
                 marginTop: "8px",
               }}
             >
-              Kampala
+              Uganda
             </Typography>
             <Typography
               variant="body2"
@@ -464,7 +464,7 @@ const ContactUs = () => {
                 marginTop: "8px",
               }}
             >
-              Sky City Mall Dar es Salaam
+              Sky City Mall Dar-es-Salaam
             </Typography>
           </Box>
         </Box>
