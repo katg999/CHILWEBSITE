@@ -45,9 +45,9 @@ const Careers = () => {
           color: "rgba(0, 0, 0, 0.8)",
         }}
       >
-        At Keti AI, we believe in building a team of skilled and passionate
-        individuals while fostering a culture that empowers them to deliver
-        their best work.
+        At Keti AI, we believe in building a team of skilled, diverse and
+        passionate individuals while fostering a culture that empowers them to
+        deliver their best work.
       </Typography>
 
       {/* Job Selection Tabs */}
@@ -767,7 +767,7 @@ const Careers = () => {
                     mb: 1,
                   }}
                 >
-                  <strong>Location:</strong> Uganda ( Office-Based Work)
+                  <strong>Location:</strong> Uganda-Office-Based Work
                 </Typography>
 
                 <Typography
@@ -796,7 +796,7 @@ const Careers = () => {
                   }}
                 >
                   <strong>How to Apply:</strong> Submit your CV, cover letter,
-                  and portfolio/GitHub links to:{" "}
+                  and GitHub link to:{" "}
                   <Box
                     component="span"
                     sx={{
