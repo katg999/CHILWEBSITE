@@ -30,7 +30,6 @@ const Careers = () => {
       >
         Join Our Team At Keti AI
       </Typography>
-
       {/* Description */}
       <Typography
         sx={{
@@ -49,7 +48,6 @@ const Careers = () => {
         passionate individuals while fostering a culture that empowers them to
         deliver their best work.
       </Typography>
-
       {/* Job Selection Tabs */}
       <Box
         sx={{
@@ -82,6 +80,7 @@ const Careers = () => {
         >
           BID NOTICE(4)
         </Button>
+        {/*
         <Button
           onClick={() => setActiveTab("impact")}
           sx={{
@@ -101,8 +100,8 @@ const Careers = () => {
         >
           Junior FullStack Developer (1)
         </Button>
+        */}
       </Box>
-
       {/* Bids  Section */}
       {/* Bids Section */}
       {activeTab === "bids" && (
@@ -484,11 +483,11 @@ const Careers = () => {
           </Typography>
         </Box>
       )}
-
       {/* Impact Management Section */}
+      {/*
       {activeTab === "impact" && (
         <Box sx={{ width: "100%", maxWidth: "900px" }}>
-          {/* Junior Developer Card */}
+          
           <Card
             sx={{
               width: "100%",
@@ -497,6 +496,7 @@ const Careers = () => {
               marginBottom: "40px",
             }}
           >
+            
             <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
               <Box
                 sx={{
@@ -565,7 +565,7 @@ const Careers = () => {
                 part of our commitment to diversity and inclusion in tech.
               </Typography>
 
-              {/* Key Responsibilities */}
+              
               <Typography
                 sx={{
                   fontFamily: "Bricolage Grotesque",
@@ -659,7 +659,7 @@ const Careers = () => {
                 </Typography>
               </Box>
 
-              {/* Qualifications */}
+              
               <Typography
                 sx={{
                   fontFamily: "Bricolage Grotesque",
@@ -741,7 +741,7 @@ const Careers = () => {
                 </Typography>
               </Box>
 
-              {/* Application Details */}
+              
               <Typography
                 sx={{
                   fontFamily: "Bricolage Grotesque",
@@ -809,12 +809,20 @@ const Careers = () => {
                   >
                     info@ketiai.com
                   </Box>
+                   
+                   
                 </Typography>
+                 
               </Box>
+               
+               
             </CardContent>
           </Card>
+           
         </Box>
+         
       )}
+         */}
     </Box>
   );
 };
