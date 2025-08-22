@@ -801,7 +801,7 @@ const Careers = () => {
                       color: "rgba(0, 0, 0, 0.9)",
                     }}
                   >
-                    info@chilhygienecenter.org
+                    nabakkasandra23@gmail.com
                   </Box>
                 </Typography>
               </Box>
