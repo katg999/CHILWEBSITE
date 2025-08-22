@@ -80,7 +80,7 @@ const Careers = () => {
         >
           BID NOTICE(4)
         </Button>
-        {/*
+
         <Button
           onClick={() => setActiveTab("impact")}
           sx={{
@@ -98,9 +98,8 @@ const Careers = () => {
             },
           }}
         >
-          Junior FullStack Developer (1)
+          Graphics Designer (1)
         </Button>
-        */}
       </Box>
       {/* Bids  Section */}
       {/* Bids Section */}
@@ -484,10 +483,9 @@ const Careers = () => {
         </Box>
       )}
       {/* Impact Management Section */}
-      {/*
+
       {activeTab === "impact" && (
         <Box sx={{ width: "100%", maxWidth: "900px" }}>
-          
           <Card
             sx={{
               width: "100%",
@@ -496,7 +494,6 @@ const Careers = () => {
               marginBottom: "40px",
             }}
           >
-            
             <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
               <Box
                 sx={{
@@ -517,7 +514,7 @@ const Careers = () => {
                     marginRight: "12px",
                   }}
                 >
-                  Junior Fullstack Software Developer
+                  Graphics Designer
                 </Typography>
                 <Button
                   variant="outlined"
@@ -556,16 +553,16 @@ const Careers = () => {
                   textAlign: "left",
                 }}
               >
-                KETI AI Solutions is seeking a talented and motivated Junior
-                Fullstack Software Developer to join our dynamic development
-                team. This is an excellent opportunity for a passionate
-                developer to grow their career while working on innovative
-                AI-powered solutions and educational technology platforms. We
-                particularly encourage applications from female developers as
-                part of our commitment to diversity and inclusion in tech.
+                Dettol Hygiene Quest under KETI AI Solutions is seeking a
+                talented and motivated Graphics Designer to join our dynamic
+                development team. This is an excellent opportunity for a
+                passionate developer to grow their career while working on
+                innovative projects under the Dettol Hygiene Quest Program
+                solutions and educational technology platforms. We particularly
+                encourage applications from female developers as part of our
+                commitment to diversity and inclusion in tech.
               </Typography>
 
-              
               <Typography
                 sx={{
                   fontFamily: "Bricolage Grotesque",
@@ -590,8 +587,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Develop and maintain web applications using modern frontend
-                  and backend technologies
+                  • Conduct user research and usability testing to understand
+                  user needs and pain points.
                 </Typography>
                 <Typography
                   component="div"
@@ -603,8 +600,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Write clean, efficient, and well-documented code following
-                  best practices
+                  • Transalte user insights into wireframes, prototypes, and
+                  final UI designs.
                 </Typography>
                 <Typography
                   component="div"
@@ -616,8 +613,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Collaborate with senior developers and participate in code
-                  reviews
+                  • Collaborate with Dettol Hygiene Quest Mangers and
+                  Stakeholders to deliver user-centered solutions.
                 </Typography>
                 <Typography
                   component="div"
@@ -629,8 +626,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Assist in database design, API development, and system
-                  integration
+                  • Optimize user journeys for all digital products under the
+                  Dettol Hygiene Quest Program.
                 </Typography>
                 <Typography
                   component="div"
@@ -642,8 +639,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Participate in testing, debugging, and troubleshooting
-                  applications
+                  • Ensure accessibility and inclusivity across all digital
+                  products under the Dettol Hygiene Quest Program
                 </Typography>
                 <Typography
                   component="div"
@@ -655,11 +652,11 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Contribute to project planning and technical documentation
+                  • Continously improve product User Interaction and User
+                  Experience through feedback and analytics.
                 </Typography>
               </Box>
 
-              
               <Typography
                 sx={{
                   fontFamily: "Bricolage Grotesque",
@@ -684,8 +681,7 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Bachelor's degree in Computer Science, Software Engineering,
-                  or related field
+                  • Bachelor's degree in any IT Discipline, or related field
                 </Typography>
                 <Typography
                   component="div"
@@ -697,8 +693,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • 1-2 years of experience in fullstack development or strong
-                  portfolio of projects
+                  • 1-2 years of experience in developing or strong portfolio of
+                  projects
                 </Typography>
                 <Typography
                   component="div"
@@ -710,8 +706,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Proficiency in JavaScript, HTML, CSS, and at least one
-                  modern framework (React, Vue, Angular)
+                  • Proficiency in design tools such as Figma, Photoshop or
+                  Canva
                 </Typography>
                 <Typography
                   component="div"
@@ -723,8 +719,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Experience with backend technologies (Node.js, Python, or
-                  similar) and databases
+                  • Ability to work independently and collaboratively in a
+                  fast-paced environment
                 </Typography>
                 <Typography
                   component="div"
@@ -736,12 +732,10 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Understanding of version control systems (Git) and
-                  collaborative development
+                  • A strong portfolio showcasing previous design projects.
                 </Typography>
               </Box>
 
-              
               <Typography
                 sx={{
                   fontFamily: "Bricolage Grotesque",
@@ -781,7 +775,7 @@ const Careers = () => {
                     mb: 1,
                   }}
                 >
-                  <strong>Application Deadline:</strong> Tuesday, 15th July
+                  <strong>Application Deadline:</strong> Sunday, 31st August
                   2025, 5:00 PM EAT
                 </Typography>
 
@@ -796,7 +790,7 @@ const Careers = () => {
                   }}
                 >
                   <strong>How to Apply:</strong> Submit your CV, cover letter,
-                  and GitHub link to:{" "}
+                  and portfolio to:{" "}
                   <Box
                     component="span"
                     sx={{
@@ -807,22 +801,14 @@ const Careers = () => {
                       color: "rgba(0, 0, 0, 0.9)",
                     }}
                   >
-                    info@ketiai.com
+                    info@chilhygienecenter.org
                   </Box>
-                   
-                   
                 </Typography>
-                 
               </Box>
-               
-               
             </CardContent>
           </Card>
-           
         </Box>
-         
       )}
-         */}
     </Box>
   );
 };
