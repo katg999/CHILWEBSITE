@@ -801,7 +801,7 @@ const Careers = () => {
                       color: "rgba(0, 0, 0, 0.9)",
                     }}
                   >
-                    nabakkasandra23@gmail.com
+                    sandranabakka.hygienequest@ketiai.com
                   </Box>
                 </Typography>
               </Box>
