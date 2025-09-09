@@ -514,7 +514,7 @@ const Careers = () => {
                     marginRight: "12px",
                   }}
                 >
-                  Graphics Designer
+                  Hygiene Quest Paid Intern
                 </Typography>
                 <Button
                   variant="outlined"
@@ -554,13 +554,12 @@ const Careers = () => {
                 }}
               >
                 Dettol Hygiene Quest under KETI AI Solutions is seeking a
-                talented and motivated Graphics Designer to join our dynamic
-                development team. This is an excellent opportunity for a
-                passionate developer to grow their career while working on
-                innovative projects under the Dettol Hygiene Quest Program
-                solutions and educational technology platforms. We particularly
-                encourage applications from female developers as part of our
-                commitment to diversity and inclusion in tech.
+                talented and motivated Interns to join our dynamic team. Dettol
+                Hygiene Quest is an initiative aimed at promoting hygiene
+                education and practices among school children. The campaign
+                focuses on improving health outcomes by raising awareness on
+                handwashing, sanitation and personal hygiene with an emphasis on
+                school and community engagement.
               </Typography>
 
               <Typography
@@ -587,8 +586,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Conduct user research and usability testing to understand
-                  user needs and pain points.
+                  • Partake in the implementation of the Dettol Hygiene Quest
+                  campaign in your assigned district.
                 </Typography>
                 <Typography
                   component="div"
@@ -600,8 +599,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Transalte user insights into wireframes, prototypes, and
-                  final UI designs.
+                  • Engage school leaders, teachers, and students to ensure
+                  successful delivery of hygiene activities.
                 </Typography>
                 <Typography
                   component="div"
@@ -613,8 +612,9 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Collaborate with Dettol Hygiene Quest Mangers and
-                  Stakeholders to deliver user-centered solutions.
+                  • Conduct school visits, workshops and interactive sessions on
+                  proper hygiene practices through the Dettol Hygiene Quest
+                  Chatbot.
                 </Typography>
                 <Typography
                   component="div"
@@ -626,8 +626,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Optimize user journeys for all digital products under the
-                  Dettol Hygiene Quest Program.
+                  • Distribute learning materials and resources provided by the
+                  campaign.
                 </Typography>
                 <Typography
                   component="div"
@@ -639,8 +639,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Ensure accessibility and inclusivity across all digital
-                  products under the Dettol Hygiene Quest Program
+                  • Collect feedback and data on campaign activities for
+                  monitoring and reporting.
                 </Typography>
                 <Typography
                   component="div"
@@ -652,8 +652,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Continously improve product User Interaction and User
-                  Experience through feedback and analytics.
+                  • Act as a local ambassador for hygiene promotion, fostering
+                  sustainable behaviour change
                 </Typography>
               </Box>
 
@@ -681,7 +681,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Bachelor's degree in any IT Discipline, or related field
+                  • Bachelor's degree in Public Health, Education, Social Work
+                  or related field. Preferred but not always mandatory
                 </Typography>
                 <Typography
                   component="div"
@@ -693,8 +694,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • 1-2 years of experience in developing or strong portfolio of
-                  projects
+                  • Previous experience in community outreach, school engagement
+                  or volunteer programs is an added advantage.
                 </Typography>
                 <Typography
                   component="div"
@@ -706,8 +707,7 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Proficiency in design tools such as Figma, Photoshop or
-                  Canva
+                  • Strong communication and facilitation skills
                 </Typography>
                 <Typography
                   component="div"
@@ -719,8 +719,8 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • Ability to work independently and collaboratively in a
-                  fast-paced environment
+                  • Willingness to travel and work across different districts as
+                  required by the program.
                 </Typography>
                 <Typography
                   component="div"
@@ -732,7 +732,7 @@ const Careers = () => {
                     color: "rgba(0, 0, 0, 0.8)",
                   }}
                 >
-                  • A strong portfolio showcasing previous design projects.
+                  • A passion for community development and health promotion
                 </Typography>
               </Box>
 
@@ -761,7 +761,7 @@ const Careers = () => {
                     mb: 1,
                   }}
                 >
-                  <strong>Location:</strong> Uganda-Office-Based Work
+                  <strong>Location:</strong> Uganda-Field-Based Work
                 </Typography>
 
                 <Typography
@@ -775,7 +775,7 @@ const Careers = () => {
                     mb: 1,
                   }}
                 >
-                  <strong>Application Deadline:</strong> Sunday, 31st August
+                  <strong>Application Deadline:</strong> Tuesday, 23rd September
                   2025, 5:00 PM EAT
                 </Typography>
 
@@ -789,8 +789,7 @@ const Careers = () => {
                     ml: { xs: 0, sm: -1 },
                   }}
                 >
-                  <strong>How to Apply:</strong> Submit your CV, cover letter,
-                  and portfolio to:{" "}
+                  <strong>How to Apply:</strong> Submit your CV, cover letter :{" "}
                   <Box
                     component="span"
                     sx={{
