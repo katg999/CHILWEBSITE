@@ -98,7 +98,7 @@ const Careers = () => {
             },
           }}
         >
-          Graphics Designer (1)
+          Hygiene Quest Paid Intern(3)
         </Button>
       </Box>
       {/* Bids  Section */}
