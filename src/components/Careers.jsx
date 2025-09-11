@@ -763,6 +763,20 @@ const Careers = () => {
                 >
                   <strong>Location:</strong> Uganda-Field-Based Work
                 </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
+                  }}
+                >
+                  <strong>Note:</strong> Female applicants are highly encouraged
+                  to apply as they will be given priority.
+                </Typography>
 
                 <Typography
                   sx={{
