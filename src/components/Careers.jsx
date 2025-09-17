@@ -100,6 +100,63 @@ const Careers = () => {
         >
           Hygiene Quest Paid Intern(3)
         </Button>
+        <Button
+          onClick={() => setActiveTab("pyhsician")}
+          sx={{
+            fontFamily: "Geist",
+            fontWeight: 500,
+            fontSize: "16px",
+            lineHeight: "24px",
+            color: activeTab === "impact" ? "#7F007B" : "rgba(0, 0, 0, 0.6)",
+            textTransform: "none",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            backgroundColor: activeTab === "impact" ? "#F9F0F9" : "transparent",
+            "&:hover": {
+              backgroundColor: activeTab === "impact" ? "#F9F0F9" : "#F5F5F5",
+            },
+          }}
+        >
+          E-Physician
+        </Button>
+        <Button
+          onClick={() => setActiveTab("salesexecutive")}
+          sx={{
+            fontFamily: "Geist",
+            fontWeight: 500,
+            fontSize: "16px",
+            lineHeight: "24px",
+            color: activeTab === "impact" ? "#7F007B" : "rgba(0, 0, 0, 0.6)",
+            textTransform: "none",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            backgroundColor: activeTab === "impact" ? "#F9F0F9" : "transparent",
+            "&:hover": {
+              backgroundColor: activeTab === "impact" ? "#F9F0F9" : "#F5F5F5",
+            },
+          }}
+        >
+          B2B Sales Executive
+        </Button>
+        <Button
+          onClick={() => setActiveTab("developer")}
+          sx={{
+            fontFamily: "Geist",
+            fontWeight: 500,
+            fontSize: "16px",
+            lineHeight: "24px",
+            color: activeTab === "impact" ? "#7F007B" : "rgba(0, 0, 0, 0.6)",
+            textTransform: "none",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            backgroundColor: activeTab === "impact" ? "#F9F0F9" : "transparent",
+            "&:hover": {
+              backgroundColor: activeTab === "impact" ? "#F9F0F9" : "#F5F5F5",
+            },
+          }}
+        >
+          Junior FullStack Developer (Part Time)
+        </Button>
       </Box>
       {/* Bids  Section */}
       {/* Bids Section */}
@@ -815,6 +872,985 @@ const Careers = () => {
                     }}
                   >
                     sandranabakka.hygienequest@ketiai.com
+                  </Box>
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      )}
+      {activeTab === "pyhsician" && (
+        <Box sx={{ width: "100%", maxWidth: "900px" }}>
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "40px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "24px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "22px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                    marginRight: "12px",
+                  }}
+                >
+                  E-Physicians
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Opportunity
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                  textAlign: "left",
+                }}
+              >
+                KETI AI Solutions is seeking a talented and motivated Physicians
+                to join our dynamic team. Keti AI is leading provider of
+                telemedicine services, leveraging technology to connect patients
+                with qualified healthcare professionals remotely. Our mission is
+                to improve access to quality healthcare, especially in
+                underserved and remote areas.
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Key Responsibilities
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Provide secure telehealth consultations to patients via our
+                  telemedicine platform.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Diagnose and treat a variety of medical conditions remotely,
+                  following established clinical guidelines.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Collaborate with partner health facilities to ensure
+                  continuity of care for patients requiring in-person follow-up.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Expand healthcare access to underserved populations through
+                  virtual consultations.
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Qualifications and Experience
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Hold a valid medical license and strong clinical expertise
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Previous experience in telehealth is a plus but not
+                  mandatory
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Strong communication and facilitation skills
+                </Typography>
+              </Box>
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                We Offer
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Pay-per-patient model(earn more as you see more patients)
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Real Impact on African healthcare access
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Flexible schedules
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Be part of telehealth innovation
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Application Details
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
+                  }}
+                >
+                  <strong>Location:</strong> Uganda
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -2 },
+                    mb: 1,
+                  }}
+                >
+                  <strong>Application Deadline:</strong> Tuesday, 23rd September
+                  2025, 5:00 PM EAT
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -1 },
+                  }}
+                >
+                  <strong>How to Apply:</strong> Submit your CV, cover letter :{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    nabacwa@ketiai.com
+                  </Box>
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      )}
+      {activeTab === "salesexecutive" && (
+        <Box sx={{ width: "100%", maxWidth: "900px" }}>
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "40px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "24px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "22px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                    marginRight: "12px",
+                  }}
+                >
+                  B2B Sales Executive
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Opportunity
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                  textAlign: "left",
+                }}
+              >
+                KETI AI Solutions is seeking B2B Sales Executives to join our
+                dynamic team. Keti AI is leading provider of telemedicine
+                services, leveraging technology to connect patients with
+                qualified healthcare professionals remotely. Our mission is to
+                improve access to quality healthcare. The B2B Sales Executives
+                shall drive business growth by engaging corporate clients,
+                healthcare providers, schools and government agencies with CHIL
+                Femtech Center's innovative telemedicine solutions.
+              </Typography>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Key Responsibilities
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Drive B2B Sales in healthcare and education
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Build and maintain client relationships
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Negotiate contracts and close deals
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Collaborate with all teams
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Track sales and provide feedback
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Stay updated on telemedicine trends
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Qualifications and Experience
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Bachelor's degree in any related field
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Candidate must have a B2B sales experience.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • 3 or more years of B2B sales experience
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Knowledge of healthcare is an added advantage.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • A passion for community development and health promotion
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Application Details
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
+                  }}
+                >
+                  Location:Uganda
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -2 },
+                    mb: 1,
+                  }}
+                >
+                  <strong>Application Deadline:</strong> Tuesday, 23rd September
+                  2025, 5:00 PM EAT
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -1 },
+                  }}
+                >
+                  <strong>How to Apply:</strong> Submit your CV, cover letter:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    nabacwa@ketiai.com
+                  </Box>
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      )}
+      {activeTab === "developer" && (
+        <Box sx={{ width: "100%", maxWidth: "900px" }}>
+          <Card
+            sx={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              marginBottom: "40px",
+            }}
+          >
+            <CardContent sx={{ padding: { xs: "20px", md: "32px" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "24px",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Bricolage Grotesque",
+                    fontWeight: 600,
+                    fontSize: "22px",
+                    lineHeight: "24px",
+                    color: "#7F007B",
+                    marginRight: "12px",
+                  }}
+                >
+                  Full Stack Developer(Part Time)
+                </Typography>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    letterSpacing: "-0.02em",
+                    backgroundColor: "#F4FFE9",
+                    color: "#529700",
+                    borderRadius: "20px",
+                    border: "0.6px solid #F4FFE9",
+                    padding: "3px 12px",
+                    minWidth: "55px",
+                    height: "24px",
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#E0F5D1",
+                      border: "0.6px solid #E0F5D1",
+                    },
+                  }}
+                >
+                  Opportunity
+                </Button>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Geist",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "rgba(0, 0, 0, 0.8)",
+                  marginBottom: "16px",
+                  textAlign: "left",
+                }}
+              >
+                KETI AI Solutions is seeking FullStack Developer(PartTime) to
+                join our dynamic team. Keti AI is leading provider of
+                telemedicine services, leveraging technology to connect patients
+                with qualified healthcare professionals remotely. Our mission is
+                to improve access to quality healthcare.
+              </Typography>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Key Responsibilities
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Develop and maintain web applications using modern tools for
+                  our different projects.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Manage and optimise databases for security and performance.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Buid and integrate APIs with internal and external services.
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Test, debug and ensure smooth application functionality
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Provide techinical support, system optimisation and manage
+                  different project requirements
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Qualifications and Experience
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Bachelor's degree in any IT related field / Experience with
+                  coding
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Familiarity with Git and collaborative developement
+                  workflows
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Please Share a link to your Github profile showcasing your
+                  completed projects
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Strong knowledge of front-end and back-end technologies for
+                  example React, PHP, Python
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Strong knowledge of database management systems such as
+                  MySQL, PostgreSQL
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "24px",
+                    color: "rgba(0, 0, 0, 0.8)",
+                  }}
+                >
+                  • Good Knowledge of API development and integration
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  fontFamily: "Bricolage Grotesque",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "24px",
+                  color: "black",
+                  margin: "24px 0 8px 0",
+                  textAlign: "left",
+                }}
+              >
+                Application Details
+              </Typography>
+              <Box sx={{ pl: 3, mb: 2 }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
+                  }}
+                >
+                  Location: Uganda
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -2 },
+                    mb: 1,
+                  }}
+                >
+                  <strong>Application Deadline:</strong> Tuesday, 23rd September
+                  2025, 5:00 PM EAT
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    ml: { xs: 0, sm: -3 },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    mb: 1,
+                  }}
+                >
+                  <strong>Note:</strong> Female developers are highly encouraged
+                  to apply.
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontFamily: "Geist",
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "16px" },
+                    lineHeight: { xs: "20px", sm: "24px" },
+                    color: "rgba(0, 0, 0, 0.8)",
+                    ml: { xs: 0, sm: -1 },
+                  }}
+                >
+                  <strong>How to Apply:</strong> Submit your CV, cover letter:{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      wordBreak: { xs: "break-all", sm: "normal" },
+                      display: { xs: "block", sm: "inline" },
+                      mt: { xs: 0.5, sm: 0 },
+                      fontWeight: 500,
+                      color: "rgba(0, 0, 0, 0.9)",
+                    }}
+                  >
+                    nabacwa@ketiai.com
                   </Box>
                 </Typography>
               </Box>
