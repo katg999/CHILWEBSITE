@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, Card, CardContent } from "@mui/material";
+
+import DownloadIcon from "@mui/icons-material/Download";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const Careers = () => {
@@ -540,7 +544,6 @@ const Careers = () => {
         </Box>
       )}
       {/* Impact Management Section */}
-
       {activeTab === "impact" && (
         <Box sx={{ width: "100%", maxWidth: "900px" }}>
           <Card
@@ -1858,6 +1861,138 @@ const Careers = () => {
           </Card>
         </Box>
       )}
+      {/* APK Download Section - Added here for field team visibility */}
+      <Card
+        sx={{
+          width: "100%",
+          maxWidth: "900px",
+          borderRadius: "12px",
+          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+          marginBottom: "32px",
+          background: "linear-gradient(135deg, #7F007B 0%, #A000A0 100%)",
+          color: "white",
+        }}
+      >
+        <CardContent sx={{ padding: { xs: "20px", md: "24px" } }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "16px",
+              gap: "12px",
+              flexWrap: "wrap",
+            }}
+          >
+            <PhoneAndroidIcon sx={{ fontSize: 28, color: "white" }} />
+            <Typography
+              sx={{
+                fontFamily: "Bricolage Grotesque",
+                fontWeight: 600,
+                fontSize: "22px",
+                lineHeight: "24px",
+                color: "white",
+              }}
+            >
+              Field Team Mobile App
+            </Typography>
+            <Button
+              variant="outlined"
+              sx={{
+                fontFamily: "Geist",
+                fontWeight: 500,
+                fontSize: "14px",
+                lineHeight: "21px",
+                letterSpacing: "-0.02em",
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+                color: "white",
+                borderRadius: "20px",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                padding: "3px 12px",
+                minWidth: "55px",
+                height: "24px",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.3)",
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
+                },
+              }}
+            >
+              Latest
+            </Button>
+          </Box>
+
+          <Typography
+            sx={{
+              fontFamily: "Geist",
+              fontWeight: 400,
+              fontSize: "16px",
+              lineHeight: "24px",
+              color: "rgba(255, 255, 255, 0.9)",
+              marginBottom: "20px",
+            }}
+          >
+            Download the latest version of our field application for data
+            collection, reporting, and team coordination. Compatible with
+            Android devices. This app is only our field team members.
+          </Typography>
+
+          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+            <Button
+              variant="contained"
+              href="/downloads/lessonplan1.apk"
+              download="keti-field-app-v2.1.0.apk"
+              startIcon={<DownloadIcon />}
+              sx={{
+                backgroundColor: "white",
+                color: "#7F007B",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
+                  transform: "translateY(-1px)",
+                },
+                textTransform: "none",
+                fontWeight: 600,
+                padding: "10px 20px",
+              }}
+            >
+              Download APK (v2.1.0)
+            </Button>
+
+            {/* Alternative: External hosting link */}
+            {/* 
+            <Button
+              variant="contained"
+              href="https://your-file-hosting-service.com/keti-field-app.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              startIcon={<DownloadIcon />}
+              sx={{
+                backgroundColor: "white",
+                color: "#7F007B",
+                "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.9)" },
+                textTransform: "none",
+                fontWeight: 600,
+              }}
+            >
+              Download APK
+            </Button>
+            */}
+          </Box>
+
+          <Typography
+            sx={{
+              fontFamily: "Geist",
+              fontWeight: 400,
+              fontSize: "14px",
+              lineHeight: "20px",
+              color: "rgba(255, 255, 255, 0.8)",
+              marginTop: "16px",
+            }}
+          >
+            File size: ~80MB | Latest update: September 2025
+          </Typography>
+        </CardContent>
+      </Card>
+      ;
     </Box>
   );
 };
